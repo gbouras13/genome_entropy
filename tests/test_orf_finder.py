@@ -280,6 +280,9 @@ def test_minimum_aa_length_conversion_for_get_orfs() -> None:
     assert _minimum_aa_length_for_get_orfs(90) == 30
     assert _minimum_aa_length_for_get_orfs(60) == 20
     assert _minimum_aa_length_for_get_orfs(20) == 7
+    assert _minimum_aa_length_for_get_orfs(1) == 1
+    assert _minimum_aa_length_for_get_orfs(3) == 1
+    assert _minimum_aa_length_for_get_orfs(4) == 2
 
 
 def test_find_orfs_passes_converted_min_length_to_get_orfs(monkeypatch) -> None:
@@ -299,6 +302,6 @@ def test_find_orfs_passes_converted_min_length_to_get_orfs(monkeypatch) -> None:
 
     find_orfs({"seq1": "ATG" * 40}, min_nt_length=60, binary_path="get_orfs")
 
-    run_cmd = recorded_commands[1]
+    run_cmd = next(cmd for cmd in recorded_commands if "-l" in cmd)
     length_index = run_cmd.index("-l") + 1
     assert run_cmd[length_index] == "20"
