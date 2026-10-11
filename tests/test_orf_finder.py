@@ -1,9 +1,15 @@
 """Tests for ORF finding functionality."""
 
+import subprocess
+
 import pytest
 
+from genome_entropy.orf.finder import (
+    _minimum_aa_length_for_get_orfs,
+    _parse_orf_header_line,
+    find_orfs,
+)
 from genome_entropy.orf.types import OrfRecord
-from genome_entropy.orf.finder import _parse_orf_header_line
 
 
 def test_orf_record_creation() -> None:
@@ -267,3 +273,32 @@ def test_parse_orf_header_invalid_format() -> None:
     for header in invalid_headers:
         with pytest.raises(ValueError, match="Header did not match expected format"):
             _parse_orf_header_line(header, table_id=11)
+
+
+def test_minimum_aa_length_conversion_for_get_orfs() -> None:
+    """Nucleotide thresholds are converted to amino-acid units for get_orfs."""
+    assert _minimum_aa_length_for_get_orfs(90) == 30
+    assert _minimum_aa_length_for_get_orfs(60) == 20
+    assert _minimum_aa_length_for_get_orfs(20) == 7
+
+
+def test_find_orfs_passes_converted_min_length_to_get_orfs(monkeypatch) -> None:
+    """find_orfs sends get_orfs a converted amino-acid minimum length."""
+    recorded_commands = []
+
+    def fake_run(cmd, **kwargs):
+        recorded_commands.append(cmd)
+        if cmd[1] == "-v":
+            return subprocess.CompletedProcess(cmd, 0, stdout="get_orfs", stderr="")
+        return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
+
+    monkeypatch.setattr("genome_entropy.orf.finder.subprocess.run", fake_run)
+    monkeypatch.setattr(
+        "genome_entropy.orf.finder._parse_get_orfs_output", lambda *_: []
+    )
+
+    find_orfs({"seq1": "ATG" * 40}, min_nt_length=60, binary_path="get_orfs")
+
+    run_cmd = recorded_commands[1]
+    length_index = run_cmd.index("-l") + 1
+    assert run_cmd[length_index] == "20"

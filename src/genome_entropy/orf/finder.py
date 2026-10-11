@@ -1,9 +1,9 @@
 """ORF finder wrapper using get_orfs binary."""
 
-import subprocess
-import tempfile
 import re
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Dict, List, Literal
 
@@ -13,6 +13,13 @@ from ..logging_config import get_logger
 from .types import OrfRecord
 
 logger = get_logger(__name__)
+
+
+def _minimum_aa_length_for_get_orfs(min_nt_length: int) -> int:
+    """Convert a nucleotide minimum length into get_orfs amino-acid units."""
+    if min_nt_length < 1:
+        raise ValueError("Minimum ORF length must be at least 1 nucleotide")
+    return (min_nt_length + 2) // 3
 
 
 def find_orfs(
@@ -79,6 +86,8 @@ def find_orfs(
     logger.debug("Wrote sequences to temporary file: %s", tmp_fasta_path)
 
     try:
+        min_aa_length = _minimum_aa_length_for_get_orfs(min_nt_length)
+
         # Run get_orfs
         # Expected command: get_orfs -f fasta_file -t table_id -l min_length
         cmd = [
@@ -88,7 +97,7 @@ def find_orfs(
             "-t",
             str(table_id),
             "-l",
-            str(min_nt_length),
+            str(min_aa_length),
         ]
 
         logger.debug("Running command: %s", " ".join(cmd))

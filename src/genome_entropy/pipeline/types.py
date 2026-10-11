@@ -21,8 +21,12 @@ class FeatureLocation:
     """Genomic location of a feature (ORF).
 
     Attributes:
-        start: One-based inclusive coordinate from ``get_orfs``
-        end: One-based inclusive coordinate from ``get_orfs``
+        start: One-based inclusive coordinate from ``get_orfs``. For
+            ``strand == "-"``, this coordinate indexes the reverse-complement
+            axis emitted by ``get_orfs``.
+        end: One-based inclusive coordinate from ``get_orfs``. For
+            ``strand == "-"``, this coordinate indexes the reverse-complement
+            axis emitted by ``get_orfs``.
         strand: Strand orientation ('+' or '-')
         frame: Reading frame (0, 1, 2, or 3)
     """
