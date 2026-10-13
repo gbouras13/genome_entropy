@@ -18,8 +18,7 @@ ORFs. Exactly 2,568,244,984 bacterial and 54,858,398 archaeal ORFs carry entropy
 values, of which 309,065,661 (12.03%) and 9,468,402 (17.26%) matched a deposited
 GenBank CDS; §4.1 gives the descriptive statistics for both domains over the
 whole population rather than a sample. The headline analytical result is that
-the
-**boundary at 3Di entropy ≈ 1.585 bits, visible as a sharp horizontal line
+the **boundary at 3Di entropy ≈ 1.585 bits, visible as a sharp horizontal line
 separating GenBank-matched from unmatched ORFs, is an information-theoretic
 ceiling rather than a biological threshold**: it is exactly log₂(3), and it
 arises because the encoder assigns a large ORF population to only three
@@ -50,8 +49,9 @@ An independent check agrees and disagrees informatively. GTDB's own Prodigal
 annotation — which consults neither GenBank nor any structure database — calls a
 gene in the same frame at **47.4%** of bacterial and **55.4%** of archaeal
 candidate loci, against **9.4%** and **16.0%** for matched shadows and
-**94–96%** for annotated CDS. Put through the same mixture arithmetic that gives
-**~244,000**, roughly **1.7× the structural estimate**. The two bracket the
+**94–96%** for annotated CDS. Put through the same mixture arithmetic, this
+implies **~244,000** real genes (233,074 bacterial + 11,026 archaeal), roughly
+**1.7× the structural estimate**. The two bracket the
 answer; §6.1 sets out why they differ and which is conservative.
 
 The results in the first draft of this section — 3,562,431 candidates, 95.5%
@@ -127,6 +127,14 @@ Downloads used NCBI `datasets` (18.36.0) via the dehydrated → rehydrate path o
 `copyq`, the only Gadi queue with outbound internet. Encoding ran on `gpuvolta`
 (Tesla V100-SXM2-32GB) with `genome_entropy run --genbank`, model cached offline
 under `HF_HOME` on `/g/data` with `HF_HUB_OFFLINE=1`.
+
+**The effective minimum ORF length is 90 aa, not the 30 aa the default
+implies.** `--min-aa` was left at its default of 30, which the runner converts
+to 90 nt and passes to `get_orfs -l`, which reads it as amino acids
+([issue #103](https://github.com/linsalrob/genome_entropy/issues/103)). The
+output confirms it: no ORF row is shorter than 90 aa, and 47,877 rows of
+`bac_000` sit exactly at 90. Every count and distribution in this report is
+therefore over ORFs of ≥90 aa.
 
 Genomes were processed in chunks of 250. Per-genome files were written to
 node-local `$PBS_JOBFS` and only two files per chunk returned to `/g/data`: a
@@ -226,7 +234,8 @@ reason the exclusion is mandatory: not that these rows are structurally
 monotonous, but that they are gene-like and unlabelled.
 
 Earlier drafts of these figures mixed the two populations; they have been
-withdrawn to `figures/superseded_20chunk/`. `08_plot_entropy_scatter.py` and
+withdrawn. They are kept outside git, at
+`/g/data/ob80/re3494/gtdb_entropy/figures/superseded_20chunk/` on Gadi. `08_plot_entropy_scatter.py` and
 `09_plot_density.py` can still draw the unfiltered view with
 `--include-unannotated`, which stamps the figure as a diagnostic — it is useful
 for showing what the confounder does, and not a result.
@@ -414,7 +423,7 @@ the classes.
 
 The four-panel scatter exists to make one methodological point: panels C and D
 hold identical data in opposite draw order, and the two readings differ
-completely. With 220,105 unmatched points drawn over 29,895 matched, whichever
+completely. With 197,402 unmatched points drawn over 52,598 matched, whichever
 class is drawn last wins. Neither ordering is neutral — drawing the 12% class
 last overstates it just as burying it understates it — which is the argument for
 the binned and smoothed views. The scatter panels draw a 250,000-row random
@@ -868,7 +877,8 @@ either.
 
 **The two lines of evidence converge on the same ORFs, however.** Prodigal
 confirms **47.4%** of all bacterial candidates but **91.8%** of those meeting
-the strict structural rule, and **95.9%** of the archaeal strict set, against
+the strict structural rule (21,617 of 23,540), and **95.9%** of the archaeal
+strict set (1,509 of 1,574), against
 **9.4%** for matched shadows. The strict rule selects for Prodigal agreement
 without ever using Prodigal.
 
@@ -1044,8 +1054,9 @@ verification step exceeded the jobfs quota and the cleanup trap fired.
 - **The §4.1 medians and quartiles are histogram-derived**, to 10⁻⁴ resolution,
   not exact order statistics. Counts, means and standard deviations are exact.
 - Chunks are contiguous slices of the GTDB accession list, which is not random
-  with respect to taxonomy. Sampling every 17th chunk mitigates but does not
-  eliminate taxonomic clustering in the figures.
+  with respect to taxonomy. The figure sample now takes a row stride through
+  every chunk rather than a subset of chunks, so it covers the whole taxonomy;
+  within a chunk, a fixed stride still weights genomes by ORF count.
 - The 2.5 threshold in §6 was chosen by eye from the scatter. It sits well above
   the 1.585 ceiling, so the result is not an artefact of it, but the candidate
   count is threshold-sensitive.
