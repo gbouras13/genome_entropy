@@ -10,13 +10,13 @@ bias_vs_biology.png
 
 zscore_calibration.png
     z and decile occupancy for the figure sample's matched ORFs, scored
-    against each reference by 34_calibration_scores.pbs. A calibrated
+    against each reference by 37_calibration_scores.pbs. A calibrated
     reference gives z ~ N(0, 1) and 10% per decile.
 
 The decomposition table behind the report's "how much is an artefact" table is
 written alongside as bias_decomposition.tsv, so those numbers have a script.
 
-  35_bias_vs_biology.py --out-dir <figures dir> [--table-dir <dir>]
+  38_bias_vs_biology.py --out-dir <figures dir> [--table-dir <dir>]
 """
 import argparse
 import sys
@@ -166,7 +166,7 @@ def plot_bias(curves, out_dir):
 def load_scores(calib_dir, dom, alphabet):
     p = Path(calib_dir) / f"scores_{dom}_{alphabet}.tsv.gz"
     if not p.exists():
-        sys.exit(f"{p} missing: run 34_calibration_scores.pbs first")
+        sys.exit(f"{p} missing: run 37_calibration_scores.pbs first")
     return pd.read_csv(p, sep="\t", usecols=["z", "percentile", "emp_z",
                                               "emp_percentile"])
 

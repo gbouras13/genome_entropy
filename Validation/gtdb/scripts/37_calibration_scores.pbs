@@ -12,7 +12,7 @@
 #PBS -o /g/data/ob80/re3494/gtdb_entropy/logs/calibration_scores.log
 #
 # Score the figure sample's matched ORFs against both length-conditioned
-# references, for the calibration panel of 35_bias_vs_biology.py (report
+# references, for the calibration panel of 38_bias_vs_biology.py (report
 # section 4.2).
 #
 # The sample is figure_samples/, a systematic stride over every chunk -- not

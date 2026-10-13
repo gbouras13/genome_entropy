@@ -443,7 +443,7 @@ is left-skewed, with a long low tail and almost nothing above +2, so a z of −3
 is not a 1-in-740 event. Read the tails from the percentile, which is
 calibrated by construction, not from a normal table. The scores behind the
 figure are `entropy_null/calibration/scores_<domain>_<alphabet>.tsv.gz`,
-written by `34_calibration_scores.pbs` (4 CPUs, 1 min, 0.15 SU).
+written by `37_calibration_scores.pbs` (4 CPUs, 1 min, 0.15 SU).
 
 A caution about how that was checked, because two earlier attempts got it
 wrong. Scoring the first 20,000–40,000 matched rows of one chunk, or of
@@ -484,7 +484,7 @@ observed rise:
 
 Bacteria give the same picture: protein 99–184%, 3Di 12–15%, 12-state 7–9%
 over the same lengths. Both domains are in
-`entropy_null/bias_decomposition.tsv`, written by `35_bias_vs_biology.py` from
+`entropy_null/bias_decomposition.tsv`, written by `38_bias_vs_biology.py` from
 the two references' mean curves; that script also draws the figure.
 
 ![Rise in mean entropy with length relative to L = 100: matched ORFs against
