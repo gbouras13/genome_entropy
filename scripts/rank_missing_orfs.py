@@ -37,6 +37,52 @@ from genome_entropy.ml import (  # noqa: E402
     load_json_file,
 )
 
+# Features the classifier may be trained on. The ORF table always carries all
+# of them (the ranking score reads has_start_codon / has_stop_codon), but the
+# model only sees the selected set.
+#
+#   all             the original 14 features, including absolute `start`/`end`
+#                   (get_orfs coordinates; on the minus strand they index the
+#                   reverse complement). Kept to reproduce the August 2026 run.
+#   no-coordinates  all but `start` and `end`.
+#   intrinsic       properties of the ORF sequence only: DNA, protein, 3Di and
+#                   12-state entropies and lengths. Drops position (`start`,
+#                   `end`), the absolute get_orfs `frame` (a phase relative to
+#                   the contig origin), `strand_plus` (orientation of the
+#                   deposited sequence) and the two codon flags (`M` / `*`
+#                   anywhere in the protein, not start/stop codons).
+POSITIONAL_FEATURES = ("start", "end")
+NON_INTRINSIC_FEATURES = POSITIONAL_FEATURES + (
+    "strand_plus",
+    "frame",
+    "has_start_codon",
+    "has_stop_codon",
+)
+FEATURE_SETS = ("all", "no-coordinates", "intrinsic")
+
+
+def select_feature_columns(
+    feature_names: list[str],
+    feature_set: str,
+) -> list[int]:
+    """Return the indices of the model features for a named feature set."""
+    if feature_set == "all":
+        excluded: tuple[str, ...] = ()
+    elif feature_set == "no-coordinates":
+        excluded = POSITIONAL_FEATURES
+    elif feature_set == "intrinsic":
+        excluded = NON_INTRINSIC_FEATURES
+    else:
+        raise ValueError(
+            f"Unknown feature set {feature_set!r}; choose from {FEATURE_SETS}"
+        )
+    return [
+        index
+        for index, name in enumerate(feature_names)
+        if name not in excluded
+    ]
+
+
 GENOMIC_COLUMNS = [
     "input_id",
     "orf_id",
@@ -101,6 +147,17 @@ def parse_args() -> argparse.Namespace:
         "--seed",
         type=int,
         default=42,
+    )
+    parser.add_argument(
+        "--feature-set",
+        choices=FEATURE_SETS,
+        default="intrinsic",
+        help=(
+            "Features the classifier is trained on. 'all' reproduces the "
+            "original behaviour, which includes absolute ORF coordinates; "
+            "'no-coordinates' drops start/end; 'intrinsic' (default) keeps "
+            "only entropies and lengths."
+        ),
     )
     return parser.parse_args()
 
@@ -233,6 +290,11 @@ def generate_oof_predictions(
     feature_names: list[str],
     args: argparse.Namespace,
 ) -> pd.DataFrame:
+    model_columns = select_feature_columns(
+        feature_names,
+        getattr(args, "feature_set", "all"),
+    )
+    X_model = X[:, model_columns]
     groups = get_group_ids(metadata)
     unique_groups = np.unique(groups)
 
@@ -265,9 +327,9 @@ def generate_oof_predictions(
         )
 
         model = make_model(args, fold)
-        model.fit(X[train_indices], y[train_indices])
+        model.fit(X_model[train_indices], y[train_indices])
 
-        fold_probabilities = model.predict_proba(X[test_indices])[:, 1]
+        fold_probabilities = model.predict_proba(X_model[test_indices])[:, 1]
 
         probabilities[test_indices] = fold_probabilities
         predicted_labels[test_indices] = (
@@ -330,6 +392,7 @@ def interval_length(start: int, end: int) -> int:
 
 def find_overlapping_annotated_orfs(
     predictions: pd.DataFrame,
+    minimum_candidate_probability: float | None = None,
 ) -> pd.DataFrame:
     """
     For every unannotated ORF, find its most relevant overlapping annotated ORF.
@@ -341,6 +404,11 @@ def find_overlapping_annotated_orfs(
     Overlaps are computed on the normalised zero-based, half-open genomic axis
     supplied by ``collect_genomic_intervals``. ORFs with no normalised interval
     are excluded rather than compared in raw ``get_orfs`` coordinates.
+
+    ``minimum_candidate_probability`` restricts the search to unannotated
+    ORFs at or above that probability. The replacement filter applies the
+    same bound afterwards, so passing it changes only the run time, not the
+    result.
     """
     required = {
         "input_id",
@@ -364,6 +432,11 @@ def find_overlapping_annotated_orfs(
     for input_id, genome in placed.groupby("input_id", sort=False):
         annotated = genome.loc[genome["in_genbank"]].copy()
         candidates = genome.loc[~genome["in_genbank"]].copy()
+        if minimum_candidate_probability is not None:
+            candidates = candidates.loc[
+                candidates["probability_in_genbank"]
+                >= minimum_candidate_probability
+            ]
 
         if annotated.empty or candidates.empty:
             continue
@@ -508,6 +581,14 @@ def main() -> None:
         raise RuntimeError("extract_features did not return metadata")
 
     print(f"Extracted {len(X):,} ORFs")
+    model_features = [
+        feature_names[index]
+        for index in select_feature_columns(feature_names, args.feature_set)
+    ]
+    print(
+        f"Feature set '{args.feature_set}': training on "
+        f"{', '.join(model_features)}"
+    )
     print(f"Annotated ORFs: {int(np.sum(y == 1)):,}")
     print(f"Unannotated ORFs: {int(np.sum(y == 0)):,}")
 
@@ -574,7 +655,10 @@ def main() -> None:
     )
     print(f"Wrote {len(unannotated):,} candidates to {missed_output}")
 
-    alternatives = find_overlapping_annotated_orfs(predictions)
+    alternatives = find_overlapping_annotated_orfs(
+        predictions,
+        minimum_candidate_probability=args.minimum_probability,
+    )
 
     if not alternatives.empty:
         alternatives = alternatives.loc[
@@ -646,6 +730,9 @@ def main() -> None:
         ),
         "minimum_aa_length": args.minimum_aa_length,
         "folds": args.folds,
+        "feature_set": args.feature_set,
+        "model_features": model_features,
+        "seed": args.seed,
     }
 
     summary_output = args.output_dir / "candidate_summary.json"

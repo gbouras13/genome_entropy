@@ -15,8 +15,11 @@
 set -euo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
-if [[ $# -ne 2 ]]; then
-	echo "$0 <directory of json files> <output directory>" >&2;
+# Optional third argument: the classifier feature set (intrinsic, the default;
+# no-coordinates; or all, which reproduces the original run including the
+# absolute start/end coordinates).
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+	echo "$0 <directory of json files> <output directory> [feature set]" >&2;
 	exit 1;
 fi
 
@@ -42,4 +45,5 @@ python "$REPO_ROOT/scripts/rank_missing_orfs.py" \
     --folds 5 \
     --minimum-probability 0.80 \
     --minimum-aa-length 30 \
+    --feature-set "${3:-intrinsic}" \
     --device cpu
