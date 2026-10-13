@@ -435,6 +435,16 @@ The empirical z-score is standardised as well as centred, in both domains:
 | bacteria | every 300th row, n = 1,028,059 | +0.0005, sd 0.9986 | −0.0000, sd 1.0002 |
 | archaea | every 30th row, n = 315,638 | −0.0007, sd 1.0027 | −0.0004, sd 1.0013 |
 
+![z and decile occupancy of matched ORFs against the empirical and the random
+reference, both domains](figures/zscore_calibration.png)
+
+Standardised is not the same as Gaussian. The empirical z has unit variance but
+is left-skewed, with a long low tail and almost nothing above +2, so a z of −3
+is not a 1-in-740 event. Read the tails from the percentile, which is
+calibrated by construction, not from a normal table. The scores behind the
+figure are `entropy_null/calibration/scores_<domain>_<alphabet>.tsv.gz`,
+written by `34_calibration_scores.pbs` (4 CPUs, 1 min, 0.15 SU).
+
 A caution about how that was checked, because two earlier attempts got it
 wrong. Scoring the first 20,000–40,000 matched rows of one chunk, or of
 eighteen chunks, produced a visibly tilted distribution (4.2% in the lowest
@@ -471,6 +481,15 @@ observed rise:
 | **protein** | **106%** | **113%** | **122%** | **121%** | **152%** |
 | three_di | 13% | 14% | **14%** | 14% | 16% |
 | twelve_state | 8% | 8% | **8%** | 8% | 10% |
+
+Bacteria give the same picture: protein 99–184%, 3Di 12–15%, 12-state 7–9%
+over the same lengths. Both domains are in
+`entropy_null/bias_decomposition.tsv`, written by `35_bias_vs_biology.py` from
+the two references' mean curves; that script also draws the figure.
+
+![Rise in mean entropy with length relative to L = 100: matched ORFs against
+the i.i.d. estimator-bias curve, three alphabets, both
+domains](figures/bias_vs_biology.png)
 
 - **Protein entropy does not meaningfully rise with length.** The whole
   observed rise, and slightly more, is the plug-in estimator filling in its

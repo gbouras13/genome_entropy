@@ -104,6 +104,8 @@ combined.
 | `26_select_examples.py/.pbs`, `27_build_dossiers.py/.pbs` | manuscript examples and dossiers |
 | `29_population_entropy_summary.pbs`, `population_agg.c` | full-population entropy statistics: one pass over all 2.62 billion ORF rows, 24 CPUs, 5 min, 4 SU |
 | `population_summary.py`, `population_tables.py` | combine the partials; render the report tables from the TSVs |
+| `34_calibration_scores.pbs` | scores the figure sample's matched ORFs against both length-conditioned references (§4.2 calibration) |
+| `35_bias_vs_biology.py` | §4.2 figures and `bias_decomposition.tsv`: estimator bias vs biology, z calibration |
 
 `29` exists because the report's entropy comparisons came from samples, and the
 manuscript needs exact population counts. It reads `entropy_rows/` only — no
