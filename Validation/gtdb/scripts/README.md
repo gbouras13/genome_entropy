@@ -105,6 +105,15 @@ combined.
 | `29_population_entropy_summary.pbs`, `population_agg.c` | full-population entropy statistics: one pass over all 2.62 billion ORF rows, 24 CPUs, 5 min, 4 SU |
 | `population_summary.py`, `population_tables.py` | combine the partials; render the report tables from the TSVs |
 
+**Supplementary analyses (Setonix, from the OneDrive mirror).** Write-up:
+[`../supplementary_analyses.md`](../supplementary_analyses.md).
+
+| script | purpose |
+|---|---|
+| `34_supplementary_arms.py` | per-arm re-analysis of the full-population search: hit/full-length/Prodigal by 3Di bin, best-hit quality, structure-only vs sequence, `unannot_hi`, truncation, N50/CheckM2 strata, functional composition of all/C3/C7, Prodigal offset classes, C7 Prodigal agreement, and a length × 3Di re-weighting of the clean comparator |
+| `35_supplementary_figures.py` | the `supp_*.png` figures, from 34's TSVs |
+| `36_candidate_burden_figures.py` | regenerates `candidate_burden_{bac,arc}.png` (per-genome and per-Mb rows, N50 panel, ρ on every panel) |
+
 `29` exists because the report's entropy comparisons came from samples, and the
 manuscript needs exact population counts. It reads `entropy_rows/` only — no
 re-encoding — and stratifies every row by (genome carries a deposited CDS,
