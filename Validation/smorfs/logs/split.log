@@ -1,0 +1,15 @@
+   43726909 total
+     11 neg
+     34 pos
+
+======================================================================================
+                  Resource Usage on 2026-10-07 14:21:17:
+   Job Id:             180700231.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      0.12
+   NCPUs Requested:    2                   CPU Time Used: 00:03:18        
+   Memory Requested:   8.0GB                 Memory Used: 8.0GB           
+   Walltime Requested: 03:00:00            Walltime Used: 00:01:51        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=16,mem=64GB,walltime=02:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_stripes
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/stripes.log
+set -euo pipefail
+P=/g/data/ob80/re3494/Projects/smORFs/results
+/g/data/ob80/re3494/conda/genome_entropy/bin/python $P/scripts/stripe_states.py $P/states $P/stripes $PBS_NCPUS

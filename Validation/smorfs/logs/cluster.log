@@ -1,0 +1,712 @@
+14.7e284
+43726909
+createdb /jobfs/181057870.gadi-pbs/proteins.fa /jobfs/181057870.gadi-pbs/db --dbtype 1 
+
+MMseqs Version:       	14.7e284
+Database type         	1
+Shuffle input database	true
+Createdb mode         	0
+Write lookup file     	1
+Offset of numeric ids 	0
+Compressed            	0
+Verbosity             	3
+
+Converting sequences
+[===================================================================================================	1 Mio. sequences processed
+===================================================================================================	2 Mio. sequences processed
+===================================================================================================	3 Mio. sequences processed
+===================================================================================================	4 Mio. sequences processed
+===================================================================================================	5 Mio. sequences processed
+===================================================================================================	6 Mio. sequences processed
+===================================================================================================	7 Mio. sequences processed
+===================================================================================================	8 Mio. sequences processed
+===================================================================================================	9 Mio. sequences processed
+===================================================================================================	10 Mio. sequences processed
+===================================================================================================	11 Mio. sequences processed
+===================================================================================================	12 Mio. sequences processed
+===================================================================================================	13 Mio. sequences processed
+===================================================================================================	14 Mio. sequences processed
+===================================================================================================	15 Mio. sequences processed
+===================================================================================================	16 Mio. sequences processed
+===================================================================================================	17 Mio. sequences processed
+===================================================================================================	18 Mio. sequences processed
+===================================================================================================	19 Mio. sequences processed
+===================================================================================================	20 Mio. sequences processed
+===================================================================================================	21 Mio. sequences processed
+===================================================================================================	22 Mio. sequences processed
+===================================================================================================	23 Mio. sequences processed
+===================================================================================================	24 Mio. sequences processed
+===================================================================================================	25 Mio. sequences processed
+===================================================================================================	26 Mio. sequences processed
+===================================================================================================	27 Mio. sequences processed
+===================================================================================================	28 Mio. sequences processed
+===================================================================================================	29 Mio. sequences processed
+===================================================================================================	30 Mio. sequences processed
+===================================================================================================	31 Mio. sequences processed
+===================================================================================================	32 Mio. sequences processed
+===================================================================================================	33 Mio. sequences processed
+===================================================================================================	34 Mio. sequences processed
+===================================================================================================	35 Mio. sequences processed
+===================================================================================================	36 Mio. sequences processed
+===================================================================================================	37 Mio. sequences processed
+===================================================================================================	38 Mio. sequences processed
+===================================================================================================	39 Mio. sequences processed
+===================================================================================================	40 Mio. sequences processed
+===================================================================================================	41 Mio. sequences processed
+===================================================================================================	42 Mio. sequences processed
+===================================================================================================	43 Mio. sequences processed
+========================================================================
+Time for merging to db_h: 0h 0m 3s 989ms
+Time for merging to db: 0h 0m 5s 191ms
+Database type: Aminoacid
+Time for processing: 0h 1m 25s 87ms
+Create directory /jobfs/181057870.gadi-pbs/tmp50
+linclust /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu50 /jobfs/181057870.gadi-pbs/tmp50 --min-seq-id 0.5 -c 0.8 --cov-mode 0 --threads 48 --split-memory-limit 150G 
+
+MMseqs Version:                     	14.7e284
+Cluster mode                        	0
+Max connected component depth       	1000
+Similarity type                     	2
+Threads                             	48
+Compressed                          	0
+Verbosity                           	3
+Substitution matrix                 	aa:blosum62.out,nucl:nucleotide.out
+Add backtrace                       	false
+Alignment mode                      	2
+Alignment mode                      	0
+Allow wrapped scoring               	false
+E-value threshold                   	0.001
+Seq. id. threshold                  	0.5
+Min alignment length                	0
+Seq. id. mode                       	0
+Alternative alignments              	0
+Coverage threshold                  	0.8
+Coverage mode                       	0
+Max sequence length                 	65535
+Compositional bias                  	1
+Compositional bias                  	1
+Max reject                          	2147483647
+Max accept                          	2147483647
+Include identical seq. id.          	false
+Preload mode                        	0
+Pseudo count a                      	substitution:1.100,context:1.400
+Pseudo count b                      	substitution:4.100,context:5.800
+Score bias                          	0
+Realign hits                        	false
+Realign score bias                  	-0.2
+Realign max seqs                    	2147483647
+Correlation score weight            	0
+Gap open cost                       	aa:11,nucl:5
+Gap extension cost                  	aa:1,nucl:2
+Zdrop                               	40
+Alphabet size                       	aa:21,nucl:5
+k-mers per sequence                 	21
+Spaced k-mers                       	0
+Spaced k-mer pattern                	
+Scale k-mers per sequence           	aa:0.000,nucl:0.200
+Adjust k-mer length                 	false
+Mask residues                       	0
+Mask residues probability           	0.9
+Mask lower case residues            	0
+k-mer length                        	0
+Shift hash                          	67
+Split memory limit                  	150G
+Include only extendable             	false
+Skip repeating k-mers               	false
+Rescore mode                        	0
+Remove hits by seq. id. and coverage	false
+Sort results                        	0
+Remove temporary files              	false
+Force restart with latest tmp       	false
+MPI runner                          	
+
+Set cluster mode SET COVER.
+kmermatcher /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --alph-size aa:13,nucl:5 --min-seq-id 0.5 --kmer-per-seq 21 --spaced-kmer-mode 0 --kmer-per-seq-scale aa:0.000,nucl:0.200 --adjust-kmer-len 0 --mask 0 --mask-prob 0.9 --mask-lower-case 0 --cov-mode 0 -k 0 -c 0.8 --max-seq-len 65535 --hash-shift 67 --split-memory-limit 150G --include-only-extendable 0 --ignore-multi-kmer 0 --threads 48 --compressed 0 -v 3 
+
+kmermatcher /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --alph-size aa:13,nucl:5 --min-seq-id 0.5 --kmer-per-seq 21 --spaced-kmer-mode 0 --kmer-per-seq-scale aa:0.000,nucl:0.200 --adjust-kmer-len 0 --mask 0 --mask-prob 0.9 --mask-lower-case 0 --cov-mode 0 -k 0 -c 0.8 --max-seq-len 65535 --hash-shift 67 --split-memory-limit 150G --include-only-extendable 0 --ignore-multi-kmer 0 --threads 48 --compressed 0 -v 3 
+
+Database size: 43726909 type: Aminoacid
+Reduced amino acid alphabet: (A S T) (C) (D B N) (E Q Z) (F Y) (G) (H) (I V) (K R) (L J M) (P) (W) (X) 
+
+Generate k-mers list for 1 split
+[=================================================================] 43.73M 4s 980ms
+Sort kmer 0h 0m 5s 620ms
+Sort by rep. sequence 0h 0m 3s 753ms
+Time for fill: 0h 0m 13s 602ms
+Time for merging to pref: 0h 0m 0s 0ms
+Time for processing: 0h 0m 44s 757ms
+rescorediagonal /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_rescore1 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --rescore-mode 0 --wrapped-scoring 0 --filter-hits 0 -e 0.001 -c 0.8 -a 0 --cov-mode 0 --min-seq-id 0.5 --min-aln-len 0 --seq-id-mode 0 --add-self-matches 0 --sort-results 0 --db-load-mode 0 --threads 48 --compressed 0 -v 3 
+
+[=================================================================] 43.73M 15s 457ms
+Time for merging to pref_rescore1: 0h 0m 13s 725ms
+Time for processing: 0h 0m 38s 778ms
+clust /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_rescore1 /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pre_clust --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 43.73M 9s 151ms
+Sort entries
+Find missing connections
+Found 145778552 new connections.
+Reconstruct initial order
+[=================================================================] 43.73M 7s 813ms
+Add missing connections
+[=================================================================] 43.73M 40s 960ms
+
+Time for read in: 0h 1m 7s 447ms
+Total time: 0h 1m 31s 26ms
+
+Size of the sequence database: 43726909
+Size of the alignment database: 43726909
+Number of clusters: 4188237
+
+Writing results 0h 0m 1s 456ms
+Time for merging to pre_clust: 0h 0m 0s 0ms
+Time for processing: 0h 1m 36s 251ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/order_redundancy /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy -v 3 --subdb-mode 1 
+
+Time for merging to input_step_redundancy: 0h 0m 0s 0ms
+Time for processing: 0h 0m 3s 6ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/order_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_filter1 -v 3 --subdb-mode 1 
+
+Time for merging to pref_filter1: 0h 0m 0s 0ms
+Time for processing: 0h 0m 10s 895ms
+filterdb /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_filter1 /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_filter2 --filter-file /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/order_redundancy --threads 48 --compressed 0 -v 3 
+
+Filtering using file(s)
+[=================================================================] 4.19M 1s 335ms
+Time for merging to pref_filter2: 0h 0m 1s 33ms
+Time for processing: 0h 0m 3s 687ms
+rescorediagonal /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_filter2 /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_rescore2 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --rescore-mode 1 --wrapped-scoring 0 --filter-hits 1 -e 0.001 -c 0.8 -a 0 --cov-mode 0 --min-seq-id 0.5 --min-aln-len 0 --seq-id-mode 0 --add-self-matches 0 --sort-results 0 --db-load-mode 0 --threads 48 --compressed 0 -v 3 
+
+[=================================================================] 4.19M 0s 895ms
+Time for merging to pref_rescore2: 0h 0m 1s 59ms
+Time for processing: 0h 0m 2s 507ms
+align /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pref_rescore2 /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/aln --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 2 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.5 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 1 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --threads 48 --compressed 0 -v 3 
+
+Compute score and coverage
+Query database size: 4188237 type: Aminoacid
+Target database size: 4188237 type: Aminoacid
+Calculation of alignments
+[=================================================================] 4.19M 1s 811ms
+Time for merging to aln: 0h 0m 1s 79ms
+6274177 alignments calculated
+4410003 sequence pairs passed the thresholds (0.702882 of overall calculated)
+1.052950 hits per query sequence
+Time for processing: 0h 0m 3s 530ms
+clust /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/aln /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/clust --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 4.19M 0s 279ms
+Sort entries
+Find missing connections
+Found 221766 new connections.
+Reconstruct initial order
+[=================================================================] 4.19M 0s 278ms
+Add missing connections
+[=================================================================] 4.19M 0s 155ms
+
+Time for read in: 0h 0m 1s 326ms
+Total time: 0h 0m 1s 551ms
+
+Size of the sequence database: 4188237
+Size of the alignment database: 4188237
+Number of clusters: 4004026
+
+Writing results 0h 0m 0s 483ms
+Time for merging to clust: 0h 0m 0s 0ms
+Time for processing: 0h 0m 2s 401ms
+mergeclusters /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu50 /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/pre_clust /jobfs/181057870.gadi-pbs/tmp50/6980632156186859112/clust --threads 48 --compressed 0 -v 3 
+
+Clustering step 1
+[=================================================================] 4.19M 1s 440ms
+Clustering step 2
+[=================================================================] 4.00M 2s 127ms
+Write merged clustering
+[=================================================================] 43.73M 5s 850ms
+Time for merging to clu50: 0h 0m 1s 84ms
+Time for processing: 0h 0m 10s 514ms
+createtsv /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu50 /jobfs/181057870.gadi-pbs/linclust_id50_cov80.tsv --threads 48 
+
+MMseqs Version:                 	14.7e284
+First sequence as representative	false
+Target column                   	1
+Add full header                 	false
+Sequence source                 	0
+Database output                 	false
+Threads                         	48
+Compressed                      	0
+Verbosity                       	3
+
+Time for merging to linclust_id50_cov80.tsv: 0h 0m 2s 37ms
+Time for processing: 0h 0m 5s 295ms
+linclust_id50_cov80 clusters: 4004026
+Create directory /jobfs/181057870.gadi-pbs/tmp30
+cluster /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu30 /jobfs/181057870.gadi-pbs/tmp30 --min-seq-id 0.3 -c 0.8 --cov-mode 0 --threads 48 --split-memory-limit 150G 
+
+MMseqs Version:                     	14.7e284
+Substitution matrix                 	aa:blosum62.out,nucl:nucleotide.out
+Seed substitution matrix            	aa:VTML80.out,nucl:nucleotide.out
+Sensitivity                         	4
+k-mer length                        	0
+k-score                             	seq:2147483647,prof:2147483647
+Alphabet size                       	aa:21,nucl:5
+Max sequence length                 	65535
+Max results per query               	20
+Split database                      	0
+Split mode                          	2
+Split memory limit                  	150G
+Coverage threshold                  	0.8
+Coverage mode                       	0
+Compositional bias                  	1
+Compositional bias                  	1
+Diagonal scoring                    	true
+Exact k-mer matching                	0
+Mask residues                       	1
+Mask residues probability           	0.9
+Mask lower case residues            	0
+Minimum diagonal score              	15
+Selected taxa                       	
+Include identical seq. id.          	false
+Spaced k-mers                       	1
+Preload mode                        	0
+Pseudo count a                      	substitution:1.100,context:1.400
+Pseudo count b                      	substitution:4.100,context:5.800
+Spaced k-mer pattern                	
+Local temporary path                	
+Threads                             	48
+Compressed                          	0
+Verbosity                           	3
+Add backtrace                       	false
+Alignment mode                      	3
+Alignment mode                      	0
+Allow wrapped scoring               	false
+E-value threshold                   	0.001
+Seq. id. threshold                  	0.3
+Min alignment length                	0
+Seq. id. mode                       	0
+Alternative alignments              	0
+Max reject                          	2147483647
+Max accept                          	2147483647
+Score bias                          	0
+Realign hits                        	false
+Realign score bias                  	-0.2
+Realign max seqs                    	2147483647
+Correlation score weight            	0
+Gap open cost                       	aa:11,nucl:5
+Gap extension cost                  	aa:1,nucl:2
+Zdrop                               	40
+Rescore mode                        	0
+Remove hits by seq. id. and coverage	false
+Sort results                        	0
+Cluster mode                        	0
+Max connected component depth       	1000
+Similarity type                     	2
+Single step clustering              	false
+Cascaded clustering steps           	3
+Cluster reassign                    	false
+Remove temporary files              	false
+Force restart with latest tmp       	false
+MPI runner                          	
+k-mers per sequence                 	21
+Scale k-mers per sequence           	aa:0.000,nucl:0.200
+Adjust k-mer length                 	false
+Shift hash                          	67
+Include only extendable             	false
+Skip repeating k-mers               	false
+
+Set cluster sensitivity to -s 5.000000
+Set cluster mode SET COVER
+Set cluster iterations to 3
+linclust /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 3 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 1 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --alph-size aa:13,nucl:5 --kmer-per-seq 21 --spaced-kmer-mode 1 --kmer-per-seq-scale aa:0.000,nucl:0.200 --adjust-kmer-len 0 --mask 0 --mask-prob 0.9 --mask-lower-case 0 -k 0 --hash-shift 67 --split-memory-limit 150G --include-only-extendable 0 --ignore-multi-kmer 0 --rescore-mode 0 --filter-hits 0 --sort-results 0 --remove-tmp-files 0 --force-reuse 0 
+
+kmermatcher /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --alph-size aa:13,nucl:5 --min-seq-id 0.3 --kmer-per-seq 21 --spaced-kmer-mode 1 --kmer-per-seq-scale aa:0.000,nucl:0.200 --adjust-kmer-len 0 --mask 0 --mask-prob 0.9 --mask-lower-case 0 --cov-mode 0 -k 0 -c 0.8 --max-seq-len 65535 --hash-shift 67 --split-memory-limit 150G --include-only-extendable 0 --ignore-multi-kmer 0 --threads 48 --compressed 0 -v 3 
+
+kmermatcher /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --alph-size aa:13,nucl:5 --min-seq-id 0.3 --kmer-per-seq 21 --spaced-kmer-mode 1 --kmer-per-seq-scale aa:0.000,nucl:0.200 --adjust-kmer-len 0 --mask 0 --mask-prob 0.9 --mask-lower-case 0 --cov-mode 0 -k 0 -c 0.8 --max-seq-len 65535 --hash-shift 67 --split-memory-limit 150G --include-only-extendable 0 --ignore-multi-kmer 0 --threads 48 --compressed 0 -v 3 
+
+Database size: 43726909 type: Aminoacid
+Reduced amino acid alphabet: (A S T) (C) (D B N) (E Q Z) (F Y) (G) (H) (I V) (K R) (L J M) (P) (W) (X) 
+
+Generate k-mers list for 1 split
+[=================================================================] 43.73M 14s 495ms
+Sort kmer 0h 0m 6s 246ms
+Sort by rep. sequence 0h 0m 3s 839ms
+Time for fill: 0h 0m 15s 587ms
+Time for merging to pref: 0h 0m 0s 0ms
+Time for processing: 0h 0m 54s 694ms
+rescorediagonal /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_rescore1 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --rescore-mode 0 --wrapped-scoring 0 --filter-hits 0 -e 0.001 -c 0.8 -a 0 --cov-mode 0 --min-seq-id 0.5 --min-aln-len 0 --seq-id-mode 0 --add-self-matches 0 --sort-results 0 --db-load-mode 0 --threads 48 --compressed 0 -v 3 
+
+[=================================================================] 43.73M 15s 713ms
+Time for merging to pref_rescore1: 0h 0m 12s 968ms
+Time for processing: 0h 0m 39s 794ms
+clust /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_rescore1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pre_clust --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 43.73M 8s 690ms
+Sort entries
+Find missing connections
+Found 156764390 new connections.
+Reconstruct initial order
+[=================================================================] 43.73M 8s 649ms
+Add missing connections
+[=================================================================] 43.73M 40s 996ms
+
+Time for read in: 0h 1m 8s 119ms
+Total time: 0h 1m 31s 188ms
+
+Size of the sequence database: 43726909
+Size of the alignment database: 43726909
+Number of clusters: 4064665
+
+Writing results 0h 0m 1s 460ms
+Time for merging to pre_clust: 0h 0m 0s 0ms
+Time for processing: 0h 1m 36s 283ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/order_redundancy /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy -v 3 --subdb-mode 1 
+
+Time for merging to input_step_redundancy: 0h 0m 0s 0ms
+Time for processing: 0h 0m 2s 939ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/order_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_filter1 -v 3 --subdb-mode 1 
+
+Time for merging to pref_filter1: 0h 0m 0s 0ms
+Time for processing: 0h 0m 10s 720ms
+filterdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_filter1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_filter2 --filter-file /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/order_redundancy --threads 48 --compressed 0 -v 3 
+
+Filtering using file(s)
+[=================================================================] 4.06M 1s 309ms
+Time for merging to pref_filter2: 0h 0m 1s 11ms
+Time for processing: 0h 0m 3s 369ms
+rescorediagonal /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_filter2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_rescore2 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --rescore-mode 1 --wrapped-scoring 0 --filter-hits 1 -e 0.001 -c 0.8 -a 0 --cov-mode 0 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --add-self-matches 0 --sort-results 0 --db-load-mode 0 --threads 48 --compressed 0 -v 3 
+
+[=================================================================] 4.06M 1s 901ms
+Time for merging to pref_rescore2: 0h 0m 1s 9ms
+Time for processing: 0h 0m 3s 469ms
+align /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pref_rescore2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/aln --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 3 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 1 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --threads 48 --compressed 0 -v 3 
+
+Compute score, coverage and sequence identity
+Query database size: 4064665 type: Aminoacid
+Target database size: 4064665 type: Aminoacid
+Calculation of alignments
+[=================================================================] 4.06M 1s 646ms
+Time for merging to aln: 0h 0m 1s 42ms
+6108983 alignments calculated
+4318765 sequence pairs passed the thresholds (0.706953 of overall calculated)
+1.062514 hits per query sequence
+Time for processing: 0h 0m 3s 331ms
+clust /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/aln /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/clust --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 4.06M 0s 288ms
+Sort entries
+Find missing connections
+Found 254100 new connections.
+Reconstruct initial order
+[=================================================================] 4.06M 0s 339ms
+Add missing connections
+[=================================================================] 4.06M 0s 161ms
+
+Time for read in: 0h 0m 1s 386ms
+Total time: 0h 0m 1s 619ms
+
+Size of the sequence database: 4064665
+Size of the alignment database: 4064665
+Number of clusters: 3869318
+
+Writing results 0h 0m 0s 476ms
+Time for merging to clust: 0h 0m 0s 0ms
+Time for processing: 0h 0m 2s 451ms
+mergeclusters /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/pre_clust /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/linclust/13431548393849404452/clust --threads 48 --compressed 0 -v 3 
+
+Clustering step 1
+[=================================================================] 4.06M 1s 318ms
+Clustering step 2
+[=================================================================] 3.87M 2s 379ms
+Write merged clustering
+[=================================================================] 43.73M 5s 799ms
+Time for merging to clu_redundancy: 0h 0m 0s 994ms
+Time for processing: 0h 0m 10s 553ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_redundancy /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy -v 3 --subdb-mode 1 
+
+Time for merging to input_step_redundancy: 0h 0m 0s 0ms
+Time for processing: 0h 0m 2s 946ms
+prefilter /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step0 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --seed-sub-mat 'aa:VTML80.out,nucl:nucleotide.out' -s 1 -k 0 --k-score seq:2147483647,prof:2147483647 --alph-size aa:21,nucl:5 --max-seq-len 65535 --max-seqs 20 --split 0 --split-mode 2 --split-memory-limit 150G -c 0.8 --cov-mode 0 --comp-bias-corr 0 --comp-bias-corr-scale 1 --diag-score 0 --exact-kmer-matching 0 --mask 1 --mask-prob 0.9 --mask-lower-case 0 --min-ungapped-score 0 --add-self-matches 0 --spaced-kmer-mode 1 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --threads 48 --compressed 0 -v 3 
+
+Query database size: 3869318 type: Aminoacid
+Estimated memory consumption: 11G
+Target database size: 3869318 type: Aminoacid
+Index table k-mer threshold: 154 at k-mer size 6 
+Index table: counting k-mers
+[=================================================================] 3.87M 0s 905ms
+Index table: Masked residues: 2685259
+Index table: fill
+[=================================================================] 3.87M 0s 924ms
+Index statistics
+Entries:          109249996
+DB size:          1113 MB
+Avg k-mer size:   1.707031
+Top 10 k-mers
+    CSCPTG	3058
+    CHFTQK	2997
+    VRFVTP	2392
+    SPGAPR	2134
+    LRPVKY	1893
+    DLRRYR	1277
+    VVSMTW	1175
+    VDPPPT	1149
+    SMPRRT	1144
+    SAPRWV	1130
+Time for index table init: 0h 0m 2s 418ms
+Process prefiltering step 1 of 1
+
+k-mer similarity threshold: 154
+Starting prefiltering scores calculation (step 1 of 1)
+Query db start 1 to 3869318
+Target db start 1 to 3869318
+[=================================================================] 3.87M 4s 208ms
+
+1.722559 k-mers per position
+536 DB matches per sequence
+0 overflows
+0 queries produce too many hits (truncated result)
+9 sequences passed prefiltering per query sequence
+7 median result list length
+0 sequences with 0 size result lists
+Time for merging to pref_step0: 0h 0m 0s 989ms
+Time for processing: 0h 0m 13s 797ms
+align /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step0 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step0 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 3 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 0 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --threads 48 --compressed 0 -v 3 
+
+Compute score, coverage and sequence identity
+Query database size: 3869318 type: Aminoacid
+Target database size: 3869318 type: Aminoacid
+Calculation of alignments
+[=================================================================] 3.87M 5s 677ms
+Time for merging to aln_step0: 0h 0m 1s 9ms
+25243504 alignments calculated
+14538493 sequence pairs passed the thresholds (0.575930 of overall calculated)
+3.757379 hits per query sequence
+Time for processing: 0h 0m 7s 602ms
+clust /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step0 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step0 --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 3.87M 0s 357ms
+Sort entries
+Find missing connections
+Found 2633301 new connections.
+Reconstruct initial order
+[=================================================================] 3.87M 0s 368ms
+Add missing connections
+[=================================================================] 3.87M 1s 78ms
+
+Time for read in: 0h 0m 2s 508ms
+Total time: 0h 0m 3s 263ms
+
+Size of the sequence database: 3869318
+Size of the alignment database: 3869318
+Number of clusters: 2703357
+
+Writing results 0h 0m 0s 360ms
+Time for merging to clu_step0: 0h 0m 0s 0ms
+Time for processing: 0h 0m 3s 948ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step0 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 -v 3 --subdb-mode 1 
+
+Time for merging to input_step1: 0h 0m 0s 0ms
+Time for processing: 0h 0m 0s 559ms
+prefilter /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step1 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --seed-sub-mat 'aa:VTML80.out,nucl:nucleotide.out' -s 3 -k 0 --k-score seq:2147483647,prof:2147483647 --alph-size aa:21,nucl:5 --max-seq-len 65535 --max-seqs 20 --split 0 --split-mode 2 --split-memory-limit 150G -c 0.8 --cov-mode 0 --comp-bias-corr 1 --comp-bias-corr-scale 1 --diag-score 1 --exact-kmer-matching 0 --mask 1 --mask-prob 0.9 --mask-lower-case 0 --min-ungapped-score 15 --add-self-matches 0 --spaced-kmer-mode 1 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --threads 48 --compressed 0 -v 3 
+
+Query database size: 2703357 type: Aminoacid
+Estimated memory consumption: 8G
+Target database size: 2703357 type: Aminoacid
+Index table k-mer threshold: 136 at k-mer size 6 
+Index table: counting k-mers
+[=================================================================] 2.70M 0s 834ms
+Index table: Masked residues: 2107681
+Index table: fill
+[=================================================================] 2.70M 1s 326ms
+Index statistics
+Entries:          157029192
+DB size:          1386 MB
+Avg k-mer size:   2.453581
+Top 10 k-mers
+    VGECDR	477
+    VSTLPT	422
+    VDPPPT	414
+    IGACRV	409
+    AVTART	314
+    SSIPST	245
+    VVPPPV	241
+    VVPPPS	231
+    VDPPPV	215
+    RSSSSR	212
+Time for index table init: 0h 0m 2s 732ms
+Process prefiltering step 1 of 1
+
+k-mer similarity threshold: 136
+Starting prefiltering scores calculation (step 1 of 1)
+Query db start 1 to 2703357
+Target db start 1 to 2703357
+[=================================================================] 2.70M 13s 488ms
+
+16.473002 k-mers per position
+2196 DB matches per sequence
+0 overflows
+0 queries produce too many hits (truncated result)
+17 sequences passed prefiltering per query sequence
+20 median result list length
+0 sequences with 0 size result lists
+Time for merging to pref_step1: 0h 0m 0s 668ms
+Time for processing: 0h 0m 18s 817ms
+align /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step1 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 3 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 1 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --threads 48 --compressed 0 -v 3 
+
+Compute score, coverage and sequence identity
+Query database size: 2703357 type: Aminoacid
+Target database size: 2703357 type: Aminoacid
+Calculation of alignments
+[=================================================================] 2.70M 2s 777ms
+Time for merging to aln_step1: 0h 0m 0s 660ms
+27348092 alignments calculated
+3326939 sequence pairs passed the thresholds (0.121652 of overall calculated)
+1.230669 hits per query sequence
+Time for processing: 0h 0m 3s 945ms
+clust /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step1 --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 2.70M 0s 279ms
+Sort entries
+Find missing connections
+Found 140058 new connections.
+Reconstruct initial order
+[=================================================================] 2.70M 0s 288ms
+Add missing connections
+[=================================================================] 2.70M 0s 138ms
+
+Time for read in: 0h 0m 1s 124ms
+Total time: 0h 0m 1s 312ms
+
+Size of the sequence database: 2703357
+Size of the alignment database: 2703357
+Number of clusters: 2511505
+
+Writing results 0h 0m 0s 299ms
+Time for merging to clu_step1: 0h 0m 0s 0ms
+Time for processing: 0h 0m 1s 896ms
+createsubdb /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 -v 3 --subdb-mode 1 
+
+Time for merging to input_step2: 0h 0m 0s 0ms
+Time for processing: 0h 0m 0s 466ms
+prefilter /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step2 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' --seed-sub-mat 'aa:VTML80.out,nucl:nucleotide.out' -s 5 -k 0 --k-score seq:2147483647,prof:2147483647 --alph-size aa:21,nucl:5 --max-seq-len 65535 --max-seqs 20 --split 0 --split-mode 2 --split-memory-limit 150G -c 0.8 --cov-mode 0 --comp-bias-corr 1 --comp-bias-corr-scale 1 --diag-score 1 --exact-kmer-matching 0 --mask 1 --mask-prob 0.9 --mask-lower-case 0 --min-ungapped-score 15 --add-self-matches 0 --spaced-kmer-mode 1 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --threads 48 --compressed 0 -v 3 
+
+Query database size: 2511505 type: Aminoacid
+Estimated memory consumption: 7G
+Target database size: 2511505 type: Aminoacid
+Index table k-mer threshold: 118 at k-mer size 6 
+Index table: counting k-mers
+[=================================================================] 2.51M 0s 769ms
+Index table: Masked residues: 2003556
+Index table: fill
+[=================================================================] 2.51M 1s 256ms
+Index statistics
+Entries:          155264123
+DB size:          1376 MB
+Avg k-mer size:   2.426002
+Top 10 k-mers
+    AAAAAA	1076
+    LLLLLL	653
+    AAAALA	529
+    AVAAAA	518
+    AAVAAA	517
+    AAAAAL	499
+    AAAAAS	498
+    SSSSSS	445
+    AAAAAV	428
+    VSTLPT	406
+Time for index table init: 0h 0m 2s 660ms
+Process prefiltering step 1 of 1
+
+k-mer similarity threshold: 118
+Starting prefiltering scores calculation (step 1 of 1)
+Query db start 1 to 2511505
+Target db start 1 to 2511505
+[=================================================================] 2.51M 1m 2s 436ms
+
+125.645330 k-mers per position
+18712 DB matches per sequence
+0 overflows
+0 queries produce too many hits (truncated result)
+19 sequences passed prefiltering per query sequence
+20 median result list length
+0 sequences with 0 size result lists
+Time for merging to pref_step2: 0h 0m 0s 610ms
+Time for processing: 0h 1m 6s 621ms
+align /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/pref_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step2 --sub-mat 'aa:blosum62.out,nucl:nucleotide.out' -a 0 --alignment-mode 3 --alignment-output-mode 0 --wrapped-scoring 0 -e 0.001 --min-seq-id 0.3 --min-aln-len 0 --seq-id-mode 0 --alt-ali 0 -c 0.8 --cov-mode 0 --max-seq-len 65535 --comp-bias-corr 1 --comp-bias-corr-scale 1 --max-rejected 2147483647 --max-accept 2147483647 --add-self-matches 0 --db-load-mode 0 --pca substitution:1.100,context:1.400 --pcb substitution:4.100,context:5.800 --score-bias 0 --realign 0 --realign-score-bias -0.2 --realign-max-seqs 2147483647 --corr-score-weight 0 --gap-open aa:11,nucl:5 --gap-extend aa:1,nucl:2 --zdrop 40 --threads 48 --compressed 0 -v 3 
+
+Compute score, coverage and sequence identity
+Query database size: 2511505 type: Aminoacid
+Target database size: 2511505 type: Aminoacid
+Calculation of alignments
+[=================================================================] 2.51M 2s 813ms
+Time for merging to aln_step2: 0h 0m 0s 600ms
+27398250 alignments calculated
+2733337 sequence pairs passed the thresholds (0.099763 of overall calculated)
+1.088326 hits per query sequence
+Time for processing: 0h 0m 3s 883ms
+clust /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/input_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/aln_step2 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step2 --cluster-mode 0 --max-iterations 1000 --similarity-type 2 --threads 48 --compressed 0 -v 3 
+
+Clustering mode: Set Cover
+[=================================================================] 2.51M 0s 162ms
+Sort entries
+Find missing connections
+Found 56294 new connections.
+Reconstruct initial order
+[=================================================================] 2.51M 0s 175ms
+Add missing connections
+[=================================================================] 2.51M 0s 87ms
+
+Time for read in: 0h 0m 0s 788ms
+Total time: 0h 0m 0s 940ms
+
+Size of the sequence database: 2511505
+Size of the alignment database: 2511505
+Number of clusters: 2401503
+
+Writing results 0h 0m 0s 285ms
+Time for merging to clu_step2: 0h 0m 0s 0ms
+Time for processing: 0h 0m 1s 510ms
+mergeclusters /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu30 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_redundancy /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step0 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step1 /jobfs/181057870.gadi-pbs/tmp30/14696583868912091836/clu_step2 --threads 48 --compressed 0 -v 3 
+
+Clustering step 1
+[=================================================================] 3.87M 3s 375ms
+Clustering step 2
+[=================================================================] 2.70M 4s 231ms
+Clustering step 3
+[=================================================================] 2.51M 4s 989ms
+Clustering step 4
+[=================================================================] 2.40M 5s 762ms
+Write merged clustering
+[=================================================================] 43.73M 9s 285ms
+Time for merging to clu30: 0h 0m 0s 596ms
+Time for processing: 0h 0m 13s 852ms
+createtsv /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/db /jobfs/181057870.gadi-pbs/clu30 /jobfs/181057870.gadi-pbs/cluster_id30_cov80.tsv --threads 48 
+
+MMseqs Version:                 	14.7e284
+First sequence as representative	false
+Target column                   	1
+Add full header                 	false
+Sequence source                 	0
+Database output                 	false
+Threads                         	48
+Compressed                      	0
+Verbosity                       	3
+
+Time for merging to cluster_id30_cov80.tsv: 0h 0m 1s 535ms
+Time for processing: 0h 0m 4s 590ms
+cluster_id30_cov80 clusters: 2401503
+
+======================================================================================
+                  Resource Usage on 2026-10-12 18:29:43:
+   Job Id:             181057870.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      23.68
+   NCPUs Requested:    48                  CPU Time Used: 03:17:30        
+   Memory Requested:   190.0GB               Memory Used: 47.31GB         
+   Walltime Requested: 08:00:00            Walltime Used: 00:14:48        
+   JobFS Requested:    400.0GB                JobFS Used: 36.95GB         
+======================================================================================

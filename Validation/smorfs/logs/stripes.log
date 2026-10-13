@@ -1,0 +1,58 @@
+45 states files, 16 processes
+done negative: 79115 seqs, 1421 stripe members
+done negative: 1000000 seqs, 26825 stripe members
+done negative: 1000000 seqs, 23725 stripe members
+done negative: 1000000 seqs, 19299 stripe members
+done negative: 1000000 seqs, 21201 stripe members
+done negative: 1000000 seqs, 19080 stripe members
+done negative: 1000000 seqs, 20493 stripe members
+done negative: 1000000 seqs, 21570 stripe members
+done negative: 1000000 seqs, 20094 stripe members
+done negative: 1000000 seqs, 19362 stripe members
+done negative: 1000000 seqs, 18119 stripe members
+done positive: 1000000 seqs, 21756 stripe members
+done positive: 1000000 seqs, 22317 stripe members
+done positive: 1000000 seqs, 22558 stripe members
+done positive: 1000000 seqs, 21244 stripe members
+done positive: 1000000 seqs, 23108 stripe members
+done positive: 1000000 seqs, 21904 stripe members
+done positive: 1000000 seqs, 22082 stripe members
+done positive: 1000000 seqs, 21906 stripe members
+done positive: 1000000 seqs, 18793 stripe members
+done positive: 1000000 seqs, 20129 stripe members
+done positive: 1000000 seqs, 19501 stripe members
+done positive: 1000000 seqs, 20121 stripe members
+done positive: 1000000 seqs, 16724 stripe members
+done positive: 1000000 seqs, 19789 stripe members
+done positive: 1000000 seqs, 17532 stripe members
+done positive: 1000000 seqs, 18497 stripe members
+done positive: 1000000 seqs, 18269 stripe members
+done positive: 1000000 seqs, 20265 stripe members
+done positive: 1000000 seqs, 18776 stripe members
+done positive: 1000000 seqs, 17296 stripe members
+done positive: 1000000 seqs, 17907 stripe members
+done positive: 1000000 seqs, 16471 stripe members
+done positive: 647794 seqs, 13853 stripe members
+done positive: 1000000 seqs, 31250 stripe members
+done positive: 1000000 seqs, 16761 stripe members
+done positive: 1000000 seqs, 16982 stripe members
+done positive: 1000000 seqs, 17490 stripe members
+done positive: 1000000 seqs, 20818 stripe members
+done positive: 1000000 seqs, 17497 stripe members
+done positive: 1000000 seqs, 16444 stripe members
+done positive: 1000000 seqs, 16669 stripe members
+done positive: 1000000 seqs, 16978 stripe members
+done positive: 1000000 seqs, 17412 stripe members
+done positive: 1000000 seqs, 16907 stripe members
+
+======================================================================================
+                  Resource Usage on 2026-10-12 16:11:18:
+   Job Id:             181047298.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      0.28
+   NCPUs Requested:    16                  CPU Time Used: 00:06:26        
+   Memory Requested:   64.0GB                Memory Used: 4.65GB          
+   Walltime Requested: 02:00:00            Walltime Used: 00:00:32        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

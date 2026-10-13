@@ -1,0 +1,16 @@
+dataset
+positive    33647794
+negative    10079115
+rows with missing entropy: 0
+
+======================================================================================
+                  Resource Usage on 2026-10-12 15:25:23:
+   Job Id:             181044341.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      0.27
+   NCPUs Requested:    4                   CPU Time Used: 00:00:43        
+   Memory Requested:   32.0GB                Memory Used: 2.88GB          
+   Walltime Requested: 01:00:00            Walltime Used: 00:01:00        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

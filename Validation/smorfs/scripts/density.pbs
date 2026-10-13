@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=4,mem=32GB,walltime=01:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_density
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/density.log
+set -euo pipefail
+P=/g/data/ob80/re3494/Projects/smORFs/results
+/g/data/ob80/re3494/conda/genome_entropy/bin/python $P/scripts/density_aa_vs_3di.py $P/smorf_entropy.tsv.gz $P 400

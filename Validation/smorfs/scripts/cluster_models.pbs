@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=12,mem=128GB,walltime=03:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_clmodels
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/cluster_models.log
+set -euo pipefail
+P=/g/data/ob80/re3494/Projects/smORFs/results
+export OMP_NUM_THREADS=$PBS_NCPUS
+cd $P/scripts
+/g/data/ob80/re3494/conda/genome_entropy/bin/python cluster_models.py $P/smorf_entropy.tsv.gz $P/clusters \
+  $P/clusters/linclust_id50_cov80.tsv.gz $P/clusters/cluster_id30_cov80.tsv.gz

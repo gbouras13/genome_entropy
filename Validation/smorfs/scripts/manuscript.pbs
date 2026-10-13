@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=8,mem=64GB,walltime=02:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_ms
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/manuscript.log
+set -euo pipefail
+P=/g/data/ob80/re3494/Projects/smORFs/results
+export OMP_NUM_THREADS=$PBS_NCPUS
+/g/data/ob80/re3494/conda/genome_entropy/bin/python $P/scripts/manuscript_stats.py \
+  $P/smorf_entropy.tsv.gz $P/stripes/stripe_bands.tsv $P/manuscript $PBS_NCPUS
