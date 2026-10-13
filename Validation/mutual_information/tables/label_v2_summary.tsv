@@ -1,0 +1,14 @@
+quantity	value
+v2_positive_orfs	2685382.0
+matched_cds_lt_90aa	310360.0
+cds_covers_lt_50pct_of_orf	77799.0
+cds_covers_lt_90pct_of_orf	805645.0
+median_cds_fraction_of_orf	0.956140350877193
+orfs_matching_gt1_cds	0.0
+matched_cds_partial	0.0
+genbank_records	36025.0
+genbank_cds	3336744.0
+genbank_cds_skipped	0.0
+genbank_cds_lt_90aa	957269.0
+genbank_orfs	6754361.0
+genbank_orfs_labelled	2685382.0

@@ -1,0 +1,10 @@
+sha256 8399e68c58c3abf46fbbaf1c529b57d0d156f72f01047b334171166315c3219c
+records 36025
+CDS 3336744
+locus_date 28-MAY-2026 100
+locus_date 27-MAY-2026 22425
+locus_date 26-MAY-2026 13500
+inference                      /inference="nucleotide motif:MinCED:0.4.2" 266
+inference                      /inference="profile:Aragorn:1.2.41" 648
+inference                      /inference="profile:tRNAscan-SE:2.0.12" 99313
+inference                      /inference="ab initio prediction:Pyrodigal-gv:0.3.2" 3336744

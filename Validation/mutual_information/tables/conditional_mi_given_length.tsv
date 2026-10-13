@@ -1,0 +1,6 @@
+variable	H_label_bits	I_X_label	I_lenbins_label	I_X_label_given_lenbins	I_len20_label	I_X_label_given_len20	I_len20_and_X_label	fraction_of_I_X_retained_given_len20
+dna_entropy	0.969516	0.00270486	0.116401	0.0151494	0.125072	0.0166421	0.141714	6.15267
+protein_entropy	0.969516	0.413169	0.116401	0.331014	0.125072	0.326584	0.451656	0.790436
+three_di_entropy	0.969516	0.572457	0.116401	0.477095	0.125072	0.471807	0.596879	0.824179
+twelve_state_entropy	0.969516	0.415894	0.116401	0.311598	0.125072	0.30577	0.430842	0.735212
+three_di_twelve_state_mutual_information	0.969516	0.462508	0.116401	0.410617	0.125072	0.410261	0.535333	0.887037

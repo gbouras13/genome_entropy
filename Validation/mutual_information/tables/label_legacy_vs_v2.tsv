@@ -1,0 +1,11 @@
+strand	contig_edge	legacy	v2	orfs
++	False	False	False	1750428
++	False	False	True	5127
++	False	True	False	3626
++	False	True	True	1674541
++	True	False	False	4694
++	True	False	True	4875
+-	False	False	False	2301478
+-	False	False	True	1000836
+-	False	True	True	3
+-	True	False	False	8753

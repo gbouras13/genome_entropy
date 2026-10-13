@@ -1,0 +1,4 @@
+chunk	records	cds_features	archived_orfs	recomputed_orfs	orfs_in_both	archived_only	recomputed_only	min_archived_protein_aa	min_recomputed_protein_aa	label_agreement	archived_true	recomputed_true	archived_true_recomputed_false	archived_false_recomputed_true
+phold_0000.gbk.gz	250	2222	4008	4008	4008	0	0	90	90	0.9565868263473054	1444	1618	0	174
+phold_0072.gbk.gz	250	20438	35963	35963	35963	0	0	90	90	0.8258209826766398	10274	16488	25	6239
+phold_0144.gbk.gz	25	3173	6726	6726	6726	0	0	90	90	0.8376449598572703	1488	2574	3	1089
