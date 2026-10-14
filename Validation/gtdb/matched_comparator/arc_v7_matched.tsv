@@ -1,0 +1,68 @@
+domain	label	metric	value	lo	hi
+arc	v7_matched	n_candidate	22447.0		
+arc	v7_matched	n_comparator_draws	22447.0		
+arc	v7_matched	n_comparator_distinct	21475.0		
+arc	v7_matched	n_comparator_effective	19357.939567405585		
+arc	v7_matched	n_annotated	22447.0		
+arc	v7_matched	fulllen_afdb_swissprot_candidate	0.14175613667750703		
+arc	v7_matched	fulllen_afdb_swissprot_comparator	0.10143894507061077		
+arc	v7_matched	fulllen_afdb_swissprot_annotated	0.3591125762908184		
+arc	v7_matched	share_afdb_swissprot	0.15646611341632094	0.13361948369190313	0.17931274314073875
+arc	v7_matched	fulllen_pdb100_candidate	0.13289080946228896		
+arc	v7_matched	fulllen_pdb100_comparator	0.0956029758987838		
+arc	v7_matched	fulllen_pdb100_annotated	0.3258341871965073		
+arc	v7_matched	share_pdb100	0.16195820433436536	0.1370987399675179	0.18681766870121283
+arc	v7_matched	fulllen_cath50_candidate	0.12718848843943512		
+arc	v7_matched	fulllen_cath50_comparator	0.09186082772753597		
+arc	v7_matched	fulllen_cath50_annotated	0.2527731990911926		
+arc	v7_matched	share_cath50	0.21954595791805093	0.18514587503504557	0.25394604080105626
+arc	v7_matched	fulllen_bfvd_candidate	0.09221722279146434		
+arc	v7_matched	fulllen_bfvd_comparator	0.05742415467545774		
+arc	v7_matched	fulllen_bfvd_annotated	0.11618479084064685		
+arc	v7_matched	share_bfvd	0.5921152388172859	0.5117951604809188	0.672435317153653
+arc	v7_matched	fulllen_any_sp_pdb_cath_candidate	0.2282710384461175		
+arc	v7_matched	fulllen_any_sp_pdb_cath_comparator	0.16376353187508352		
+arc	v7_matched	fulllen_any_sp_pdb_cath_annotated	0.4360939100993451		
+arc	v7_matched	share_any_sp_pdb_cath	0.2368722394896123	0.21134265910452313	0.26240181987470146
+arc	v7_matched	structural_estimate	4025.272925978715	3512.1948478561562	4928.1481173864895
+arc	v7_matched	comparator_cells_empty	0.0		
+arc	v7_matched	fulllen_afdb_swissprot_comparator_std5x5	0.1024673774809137		
+arc	v7_matched	share_std5x5_afdb_swissprot	0.15308589203608772		
+arc	v7_matched	fulllen_pdb100_comparator_std5x5	0.09662380739016359		
+arc	v7_matched	share_std5x5_pdb100	0.15822582774290933		
+arc	v7_matched	fulllen_cath50_comparator_std5x5	0.0928919938692784		
+arc	v7_matched	share_std5x5_cath50	0.21451235948936817		
+arc	v7_matched	fulllen_bfvd_comparator_std5x5	0.057705453870007625		
+arc	v7_matched	share_std5x5_bfvd	0.5901532183715432		
+arc	v7_matched	fulllen_any_sp_pdb_cath_comparator_std5x5	0.1653262667992039		
+arc	v7_matched	share_std5x5_any_sp_pdb_cath	0.23246784911127813		
+arc	v7_matched	ladder_C1_candidates	22447.0		
+arc	v7_matched	ladder_C1_comparator_scaled	22447.0		
+arc	v7_matched	ladder_C1_excess	0.0		
+arc	v7_matched	ladder_C2_candidates	19835.0		
+arc	v7_matched	ladder_C2_comparator_scaled	19835.0		
+arc	v7_matched	ladder_C2_excess	0.0		
+arc	v7_matched	ladder_C3_candidates	5141.0		
+arc	v7_matched	ladder_C3_comparator_scaled	3410.0		
+arc	v7_matched	ladder_C3_excess	1731.0		
+arc	v7_matched	ladder_C4_candidates	2777.0		
+arc	v7_matched	ladder_C4_comparator_scaled	1872.0		
+arc	v7_matched	ladder_C4_excess	905.0		
+arc	v7_matched	ladder_C5_candidates	4396.0		
+arc	v7_matched	ladder_C5_comparator_scaled	3030.0		
+arc	v7_matched	ladder_C5_excess	1366.0		
+arc	v7_matched	ladder_C6_candidates	4439.0		
+arc	v7_matched	ladder_C6_comparator_scaled	3030.0		
+arc	v7_matched	ladder_C6_excess	1409.0		
+arc	v7_matched	ladder_C7_candidates	1574.0		
+arc	v7_matched	ladder_C7_comparator_scaled	1167.0		
+arc	v7_matched	ladder_C7_excess	407.0		
+arc	v7_matched	prodigal_candidate	0.5536151824297233		
+arc	v7_matched	prodigal_annotated_cds	0.9613311355637725		
+arc	v7_matched	prodigal_intergenic_lo	0.15440816144696395		
+arc	v7_matched	prodigal_comparator	0.2562035015815031		
+arc	v7_matched	prodigal_share_clean_bg	0.4217841799342935	0.41116496202913855	0.4324033978394485
+arc	v7_matched	prodigal_share_intergenic_lo_bg	0.49472754375310546	0.4860036130065114	0.5034514744996995
+arc	v7_matched	prodigal_share_larger_bg	0.4217841799342935		
+arc	v7_matched	ratio_prodigal_over_afdb_swissprot	2.695690272640832		
+arc	v7_matched	ratio_prodigal_over_cath50	1.9211657729163534		

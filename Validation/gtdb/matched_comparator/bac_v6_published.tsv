@@ -1,0 +1,68 @@
+domain	label	metric	value	lo	hi
+bac	v6_published	n_candidate	523346.0		
+bac	v6_published	n_comparator_draws	292527.0		
+bac	v6_published	n_comparator_distinct	292527.0		
+bac	v6_published	n_comparator_effective	292527.0		
+bac	v6_published	n_annotated	151927.0		
+bac	v6_published	fulllen_afdb_swissprot_candidate	0.10292808199546763		
+bac	v6_published	fulllen_afdb_swissprot_comparator	0.02680778184577834		
+bac	v6_published	fulllen_afdb_swissprot_annotated	0.3532222712223634		
+bac	v6_published	share_afdb_swissprot	0.23320135173861464	0.22985463074818943	0.23654807272903985
+bac	v6_published	fulllen_pdb100_candidate	0.08744310647258219		
+bac	v6_published	fulllen_pdb100_comparator	0.022117616493520256		
+bac	v6_published	fulllen_pdb100_annotated	0.3007365379425645		
+bac	v6_published	share_pdb100	0.23446178615334673	0.23079363657144167	0.2381299357352518
+bac	v6_published	fulllen_cath50_candidate	0.08446419768183955		
+bac	v6_published	fulllen_cath50_comparator	0.02720090795037723		
+bac	v6_published	fulllen_cath50_annotated	0.23922673389193494		
+bac	v6_published	share_cath50	0.27007695631968076	0.26515637626607114	0.2749975363732904
+bac	v6_published	fulllen_bfvd_candidate	0.06848050811509021		
+bac	v6_published	fulllen_bfvd_comparator	0.019806718696051988		
+bac	v6_published	fulllen_bfvd_annotated	0.109585524626959		
+bac	v6_published	share_bfvd	0.5421523366717212	0.5297145180267132	0.5545901553167293
+bac	v6_published	fulllen_any_sp_pdb_cath_candidate	0.16409793903077505		
+bac	v6_published	fulllen_any_sp_pdb_cath_comparator	0.04893565380289683		
+bac	v6_published	fulllen_any_sp_pdb_cath_annotated	0.4161340643861855		
+bac	v6_published	share_any_sp_pdb_cath	0.3136241386365067	0.30987116815450116	0.3173771091185122
+bac	v6_published	structural_estimate	128697.77578176201	122044.99462699702	141343.69478207963
+bac	v6_published	comparator_cells_empty	0.0		
+bac	v6_published	fulllen_afdb_swissprot_comparator_std5x5	0.07829992491320109		
+bac	v6_published	share_std5x5_afdb_swissprot	0.08958223081135461		
+bac	v6_published	fulllen_pdb100_comparator_std5x5	0.06843461498282663		
+bac	v6_published	share_std5x5_pdb100	0.08182666440109526		
+bac	v6_published	fulllen_cath50_comparator_std5x5	0.06600498603008738		
+bac	v6_published	share_std5x5_cath50	0.10656405376116082		
+bac	v6_published	fulllen_bfvd_comparator_std5x5	0.047491462250920144		
+bac	v6_published	share_std5x5_bfvd	0.33802017553725744		
+bac	v6_published	fulllen_any_sp_pdb_cath_comparator_std5x5	0.12580509199167933		
+bac	v6_published	share_std5x5_any_sp_pdb_cath	0.13189468044912325		
+bac	v6_published	ladder_C1_candidates	523346.0		
+bac	v6_published	ladder_C1_comparator_scaled	523346.0		
+bac	v6_published	ladder_C1_excess	0.0		
+bac	v6_published	ladder_C2_candidates	483767.0		
+bac	v6_published	ladder_C2_comparator_scaled	510534.59898060694		
+bac	v6_published	ladder_C2_excess	-26767.59898060694		
+bac	v6_published	ladder_C3_candidates	90658.0		
+bac	v6_published	ladder_C3_comparator_scaled	28150.732445210186		
+bac	v6_published	ladder_C3_excess	62507.26755478981		
+bac	v6_published	ladder_C4_candidates	44325.0		
+bac	v6_published	ladder_C4_comparator_scaled	11099.278302515666		
+bac	v6_published	ladder_C4_excess	33225.72169748433		
+bac	v6_published	ladder_C5_candidates	76662.0		
+bac	v6_published	ladder_C5_comparator_scaled	23279.143983290433		
+bac	v6_published	ladder_C5_excess	53382.85601670957		
+bac	v6_published	ladder_C6_candidates	81257.0		
+bac	v6_published	ladder_C6_comparator_scaled	26846.513573106073		
+bac	v6_published	ladder_C6_excess	54410.48642689393		
+bac	v6_published	ladder_C7_candidates	23540.0		
+bac	v6_published	ladder_C7_comparator_scaled	4308.037097430322		
+bac	v6_published	ladder_C7_excess	19231.962902569678		
+bac	v6_published	prodigal_candidate	0.4742407508608072		
+bac	v6_published	prodigal_annotated_cds	0.9420708629802471		
+bac	v6_published	prodigal_intergenic_lo	0.0985078360001843		
+bac	v6_published	prodigal_comparator	0.0941417373439033		
+bac	v6_published	prodigal_share_clean_bg	0.44826743418166193	0.44642205396655393	0.4501128143967699
+bac	v6_published	prodigal_share_intergenic_lo_bg	0.44541178648587587	0.44343004863905733	0.4473935243326944
+bac	v6_published	prodigal_share_larger_bg	0.44541178648587587		
+bac	v6_published	ratio_prodigal_over_afdb_swissprot	1.9099880132132285		
+bac	v6_published	ratio_prodigal_over_cath50	1.649203221761198		

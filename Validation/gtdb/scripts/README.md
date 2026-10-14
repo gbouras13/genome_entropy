@@ -114,6 +114,19 @@ combined.
 | `35_supplementary_figures.py` | the `supp_*.png` figures, from 34's TSVs |
 | `36_candidate_burden_figures.py` | regenerates `candidate_burden_{bac,arc}.png` (per-genome and per-Mb rows, N50 panel, ρ on every panel) |
 
+**Matched clean comparator (Gadi).** Write-up:
+[`../matched_comparator.md`](../matched_comparator.md).
+
+| script | purpose |
+|---|---|
+| `39_shadow_pool.py/.pbs` | re-runs the `10` classification (imported, checked against the published stats) and writes the FULL shadow_hi pool per chunk with `20`'s frame class |
+| `40_match_clean_comparator.py/.pbs` | draws a clean (antisense + frameshift) comparator matched 1:1 to the candidates on truncation, length and 3Di; writes `wanted_v7.tsv` and the not-yet-searched `to_search.tsv` |
+| `42_merge_best.py` | best-hit tables for `wanted_v7.tsv` from the published search plus the new one |
+| `41_comparator_summary.py/.pbs` | mixture shares, ladder floors and Prodigal share against a comparator, weighted by draw multiplicity; reproduces v6/ranked5/prodigal_*4 with `--comparator context-clean` |
+
+`17_pilot_search.pbs` takes `NULL=0` to skip the candidate-only shuffled null for
+a comparator-only query set.
+
 `29` exists because the report's entropy comparisons came from samples, and the
 manuscript needs exact population counts. It reads `entropy_rows/` only — no
 re-encoding — and stratifies every row by (genome carries a deposited CDS,

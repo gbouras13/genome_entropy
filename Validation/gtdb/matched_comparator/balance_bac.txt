@@ -1,0 +1,33 @@
+domain bac: 523,346 candidates; full shadow_hi pool 9,075,154
+  same strand, frame undefined       3,674,104   40.5%
+  opposite strand                    3,122,179   34.4%
+  same strand, same frame            1,475,682   16.3%
+  same strand, frameshift              803,189    8.9%
+clean pool (antisense + frameshift): 3,925,368
+
+pass 1 (within chunk): 451,475 of 523,346
+pass 2 (domain): 522,343 matched
+pass 2 (domain 2x caliper): 522,420 matched
+pass 2 (domain 4x caliper): 522,529 matched
+
+match level:
+  same chunk                 259,360   49.56%
+  same genome                192,115   36.71%
+  domain                      70,868   13.54%
+  with replacement               817    0.16%
+  domain 4x caliper              109    0.02%
+  domain 2x caliper               77    0.01%
+duplicated comparator ORFs (with-replacement draws): 817
+
+BALANCE (top quintile = candidates' top 3Di quintile, >= 3.217 bits)
+  arm                          n  med aa  med 3Di mean 3Di top-Q 3Di  trunc  5x5 TVD
+  candidate              523,346     134    2.828    2.918     20.0%   7.6%   0.0000
+  old clean shadow       292,527     122    2.677    2.742      4.6%   2.4%   0.2485
+  new matched clean      523,346     134    2.828    2.916     19.9%   7.6%   0.0029
+
+  achieved |d 3Di|: median 0.0042, p99 0.0245
+  achieved |d len| / len: median 0.0148, p99 0.0975
+  frame classes of new arm: opposite strand=359,825; same strand, frameshift=163,521
+
+wanted_v7.tsv: 1,501,656 rows (522,529 distinct comparator ORFs)
+already searched as shadow_hi: 62,078; to search: 460,451

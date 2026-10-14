@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -N ge_cmpsum
+#PBS -q normal
+#PBS -P ob80
+#PBS -l ncpus=4
+#PBS -l mem=64GB
+#PBS -l walltime=01:00:00
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -l wd
+#PBS -j oe
+#PBS -o /g/data/ob80/re3494/gtdb_entropy/missed_genes/matched_clean/logs/summary.log
+#
+# 41_comparator_summary.py under the scheduler. SEARCH is a single best/ dir
+# (qsub -v cannot carry the comma a list would need).
+#
+#   qsub -v DOMAIN=bac,LABEL=v7_matched,WANTED=...,COMPARATOR=...,CONTEXT=...,\
+#           SEARCH=...,PRODIGAL=...,OUT=... -o <log> 41_comparator_summary.pbs
+
+set -euo pipefail
+cd "${PBS_O_WORKDIR}"
+: "${DOMAIN:?}" "${LABEL:?}" "${WANTED:?}" "${COMPARATOR:?}" "${CONTEXT:?}"
+: "${SEARCH:?}" "${PRODIGAL:?}" "${OUT:?}"
+: "${EXCLUDE_REPLACEMENT:=0}"
+ENV_PREFIX="${ENV_PREFIX:-/g/data/ob80/re3494/conda/genome_entropy}"
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "${ENV_PREFIX}"
+
+extra=()
+if [ "${EXCLUDE_REPLACEMENT}" = "1" ]; then extra=(--exclude-replacement); fi
+python3 -u 41_comparator_summary.py --domain "${DOMAIN}" --label "${LABEL}" \
+    --wanted "${WANTED}" --comparator "${COMPARATOR}" --context "${CONTEXT}" \
+    --search-dirs "${SEARCH}" --prodigal "${PRODIGAL}" --out "${OUT}" \
+    "${extra[@]}"

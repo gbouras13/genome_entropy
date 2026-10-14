@@ -1,0 +1,68 @@
+domain	label	metric	value	lo	hi
+arc	v7_matched_norepl	n_candidate	21475.0		
+arc	v7_matched_norepl	n_comparator_draws	21475.0		
+arc	v7_matched_norepl	n_comparator_distinct	21475.0		
+arc	v7_matched_norepl	n_comparator_effective	21475.0		
+arc	v7_matched_norepl	n_annotated	22447.0		
+arc	v7_matched_norepl	fulllen_afdb_swissprot_candidate	0.1259604190919674		
+arc	v7_matched_norepl	fulllen_afdb_swissprot_comparator	0.08814901047729919		
+arc	v7_matched_norepl	fulllen_afdb_swissprot_annotated	0.3591125762908184		
+arc	v7_matched_norepl	share_afdb_swissprot	0.1395442538599102	0.11896072732095277	0.16012778039886766
+arc	v7_matched_norepl	fulllen_pdb100_candidate	0.11669383003492433		
+arc	v7_matched_norepl	fulllen_pdb100_comparator	0.08088474970896391		
+arc	v7_matched_norepl	fulllen_pdb100_annotated	0.3258341871965073		
+arc	v7_matched_norepl	share_pdb100	0.1461896818104816	0.12422867569585419	0.16815068792510898
+arc	v7_matched_norepl	fulllen_cath50_candidate	0.11837019790454016		
+arc	v7_matched_norepl	fulllen_cath50_comparator	0.08111757857974389		
+arc	v7_matched_norepl	fulllen_cath50_annotated	0.2527731990911926		
+arc	v7_matched_norepl	share_cath50	0.217019513918635	0.18599284073119504	0.24804618710607496
+arc	v7_matched_norepl	fulllen_bfvd_candidate	0.08842840512223515		
+arc	v7_matched_norepl	fulllen_bfvd_comparator	0.05108265424912689		
+arc	v7_matched_norepl	fulllen_bfvd_annotated	0.11618479084064685		
+arc	v7_matched_norepl	share_bfvd	0.5736486208959972	0.501964146807339	0.6453330949846554
+arc	v7_matched_norepl	fulllen_any_sp_pdb_cath_candidate	0.2089406286379511		
+arc	v7_matched_norepl	fulllen_any_sp_pdb_cath_comparator	0.14561117578579744		
+arc	v7_matched_norepl	fulllen_any_sp_pdb_cath_annotated	0.4360939100993451		
+arc	v7_matched_norepl	share_any_sp_pdb_cath	0.2180145164283524	0.19487594009256207	0.24115309276414273
+arc	v7_matched_norepl	structural_estimate	3598.87677664145	2996.712851641572	4660.494061402686
+arc	v7_matched_norepl	comparator_cells_empty	0.0		
+arc	v7_matched_norepl	fulllen_afdb_swissprot_comparator_std5x5	0.0889780341445921		
+arc	v7_matched_norepl	share_std5x5_afdb_swissprot	0.1369035764680416		
+arc	v7_matched_norepl	fulllen_pdb100_comparator_std5x5	0.08165305575845822		
+arc	v7_matched_norepl	share_std5x5_pdb100	0.14350320219298462		
+arc	v7_matched_norepl	fulllen_cath50_comparator_std5x5	0.08184758306843173		
+arc	v7_matched_norepl	share_std5x5_cath50	0.2136754904615642		
+arc	v7_matched_norepl	fulllen_bfvd_comparator_std5x5	0.05139330342144402		
+arc	v7_matched_norepl	share_std5x5_bfvd	0.5716044371874492		
+arc	v7_matched_norepl	fulllen_any_sp_pdb_cath_comparator_std5x5	0.14687359833808541		
+arc	v7_matched_norepl	share_std5x5_any_sp_pdb_cath	0.2146012149765596		
+arc	v7_matched_norepl	ladder_C1_candidates	21475.0		
+arc	v7_matched_norepl	ladder_C1_comparator_scaled	21475.0		
+arc	v7_matched_norepl	ladder_C1_excess	0.0		
+arc	v7_matched_norepl	ladder_C2_candidates	18990.0		
+arc	v7_matched_norepl	ladder_C2_comparator_scaled	18990.0		
+arc	v7_matched_norepl	ladder_C2_excess	0.0		
+arc	v7_matched_norepl	ladder_C3_candidates	4520.0		
+arc	v7_matched_norepl	ladder_C3_comparator_scaled	2860.0		
+arc	v7_matched_norepl	ladder_C3_excess	1660.0		
+arc	v7_matched_norepl	ladder_C4_candidates	2306.0		
+arc	v7_matched_norepl	ladder_C4_comparator_scaled	1480.0		
+arc	v7_matched_norepl	ladder_C4_excess	826.0		
+arc	v7_matched_norepl	ladder_C5_candidates	3792.0		
+arc	v7_matched_norepl	ladder_C5_comparator_scaled	2521.0		
+arc	v7_matched_norepl	ladder_C5_excess	1271.0		
+arc	v7_matched_norepl	ladder_C6_candidates	4050.0		
+arc	v7_matched_norepl	ladder_C6_comparator_scaled	2625.0		
+arc	v7_matched_norepl	ladder_C6_excess	1425.0		
+arc	v7_matched_norepl	ladder_C7_candidates	1120.0		
+arc	v7_matched_norepl	ladder_C7_comparator_scaled	790.0		
+arc	v7_matched_norepl	ladder_C7_excess	330.0		
+arc	v7_matched_norepl	prodigal_candidate	0.5380209545983702		
+arc	v7_matched_norepl	prodigal_annotated_cds	0.9613311355637725		
+arc	v7_matched_norepl	prodigal_intergenic_lo	0.15440816144696395		
+arc	v7_matched_norepl	prodigal_comparator	0.23222351571594876		
+arc	v7_matched_norepl	prodigal_share_clean_bg	0.4194133082112709	0.4091191369368683	0.42970747948567345
+arc	v7_matched_norepl	prodigal_share_intergenic_lo_bg	0.4754019967906816	0.46646111572062665	0.4843428778607366
+arc	v7_matched_norepl	prodigal_share_larger_bg	0.4194133082112709		
+arc	v7_matched_norepl	ratio_prodigal_over_afdb_swissprot	3.0055935419048057		
+arc	v7_matched_norepl	ratio_prodigal_over_cath50	1.932606430813947		

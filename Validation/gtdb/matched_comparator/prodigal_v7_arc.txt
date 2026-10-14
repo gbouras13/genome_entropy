@@ -1,0 +1,96 @@
+
+==============================================================================
+CALIBRATION: offset between our 3' end and the nearest Prodigal 3' end
+==============================================================================
+  Same contig and same strand. A single dominant offset identifies the
+  coordinate convention; it is then used as the match criterion rather
+  than assumed to be zero.
+
+  ORFs with any same-strand Prodigal gene on their contig: 87,286 of 88,816
+
+   offset (bp)        ORFs    share
+             0      42,459   48.64%
+             2         986    1.13%
+            -2         932    1.07%
+            -1         813    0.93%
+             1         758    0.87%
+          -285          41    0.05%
+           339          36    0.04%
+          -309          36    0.04%
+           294          36    0.04%
+          -300          35    0.04%
+
+  dominant offset = 0 bp  -> used as exact-coincidence criterion
+
+==============================================================================
+FRAME-AND-STRAND-CONSISTENT COINCIDENCE WITH A PRODIGAL GENE
+==============================================================================
+  A candidate that coincides is a gene an independent caller asserts and
+  GenBank omits. A shadow that coincides would mean Prodigal agrees with
+  the antisense/frameshifted ORF rather than the annotated gene, which
+  should be rare -- that difference is the whole test.
+
+  arm                      n   coincide     rate  not truncated     rate
+  (annotated_cds is the positive control and must sit near the ceiling;
+   intergenic_lo is unoccupied-space background -- see the ARMS note.)
+  candidate           22,447     12,427   55.36%         11,549   58.23%
+  shadow_hi           21,475      4,987   23.22%          4,396   23.15%
+  intergenic_lo       22,447      3,466   15.44%          3,359   15.45%
+  annotated_cds       22,447     21,579   96.13%         21,445   97.61%
+
+==============================================================================
+SHADOW COINCIDENCE BY FRAME CLASS -- why the pooled background is wrong
+==============================================================================
+  frame class                          n   coincide     rate
+  opposite strand                 15,731      2,102   13.36%
+  same strand, frameshift          5,744      2,885   50.23%
+
+  A same-frame shadow coinciding with a Prodigal call is Prodigal
+  agreeing with GenBank about a gene that IS annotated. It says
+  nothing about whether Prodigal endorses a spurious ORF, so it does
+  not belong in the background for this test.
+
+==============================================================================
+AGAINST THE CLEAN COMPARATOR (antisense and frameshift shadows only)
+==============================================================================
+  clean shadows            : 21,475 of 21,475
+  candidate coincidence    : 55.36%
+  clean shadow coincidence : 23.22%
+  excess                   : 32.14% (95% CI 31.28 - 33.00)
+  implied candidates independently called: 7,214 of 22,447
+  enrichment over background: 2.4x
+
+  HOW INDEPENDENT IS THIS, HONESTLY
+  Independent of GenBank annotation and of structural homology --
+  Prodigal consults neither. NOT independent of 'looks
+  compositionally like coding sequence': Prodigal scores codon
+  usage and GC, and our candidates are selected partly on
+  protein-like composition, so the two share that prior. The
+  clean-shadow comparator is what bounds it: those ORFs are also
+  compositionally protein-like and Prodigal still declines them.
+
+==============================================================================
+AGAINST intergenic_lo -- SAME unoccupied space, no competing call
+==============================================================================
+  candidate coincidence     : 55.36%
+  intergenic_lo coincidence : 15.44%  (n = 22,447)
+  excess                    : 39.92% (95% CI 39.12 - 40.72)
+  implied candidates        : 8,961 of 22,447
+  enrichment                : 3.6x
+
+  This is the stricter of the two backgrounds where it is higher
+  than the clean-shadow rate, because it removes the
+  already-committed-call confound. Quote whichever is LOWER as
+  the excess -- i.e. take the larger background.
+
+  excess over matched shadows: 32.14% (95% CI 31.28 - 33.00)
+  implied candidates independently called by Prodigal: 7,214 of 22,447
+  enrichment over background: 2.4x
+
+  (The pooled row above is retained for continuity but the clean
+   comparator is the one to quote.)
+
+  Caveat: Prodigal over-calls relative to curated annotation, so its
+  agreement is corroboration and not proof. The shadow arm is what
+  makes it quantitative -- it measures how often Prodigal endorses an
+  ORF that we can independently say is NOT the real gene.
