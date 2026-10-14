@@ -38,20 +38,24 @@ are removed, **523,346 bacterial and 22,447 archaeal candidates remain** — an
 A Foldseek structural homology search over **every** surviving candidate (§6.1,
 [issue #92](https://github.com/linsalrob/genome_entropy/issues/92),
 [#97](https://github.com/linsalrob/genome_entropy/issues/97)) gives the third
-result. Against a comparator of length- and 3Di-matched shadows with same-frame
-shadows removed, full-length mutual coverage implies that **23–27% of bacterial
-and 26–36% of archaeal candidates behave like real protein-coding genes** —
-roughly **128,000–149,000 ORFs**. A conservative count requiring strong
-individual evidence, rather than a mixture model, puts **~20,350** candidates
-beyond reasonable doubt and **~65,800** with any full-length structural hit.
+result. The comparator is antisense and frameshift shadows, matched to each
+candidate on length, 3Di entropy and truncation status *after* same-frame
+shadows are removed. Against it, full-length mutual coverage implies that
+**9–10% of bacterial and 16–22% of archaeal candidates behave like real
+protein-coding genes**, roughly **51,000–59,000 ORFs**. A conservative count
+that requires strong individual evidence, rather than a mixture model, puts
+**~5,400** candidates beyond reasonable doubt and **~27,400** with any
+full-length structural hit. These figures replace an earlier 23–36%
+(~128,000–149,000), whose comparator had lost its matching when same-frame
+shadows were removed (§6.1).
 
 An independent check agrees and disagrees informatively. GTDB's own Prodigal
-annotation — which consults neither GenBank nor any structure database — calls a
+annotation consults neither GenBank nor any structure database. It calls a
 gene in the same frame at **47.4%** of bacterial and **55.4%** of archaeal
-candidate loci, against **9.4%** and **16.0%** for matched shadows and
+candidate loci, against **20.6%** and **25.6%** for matched clean shadows and
 **94–96%** for annotated CDS. Put through the same mixture arithmetic, this
-implies **~244,000** real genes (233,074 bacterial + 11,026 archaeal), roughly
-**1.7× the structural estimate**. The two bracket the
+implies **~200,000** real genes (190,597 bacterial + 9,468 archaeal), roughly
+**3.6× the structural estimate**. The two bracket the
 answer; §6.1 sets out why they differ and which is conservative.
 
 The results in the first draft of this section — 3,562,431 candidates, 95.5%
@@ -889,39 +893,88 @@ archaeal same-frame shadows and only **4.4%** and **8.1%** of antisense ones —
 Bacterial shadows resolve to 43.5% opposite strand, 31.5% frame undefined, 12.6%
 same frame and 12.4% frameshift.
 
+#### The clean comparator had to be re-matched
+
+`shadow_hi` was matched to the candidates on length and 3Di entropy *before*
+the frame filter. Its antisense and frameshift subset was therefore no longer
+matched. Compared with the candidates, the published bacterial clean arm was
+shorter (median 122 vs 134 aa) and lower in 3Di (2.68 vs 2.83 bits). It had
+4.6% of its ORFs in the candidates' top 3Di quintile, against 20%, and 2.4%
+contig-truncated, against 7.6%. Hit rates climb steeply with 3Di, so the
+comparator's hit rate was too low and the real-gene share too high.
+
+The comparator was re-drawn from the full shadow pool. That pool is 9,075,154
+bacterial and 285,470 archaeal shadows, of which 3,925,368 and 133,748 are
+antisense or frameshift. Each candidate gets one clean partner with:
+- the same truncation status;
+- 3Di within ±0.025 bits;
+- length within ±10%.
+
+Partners are taken from the same genome where possible, then the same chunk,
+then anywhere in the domain. On a 5×5 length × 3Di grid the total variation
+distance from the candidates falls from 0.249 to **0.003** (bacteria) and from
+0.212 to **0.010** (archaea). Some candidates had no partner inside the
+calipers and were matched with replacement: 0.16% in bacteria and 4.3% in
+archaea. The archaeal ones sit in the long, high-3Di tail, where the clean pool
+runs out.
+
+Every other step is unchanged: the same Foldseek binary, databases and
+parameters, and the same analysis scripts. Methods, balance tables and
+sensitivity runs are in [`matched_comparator.md`](matched_comparator.md). All
+numbers below are weighted by how often each comparator ORF was drawn. The
+coverage and ladder figures still show the published comparator.
+
 #### Full-length mutual coverage is the readout that discriminates
 
-Requiring the best hit to cover ≥80% of both query and target, against the clean
-comparator (antisense and frameshift shadows only):
+Requiring the best hit to cover ≥80% of both query and target, against the
+matched clean comparator (antisense and frameshift shadows only):
 
-| database | candidate | clean shadow | annotated | real-gene share (95% CI) |
-|---|---:|---:|---:|---:|
-| **bacteria** | | | | |
-| afdb_swissprot | 10.3% | 2.7% | 35.3% | **23.3% (23.0 – 23.7)** |
-| cath50 | 8.4% | 2.7% | 23.9% | **27.0% (26.5 – 27.5)** |
-| pdb100 | 8.7% | 2.2% | 30.1% | **23.4% (23.1 – 23.8)** |
-| bfvd | 6.8% | 2.0% | 11.0% | 54.2% — discounted |
-| **archaea** | | | | |
-| afdb_swissprot | 14.2% | 6.4% | 35.9% | **26.2% (24.3 – 28.2)** |
-| pdb100 | 13.3% | 5.7% | 32.6% | **28.3% (26.3 – 30.4)** |
-| cath50 | 12.7% | 5.5% | 25.3% | **36.4% (33.7 – 39.2)** |
-| bfvd | 9.2% | 3.6% | 11.6% | 70.2% — discounted |
+| database | candidate | clean shadow | annotated | real-gene share (95% CI) | published comparator |
+|---|---:|---:|---:|---:|---:|
+| **bacteria** | | | | | |
+| afdb_swissprot | 10.3% | 7.4% | 35.3% | **10.3% (10.0 – 10.7)** | 23.3% |
+| cath50 | 8.4% | 6.7% | 23.9% | **9.9% (9.3 – 10.5)** | 27.0% |
+| pdb100 | 8.7% | 6.6% | 30.1% | **9.0% (8.6 – 9.5)** | 23.4% |
+| bfvd | 6.8% | 4.5% | 11.0% | 36.2% (discounted) | 54.2% |
+| **archaea** | | | | | |
+| afdb_swissprot | 14.2% | 10.1% | 35.9% | **15.6% (13.4 – 17.9)** | 26.2% |
+| pdb100 | 13.3% | 9.6% | 32.6% | **16.2% (13.7 – 18.7)** | 28.3% |
+| cath50 | 12.7% | 9.2% | 25.3% | **22.0% (18.5 – 25.4)** | 36.4% |
+| bfvd | 9.2% | 5.7% | 11.6% | 59.2% (discounted) | 70.2% |
+
+The "published comparator" column is the unmatched clean arm. The matched
+comparator hits **2.7–3×** more often than that arm in bacteria. Within each 3Di
+quintile the two arms hit at nearly the same rate (Swiss-Prot full-length,
+Q1–Q5: 0.5 / 0.9 / 1.9 / 6.9 / 27.1% matched vs 0.4 / 0.7 / 1.7 / 5.7 / 28.3%
+published). The difference is therefore the arm's 3Di and length composition,
+not its per-ORF behaviour.
 
 ![Full-length coverage by arm and database, with the implied real-gene
-share](figures/candidate_coverage.png)
+share (published comparator)](figures/candidate_coverage.png)
 
 BFVD is excluded from estimation because its annotated ceiling is ~11%, so the
 mixture denominator is small and the ratio unstable. It is retained for
 interpretation: a BFVD-only hit suggests phage or prophage biology.
 
-**23–27% (bacteria) and 26–36% (archaea)** implies roughly **122,000–141,000**
-and **5,900–8,200** ORFs, or **~128,000–149,000** across both domains.
+A share of **9–10% (bacteria)** implies roughly **47,300–54,200** ORFs, and
+**16–22% (archaea)** implies roughly **3,500–4,900**. Across both domains that
+is **~51,000–59,000**.
+
+The bacterial share is robust to how it is estimated:
+- 5×5 standardisation instead of matching gives 10.3%;
+- counting each comparator ORF once instead of weighting gives 10.6%;
+- dropping the with-replacement draws leaves it unchanged.
+
+The archaeal share is not robust. It ranges **14.0–19.8%** (Swiss-Prot) across
+those three variants, because the clean pool is thin in the high-3Di, long
+tail where the signal concentrates. Quote archaea as a range.
 
 The pilot was wrong in both directions, which is instructive about 1.7% samples.
-On the *uncorrected* comparator the full-scale shares come in **lower** than the
-pilot's (6.6 / 10.4 / 6.5% against 10.4 / 13.0 / 7.9%); on the corrected one they
-come in **higher** (23.3 / 27.0 / 23.4% against 15.8 / 19.7 / 13.9%). Confidence
-intervals tighten from ±3 points to ±0.4.
+On the *uncorrected* comparator, the full-scale shares are **lower** than the
+pilot's: 6.6 / 10.4 / 6.5% against 10.4 / 13.0 / 7.9%. On the same-frame-filtered
+but unmatched comparator they are **higher**: 23.3 / 27.0 / 23.4% against
+15.8 / 19.7 / 13.9%. On the matched comparator they come back to
+10.3 / 9.9 / 9.0%. Confidence intervals tighten from ±3 points to ±0.4.
 
 Hit rate remains the wrong readout — above 3Di 3.38 bits everything hits at 99%,
 real gene and unmatched ORF alike, because a sequence-only 3Di encoder emits
@@ -938,25 +991,37 @@ excess is the floor — the candidate column is not.
 |---|---:|---:|---:|---:|
 | C1 all candidates | 523,346 | — | 22,447 | — |
 | C2 not contig-truncated | 483,767 | — | 19,835 | — |
-| C3 C2 + any full-length structural hit | 90,658 | **62,507** | 5,141 | **3,256** |
-| C4 C2 + full-length in ≥2 databases | 44,325 | 33,226 | 2,777 | 1,872 |
-| C5 C2 + full-length Swiss-Prot/PDB/CATH | 76,662 | 53,383 | 4,396 | 2,749 |
-| C6 C2 + structure-only, full-length | 81,257 | 54,410 | 4,439 | 2,717 |
-| C7 strict combined rule | 23,540 | **19,232** | 1,574 | **1,118** |
+| C3 C2 + any full-length structural hit | 90,658 | **25,620** | 5,141 | **1,731** |
+| C4 C2 + full-length in ≥2 databases | 44,325 | 11,457 | 2,777 | 905 |
+| C5 C2 + full-length Swiss-Prot/PDB/CATH | 76,662 | 19,319 | 4,396 | 1,366 |
+| C6 C2 + structure-only, full-length | 81,257 | 21,828 | 4,439 | 1,409 |
+| C7 strict combined rule | 23,540 | **4,974** | 1,574 | **407** |
 
-C7 requires: not truncated, full-length in ≥2 databases including at least one
-of Swiss-Prot/PDB/CATH, an interpretable product name, ≥100 aa, E < 10⁻¹⁰.
+C7 requires all of:
+- not truncated;
+- full-length in ≥2 databases, at least one of them Swiss-Prot, PDB or CATH;
+- an interpretable product name;
+- ≥100 aa;
+- E < 10⁻¹⁰.
 
-![Direct evidence: candidates against matched clean
-shadows](figures/evidence_ladder.png)
+The comparator is matched on truncation status, so C2 shows no excess by
+construction. The published ladder gave C2 −26,768: that was the truncation
+imbalance, not evidence. Against the published comparator, C3 and C7 were
+62,507 / 3,256 and 19,232 / 1,118.
+
+![Direct evidence: candidates against clean shadows (published
+comparator)](figures/evidence_ladder.png)
 
 **These are a set, not a nested ladder** — C6 (4,439) exceeds C4 (2,777) in
 archaea, so reading down the column as increasing stringency is wrong. C3–C6 are
 each C2 plus one independent requirement; C7 is the conjunction.
 
-So: **~20,350 candidates with strong individual evidence** (19,232 + 1,118) and
-**~65,800 with any full-length structural hit** (62,507 + 3,256). These are the
-numbers that survive without the two-component assumption.
+So: **~5,400 candidates with strong individual evidence** (4,974 + 407) and
+**~27,400 with any full-length structural hit** (25,620 + 1,731). These are the
+numbers that survive without the two-component assumption. They are floors in
+a second sense too. 18,566 scaled bacterial clean shadows meet C7. Any of
+those that are real overlapping or misannotated genes inflate the comparator
+and deflate the excess.
 
 One structural caveat on C7: it requires a Swiss-Prot/PDB/CATH hit, so
 **BFVD-only candidates are invisible to it by construction** — 13,996 bacterial
@@ -980,29 +1045,38 @@ produced zero matches and the false conclusion that Prodigal disagrees.
 |---|---:|---:|
 | **annotated_cds** (positive control) | **94.21%** | **96.13%** |
 | **candidate** | **47.42%** | **55.36%** |
-| clean shadow (3Di-matched, occupied space) | 9.41% | 16.00% |
+| matched clean shadow (length-, 3Di- and truncation-matched, occupied space) | 20.63% | 25.62% |
 | `intergenic_lo` (unoccupied space) | 9.85% | 15.44% |
+| *published clean shadow (unmatched)* | *9.41%* | *16.00%* |
 
-![Prodigal agreement by arm, and by shadow frame
-class](figures/prodigal_validation.png)
+![Prodigal agreement by arm, and by shadow frame class (published
+comparator)](figures/prodigal_validation.png)
 
-Two objections fail against their own controls. First, an antisense shadow sits
-inside a gene Prodigal already calls, and gene callers avoid overlapping
-predictions — so its low rate might reflect a prior commitment rather than the
-ORF looking non-coding. But `intergenic_lo` sits in unoccupied space with no
-competing call and gives the **same rate to within half a point** in both
-domains. Second, both methods might merely favour coding-like composition — but
-`shadow_hi` is matched to each candidate on 3Di entropy, so at equal apparent
-structure Prodigal still separates candidate from shadow **5-fold**.
+Two objections fail against their own controls.
 
-Taking the larger background, the excess is **37.6%** (bacteria) and **39.4%**
-(archaea), implying **196,638** and **8,836** candidates independently called.
-Through the same mixture arithmetic as the structural assay:
+1. **Prior commitment.** An antisense shadow sits inside a gene Prodigal
+   already calls, and gene callers avoid overlapping predictions. Its rate
+   could therefore be low because of that prior call, not because the ORF
+   looks non-coding. But `intergenic_lo` sits in unoccupied space with no
+   competing call, and its rate is *lower* than the matched clean shadows', not
+   higher.
+2. **Shared preference for coding-like composition.** The clean shadows are
+   matched to each candidate on 3Di entropy and length, and at equal apparent
+   structure Prodigal still separates candidate from shadow **2.2–2.3-fold**.
+   The fold falls from the 5× of the unmatched arm because Prodigal, too,
+   endorses more of the long, high-3Di shadows. Matched frameshift shadows
+   coincide with a Prodigal call 44% of the time, against 10% for antisense
+   ones.
 
-| | share (95% CI) | implied ORFs |
-|---|---:|---:|
-| bacteria | **44.5% (44.3 – 44.7)** | **233,074** |
-| archaea | **49.1% (48.2 – 50.0)** | **11,026** |
+Taking the larger background, which is now the matched clean shadows in both
+domains, the excess is **26.8%** (bacteria) and **29.7%** (archaea). That
+implies **140,242** and **6,676** candidates independently called. Through the
+same mixture arithmetic as the structural assay:
+
+| | share (95% CI) | implied ORFs | published comparator |
+|---|---:|---:|---:|
+| bacteria | **36.4% (36.2 – 36.6)** | **190,597** | 44.5% (233,074) |
+| archaea | **42.2% (41.1 – 43.2)** | **9,468** | 49.1% (11,026) |
 
 #### How much annotation GTDB itself adds, and a correction
 
@@ -1027,15 +1101,16 @@ essentially nothing. Only the ORF-level test above carries weight.
 
 #### Where the two estimates disagree
 
-Structural homology says ~128,000–149,000; independent gene calling says
-~244,000. **They differ by ~1.7× and this report does not resolve it.** Three
-explanations, not separable with what is here:
+Structural homology says ~51,000–59,000; independent gene calling says
+~200,000. **They differ by ~3.6× (3.5–4.0× in bacteria, 1.9–2.7× in archaea),
+and this report does not resolve it.** Matching the comparator widened the gap:
+the structural share fell by more than half, while the Prodigal share fell
+only from 44.5% to 36.4%. Three explanations, not separable with what is here:
 
 1. **Prodigal over-calls**, which it is documented to do. The background is
-   measured on ORF-shaped sequence, not random DNA, so 9.85% is its
-   false-positive rate on non-gene ORFs and the rate on genuinely non-coding
-   sequence could be higher. A 20% background would drop the bacterial share to
-   ~37%.
+   measured on ORF-shaped sequence, not random DNA, so the 20.6% matched-shadow
+   rate is its false-positive rate on non-gene ORFs. The rate on genuinely
+   non-coding sequence could be higher still.
 2. **The structural mixture underestimates.** It assumes candidates are a
    mixture of annotated-CDS-like and shadow-like behaviour, and real missed
    genes are plausibly shorter, more divergent and worse represented in PDB and
@@ -1046,14 +1121,13 @@ explanations, not separable with what is here:
 3. Both.
 
 The two should be reported as bracketing the answer, with the structural figure
-the more conservative. The direct-evidence floor of ~20,350 is unaffected by
+the more conservative. The direct-evidence floor of ~5,400 is unaffected by
 either.
 
 **The two lines of evidence converge on the same ORFs, however.** Prodigal
 confirms **47.4%** of all bacterial candidates but **91.8%** of those meeting
 the strict structural rule (21,617 of 23,540), and **95.9%** of the archaeal
-strict set (1,509 of 1,574), against
-**9.4%** for matched shadows. The strict rule selects for Prodigal agreement
+strict set (1,509 of 1,574), against **20.6%** for matched clean shadows. The strict rule selects for Prodigal agreement
 without ever using Prodigal.
 
 #### What the supported candidates are
@@ -1242,8 +1316,15 @@ verification step exceeded the jobfs quota and the cleanup trap fired.
 - **The mixture model assumes two components.** Candidates are treated as a
   mixture of annotated-CDS-like and shadow-like behaviour. A real missed gene
   need not be either, and the confidence intervals cover binomial noise only —
-  not the two-component assumption. The ~1.7× disagreement between the
+  not the two-component assumption. The ~3.6× disagreement between the
   structural and Prodigal estimates (§6.1) is the visible consequence.
+- **The clean comparator bounds "protein-like non-gene" only as far as
+  antisense and frameshift shadows are non-genes.** Frame-undefined shadows
+  are excluded, not resolved; they are 40% of the bacterial pool. 13.5%
+  (bacteria) and 17.9% (archaea) of comparator partners come from elsewhere in
+  the domain rather than the candidate's own genome or chunk. The archaeal
+  share depends on the estimator, 14.0–19.8%, because the clean pool runs short
+  in the high-3Di tail.
 - **Prodigal agreement is independent of GenBank and of structural homology,
   but not of coding-like composition.** The 3Di-matched shadow arm bounds that
   shared prior; it does not eliminate it.
@@ -1278,6 +1359,10 @@ verification step exceeded the jobfs quota and the cleanup trap fired.
   composition, ten manuscript examples and their dossiers (§6.1).
 - **The reading-frame definition settled** against hand-built ground truth, and
   the partial-CDS case that made it wrong identified (§6.1).
+- **The clean comparator re-drawn matched after the frame filter** (§6.1,
+  [`matched_comparator.md`](matched_comparator.md)). This cut the structural
+  estimate from ~128,000–149,000 to ~51,000–59,000 and the strict floor from
+  ~20,350 to ~5,400. It also widened the gap to Prodigal from ~1.7× to ~3.6×.
 - The fragmentation confound **retired**: ρ(N50) moves from −0.603 to +0.100 on
   the corrected candidates, so the assembly-stratified sensitivity sets that
   were planned to control it are no longer needed (§6).
@@ -1305,7 +1390,7 @@ verification step exceeded the jobfs quota and the cleanup trap fired.
    applies only to 3Di. Fraction-`D` remains worth having as a direct
    measurement of what §5's dominant state is doing, not as the length fix.
 6. **Resolve the structural-versus-Prodigal disagreement** (§6.1). The two
-   estimates differ by ~1.7× and this report brackets rather than resolves them.
+   estimates differ by ~3.6× and this report brackets rather than resolves them.
    The missing measurement is Prodigal's false-positive rate on sequence that is
    confidently non-coding, which our arms cannot supply — every one of them is
    ORF-shaped by construction.
