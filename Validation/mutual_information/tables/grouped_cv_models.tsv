@@ -1,0 +1,7 @@
+model	features	n_orfs	n_genomes	folds	auc_oof	ap_oof	prevalence
+length	protein_length	1705008	9006	5	0.733133	0.659467	0.396483
+3Di	three_di_entropy	1705008	9006	5	0.946946	0.935842	0.396483
+length+3Di	protein_length,three_di_entropy	1705008	9006	5	0.954828	0.946641	0.396483
+length+protein+3Di	protein_length,protein_entropy,three_di_entropy	1705008	9006	5	0.967899	0.958317	0.396483
+5 entropies	dna_entropy,protein_entropy,three_di_entropy,twelve_state_entropy,three_di_twelve_state_mutual_information	1705008	9006	5	0.980407	0.972487	0.396483
+length+5 entropies	protein_length,dna_entropy,protein_entropy,three_di_entropy,twelve_state_entropy,three_di_twelve_state_mutual_information	1705008	9006	5	0.983458	0.976905	0.396483

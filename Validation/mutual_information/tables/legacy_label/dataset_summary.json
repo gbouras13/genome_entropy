@@ -1,0 +1,27 @@
+{
+ "orfs_total": 6754361,
+ "orfs_dropped_missing": 0,
+ "orfs_used": 6754361,
+ "genomes": 36025,
+ "in_genbank_true": 1678170,
+ "in_genbank_false": 5076191,
+ "prevalence": 0.24845725598616952,
+ "H_label_bits": 0.8088237639151654,
+ "min_protein_length": 90,
+ "protein_length_quantiles": {
+  "0.0": 90.0,
+  "0.001": 90.0,
+  "0.01": 90.0,
+  "0.05": 92.0,
+  "0.5": 136.0,
+  "0.95": 502.0,
+  "0.99": 896.0,
+  "1.0": 9230.0
+ },
+ "min_protein_length_in_genbank": 90,
+ "label": "legacy",
+ "seed": 20261014,
+ "per_class_sample": 200000,
+ "permutations": 200,
+ "bootstraps": 100
+}
