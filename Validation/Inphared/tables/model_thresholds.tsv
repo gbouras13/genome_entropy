@@ -1,0 +1,65 @@
+set	precision_target	threshold	recall	unannotated_above	labels
+orig14_stored	0.8	0.16562	0.97594	355916	json
+orig14_stored	0.9	0.34489	0.93478	151508	json
+orig14_stored	0.95	0.72674	0.88001	67564	json
+orig14_stored	p>=0.8	0.80000	0.85601	52057	json
+orig14	0.8	0.16612	0.97582	355875	json
+orig14	0.9	0.34523	0.93500	151549	json
+orig14	0.95	0.72836	0.87967	67538	json
+orig14	p>=0.8	0.80000	0.85550	51781	json
+no_coord	0.8	0.16718	0.97600	355937	json
+no_coord	0.9	0.34750	0.93529	151596	json
+no_coord	0.95	0.72245	0.88047	67600	json
+no_coord	p>=0.8	0.80000	0.85477	51347	json
+intrinsic	0.8	0.81352	0.07431	27099	json
+intrinsic	0.9	0.87117	0.00903	1437	json
+intrinsic	0.95	0.87987	0.00304	233	json
+intrinsic	p>=0.8	0.80000	0.09236	36962	json
+length_only	0.8			0	json
+length_only	0.9			0	json
+length_only	0.95			0	json
+length_only	p>=0.8	0.80000	0.00000	0	json
+length_3di	0.8	0.82066	0.00498	1813	json
+length_3di	0.9	0.84900	0.00011	18	json
+length_3di	0.95			0	json
+length_3di	p>=0.8	0.80000	0.01677	7708	json
+length_entropies	0.8	0.81147	0.07597	27704	json
+length_entropies	0.9	0.86981	0.01112	1781	json
+length_entropies	0.95	0.87688	0.00355	272	json
+length_entropies	p>=0.8	0.80000	0.09311	37289	json
+entropy_only	0.8	0.80801	0.02198	8012	json
+entropy_only	0.9	0.85992	0.00228	366	json
+entropy_only	0.95	0.86749	0.00145	111	json
+entropy_only	p>=0.8	0.80000	0.03488	14900	json
+orig14_stored	0.8	0.16425	0.61029	356720	relabelled
+orig14_stored	0.9	0.33807	0.58491	151947	relabelled
+orig14_stored	0.95	0.71728	0.55104	67807	relabelled
+orig14_stored	p>=0.8	0.80000	0.53466	50720	relabelled
+orig14	0.8	0.19048	0.96272	562721	relabelled
+orig14	0.9	0.34362	0.92115	239296	relabelled
+orig14	0.95	0.62001	0.86961	107009	relabelled
+orig14	p>=0.8	0.80000	0.78439	44371	relabelled
+no_coord	0.8	0.19213	0.96309	562934	relabelled
+no_coord	0.9	0.34670	0.92138	239358	relabelled
+no_coord	0.95	0.61636	0.87019	107080	relabelled
+no_coord	p>=0.8	0.80000	0.78419	44851	relabelled
+intrinsic	0.8	0.19288	0.95892	560496	relabelled
+intrinsic	0.9	0.34838	0.91738	238318	relabelled
+intrinsic	0.95	0.60399	0.86654	106630	relabelled
+intrinsic	p>=0.8	0.80000	0.78346	46141	relabelled
+length_only	0.8	0.70696	0.21290	124108	relabelled
+length_only	0.9	0.81985	0.05159	13256	relabelled
+length_only	0.95			0	relabelled
+length_only	p>=0.8	0.80000	0.09463	32060	relabelled
+length_3di	0.8	0.25442	0.91691	535934	relabelled
+length_3di	0.9	0.50623	0.84357	219143	relabelled
+length_3di	0.95	0.71787	0.75911	93410	relabelled
+length_3di	p>=0.8	0.80000	0.70443	57708	relabelled
+length_entropies	0.8	0.19349	0.95828	560016	relabelled
+length_entropies	0.9	0.34830	0.91694	238204	relabelled
+length_entropies	0.95	0.60805	0.86585	106547	relabelled
+length_entropies	p>=0.8	0.80000	0.78620	47468	relabelled
+entropy_only	0.8	0.19529	0.95567	558597	relabelled
+entropy_only	0.9	0.37830	0.91142	236770	relabelled
+entropy_only	0.95	0.63847	0.85216	104862	relabelled
+entropy_only	p>=0.8	0.80000	0.77765	51460	relabelled

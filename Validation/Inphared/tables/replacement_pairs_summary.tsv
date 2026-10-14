@@ -1,0 +1,3 @@
+run	both	neither	replaced only	replacement only	pairs	replacement_higher_bits
+original	112	870	127	688	1797	0.5426
+reranked	295	1653	241	1913	4102	0.5939

@@ -181,3 +181,81 @@ def test_orfs_without_a_genomic_interval_are_excluded() -> None:
     )
 
     assert module.find_overlapping_annotated_orfs(predictions).empty
+
+
+def test_feature_sets_exclude_the_documented_columns() -> None:
+    """'all' keeps the original 14 features; the others drop position etc."""
+    module = load_script()
+    names = list(module.extract_features.__globals__["FEATURE_NAMES"])
+
+    def selected(feature_set):
+        return [names[i] for i in module.select_feature_columns(names, feature_set)]
+
+    assert selected("all") == names
+    assert "start" not in selected("no-coordinates")
+    assert "end" not in selected("no-coordinates")
+    assert len(selected("no-coordinates")) == len(names) - 2
+    intrinsic = selected("intrinsic")
+    assert set(intrinsic) == {
+        "dna_entropy",
+        "protein_entropy",
+        "three_di_entropy",
+        "twelve_state_entropy",
+        "dna_length",
+        "protein_length",
+        "three_di_length",
+        "twelve_state_length",
+    }
+    with pytest.raises(ValueError):
+        module.select_feature_columns(names, "bogus")
+
+
+def test_candidate_probability_prefilter_does_not_change_the_result() -> None:
+    """Pre-filtering candidates by probability only skips work."""
+    module = load_script()
+
+    rows = [
+        {
+            "input_id": "genome_1",
+            "orf_id": "annotated",
+            "genomic_start": 100,
+            "genomic_end": 400,
+            "genomic_strand": "+",
+            "in_genbank": True,
+            "probability_in_genbank": 0.1,
+            "protein_length": 100,
+        },
+        {
+            "input_id": "genome_1",
+            "orf_id": "high",
+            "genomic_start": 150,
+            "genomic_end": 450,
+            "genomic_strand": "-",
+            "in_genbank": False,
+            "probability_in_genbank": 0.9,
+            "protein_length": 100,
+        },
+        {
+            "input_id": "genome_1",
+            "orf_id": "low",
+            "genomic_start": 120,
+            "genomic_end": 420,
+            "genomic_strand": "-",
+            "in_genbank": False,
+            "probability_in_genbank": 0.2,
+            "protein_length": 100,
+        },
+    ]
+    predictions = pd.DataFrame(rows)
+
+    everything = module.find_overlapping_annotated_orfs(predictions)
+    filtered = module.find_overlapping_annotated_orfs(
+        predictions, minimum_candidate_probability=0.8
+    )
+
+    assert set(everything["orf_id"]) == {"high", "low"}
+    assert list(filtered["orf_id"]) == ["high"]
+    pd.testing.assert_series_equal(
+        everything.set_index("orf_id").loc["high"],
+        filtered.set_index("orf_id").loc["high"],
+    )
