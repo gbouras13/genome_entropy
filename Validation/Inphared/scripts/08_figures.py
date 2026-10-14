@@ -54,7 +54,7 @@ ARM_LABEL = {"annotated": "annotated genes", "candidate": "candidates (re-ranked
              "replaced": "genes they replace", "orig_replacement": "original replacement ORFs",
              "orig_replaced": "genes they replace (orig.)"}
 DB_LABEL = {"pdb100": "PDB100", "afdb_swissprot": "AFDB-SwissProt", "cath50": "CATH50", "bfvd": "BFVD",
-            "any": "any DB"}
+            "non_bfvd": "any non-viral DB", "any": "any DB"}
 
 
 def bin_label(b: str) -> str:
@@ -181,7 +181,7 @@ def main() -> int:
                xlim=(0.5 if metric == "auc" else 0, 1))
         for c in ax.containers:
             ax.bar_label(c, fmt="%.3f", fontsize=7)
-        ax.legend(title="labels", fontsize=8, loc="lower left")
+        ax.legend(title="labels", fontsize=8, loc="upper right")
     axes[1].set_yticklabels([])
     axes[0].set_title("a  ROC AUC by feature set")
     axes[1].set_title("b  Average precision by feature set")
@@ -262,7 +262,7 @@ def main() -> int:
             x = R[(R["mode"] == mode) & R.arm.isin(arms)].copy()
             x["DB"] = x.db.map(DB_LABEL)
             sns.barplot(x, x="DB", y="fullcov_rate", hue="arm", hue_order=[h for h in arms if h in set(x.arm)],
-                        order=[DB_LABEL[k] for k in ["pdb100", "afdb_swissprot", "cath50", "bfvd", "any"]],
+                        order=[DB_LABEL[k] for k in ["pdb100", "afdb_swissprot", "cath50", "non_bfvd", "bfvd", "any"]],
                         ax=ax, palette="colorblind")
             ax.set(ylabel="full-length hit rate (qcov & tcov >= 0.8)", xlabel="", title=ttl, ylim=(0, 1))
             h, l = ax.get_legend_handles_labels()
@@ -273,13 +273,15 @@ def main() -> int:
         Lb = pd.read_csv(a.tables / "evidence_by_length.tsv", sep="\t")
         Lb = Lb[Lb.arm.isin(arms)].copy()
         Lb["length_bin"] = Lb.length_bin.map(bin_label)
-        fig, ax = plt.subplots(figsize=(7.5, 4.6))
-        sns.pointplot(Lb, x="length_bin", y="fullcov_struct_rate", hue="arm", order=bin_order(Lb.length_bin),
-                      hue_order=[h for h in arms if h in set(Lb.arm)], ax=ax, palette="colorblind")
-        ax.set(xlabel="protein length bin (aa)", ylabel="full-length structural hit rate (any DB)",
-               title="Full-length structural hit rate by length", ylim=(0, 1))
-        h, l = ax.get_legend_handles_labels()
-        ax.legend(h, [ARM_LABEL[i] for i in l], fontsize=7)
+        fig, axes = plt.subplots(1, 2, figsize=(13, 4.6))
+        for ax, col, ttl in zip(axes, ("fullcov_struct_rate", "fullcov_struct_non_bfvd_rate"),
+                                ("a  Any database (incl. BFVD)", "b  PDB100 / AFDB-SwissProt / CATH50 only")):
+            sns.pointplot(Lb, x="length_bin", y=col, hue="arm", order=bin_order(Lb.length_bin),
+                          hue_order=[h for h in arms if h in set(Lb.arm)], ax=ax, palette="colorblind")
+            ax.set(xlabel="protein length bin (aa)", ylabel="full-length structural hit rate", title=ttl,
+                   ylim=(0, 1 if col == "fullcov_struct_rate" else None))
+            h, l = ax.get_legend_handles_labels()
+            ax.legend(h, [ARM_LABEL[i] for i in l], fontsize=7)
         fig.tight_layout()
         save(fig, a.figures, "fig7_hit_rate_by_length")
 
@@ -289,7 +291,7 @@ def main() -> int:
             fig, axes = plt.subplots(1, 2, figsize=(11, 4.4))
             t = Pp.groupby(["run", "outcome"]).size().reset_index(name="pairs")
             t["share"] = t.pairs / t.groupby("run").pairs.transform("sum")
-            sns.barplot(t, x="outcome", y="share", hue="run", ax=axes[0], palette=[PAL[0], PAL[7]],
+            sns.barplot(t, x="outcome", y="share", hue="run", hue_order=["reranked", "original"], ax=axes[0], palette=[PAL[0], PAL[7]],
                         order=["replacement only", "both", "replaced only", "neither"])
             axes[0].set(ylabel="share of pairs", xlabel="full-length structural hit (any DB)",
                         title="a  Which ORF of the pair has a full-length hit")

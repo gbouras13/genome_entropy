@@ -1,0 +1,4 @@
+context	queries	fullcov_struct_rate	fullcov_seq_rate	any_struct_rate	fullcov_struct_non_bfvd_rate	median_length
+antisense	10937	0.09866	0.08247	0.15278	0.03072	140.00000
+frameshift	7084	0.61604	0.61265	0.75438	0.10277	131.00000
+intergenic	1979	0.66549	0.66296	0.77312	0.08236	117.00000

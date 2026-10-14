@@ -1,0 +1,9 @@
+{
+ "databases": [
+  "afdb_swissprot",
+  "bfvd",
+  "cath50",
+  "pdb100"
+ ],
+ "queries": 116726
+}

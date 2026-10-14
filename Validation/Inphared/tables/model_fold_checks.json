@@ -1,0 +1,20 @@
+{
+ "json": {
+  "same_row_order": true,
+  "same_labels": true,
+  "labels_differ": 0,
+  "same_folds": true,
+  "orig14_refit_vs_stored_max_abs_diff": 0.09498345851898193,
+  "orig14_refit_vs_stored_mean_abs_diff": 0.0008141294721970757,
+  "orig14_refit_vs_stored_candidates_jaccard": 0.9710711641768379
+ },
+ "relabelled": {
+  "same_row_order": true,
+  "same_labels": false,
+  "labels_differ": 885579,
+  "same_folds": true,
+  "orig14_refit_vs_stored_max_abs_diff": 0.809279590845108,
+  "orig14_refit_vs_stored_mean_abs_diff": 0.16305271981178765,
+  "orig14_refit_vs_stored_candidates_jaccard": 0.31047931424161407
+ }
+}

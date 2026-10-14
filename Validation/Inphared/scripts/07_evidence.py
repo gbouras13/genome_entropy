@@ -104,7 +104,9 @@ def main() -> int:
 
     def hits(df, qtag, mode, db=None):
         x = df[(df.qtag == qtag) & (df["mode"] == mode)]
-        if db is not None:
+        if db == "non_bfvd":
+            x = x[x.db != "bfvd"]
+        elif db is not None:
             x = x[x.db == db]
         return set(x["query"])
 
@@ -113,7 +115,7 @@ def main() -> int:
         qtag = "qnull" if arm == "candidate_shuffled_3di" else "qdb"
         q = set(g.query_id)
         for mode in (["struct"] if qtag == "qnull" else ["struct", "seq"]):
-            for db in dbs + ["any"]:
+            for db in dbs + ["non_bfvd", "any"]:
                 h = hits(best, qtag, mode, None if db == "any" else db) & q
                 f = hits(full, qtag, mode, None if db == "any" else db) & q
                 lo, hi = wilson(len(f), len(q))
@@ -127,7 +129,7 @@ def main() -> int:
     # behaving like annotated genes, given control and annotated full-length rates.
     ex = []
     for mode in ("struct", "seq"):
-        for db in dbs + ["any"]:
+        for db in dbs + ["non_bfvd", "any"]:
             r = R[(R["mode"] == mode) & (R.db == db)].set_index("arm").fullcov_rate
             if "candidate" not in r:
                 continue
@@ -139,24 +141,40 @@ def main() -> int:
                            "annotated": r["annotated"], "excess": r["candidate"] - r[ctrl], "mixture_share": share})
     pd.DataFrame(ex).to_csv(a.out / "evidence_excess.tsv", sep="\t", index=False, float_format="%.5f")
 
+    # Identity of full-length hits: BFVD holds UniProt translations of INSDC phage
+    # annotations, so a near-identical hit mostly reports that another
+    # annotation (often of the same or a sibling genome) called the ORF.
+    fq = full[full.qtag == "qdb"].copy()
+    fq["arm"] = fq["query"].str.split("|").str[0]
+    idt = (fq.groupby(["arm", "mode", "db"]).fident
+             .agg(fullcov_hits="size", median_fident="median",
+                  frac_fident_ge_0_9=lambda x: (x >= 0.9).mean(), frac_fident_lt_0_3=lambda x: (x < 0.3).mean()))
+    idt.to_csv(a.out / "evidence_identity.tsv", sep="\t", float_format="%.4f")
+
     s_full, q_full = hits(full, "qdb", "struct"), hits(full, "qdb", "seq")
+    s_full_nb = hits(full, "qdb", "struct", "non_bfvd")
+    s_full_bfvd_lowid = set(fq[(fq["mode"] == "struct") & (fq.db == "bfvd") & (fq.fident < 0.5)]["query"])
     s_any = hits(best, "qdb", "struct")
     u = univ[univ.arm != "candidate_shuffled_3di"].copy()
     u["full_struct"] = u.query_id.isin(s_full)
     u["full_seq"] = u.query_id.isin(q_full)
     u["any_struct"] = u.query_id.isin(s_any)
+    u["full_struct_non_bfvd"] = u.query_id.isin(s_full_nb)
+    u["full_struct_bfvd_fident_lt_0_5"] = u.query_id.isin(s_full_bfvd_lowid)
     u["evidence"] = np.select([u.full_struct & u.full_seq, u.full_struct, u.full_seq],
                               ["sequence+structure", "structure-only", "sequence-only"], default="neither")
     E = u.groupby(["arm", "evidence"]).size().unstack(fill_value=0)
     E = E.div(E.sum(axis=1), axis=0)
     E.to_csv(a.out / "evidence_classes.tsv", sep="\t", float_format="%.5f")
     L = (u.groupby(["arm", "length_bin"]).agg(queries=("full_struct", "size"), fullcov_struct_rate=("full_struct", "mean"),
+                                             fullcov_struct_non_bfvd_rate=("full_struct_non_bfvd", "mean"),
                                              any_struct_rate=("any_struct", "mean")))
     L.to_csv(a.out / "evidence_by_length.tsv", sep="\t", float_format="%.5f")
     C = (u[u.arm == "candidate"].groupby("context").agg(queries=("full_struct", "size"),
                                                          fullcov_struct_rate=("full_struct", "mean"),
                                                          fullcov_seq_rate=("full_seq", "mean"),
                                                          any_struct_rate=("any_struct", "mean"),
+                                                         fullcov_struct_non_bfvd_rate=("full_struct_non_bfvd", "mean"),
                                                          median_length=("protein_length", "median")))
     C.to_csv(a.out / "evidence_by_context.tsv", sep="\t", float_format="%.5f")
     # full-length structural hits per database count
@@ -213,12 +231,18 @@ def main() -> int:
     orfs = pd.read_parquet(a.tables / "orfs.parquet", columns=["row", "input_id", "orf_id", "g_start", "g_end",
                                                                 "strand", "record_length", "three_di_entropy",
                                                                 "protein_entropy"]).set_index("row")
-    ex = u[(u.arm == "candidate") & (u.n_db_fullcov >= 2)].sort_values(["p", "bits"], ascending=False)
+    # Prefer independent evidence: full-length structural hits in >= 2 databases,
+    # at least one outside BFVD.
+    ex = u[(u.arm == "candidate") & (u.n_db_fullcov >= 2) & u.full_struct_non_bfvd].sort_values(
+        ["p", "bits"], ascending=False)
+    # one exemplar per best target and per genome interval signature: Inphared holds
+    # near-duplicate genomes (e.g. RefSeq NC_ copies of GenBank records)
+    ex = ex.drop_duplicates("target").drop_duplicates(["protein_length", "theader"])
     ex_rows = []
     by_db = full[(full.qtag == "qdb") & (full["mode"] == "struct")].sort_values("bits", ascending=False).drop_duplicates(
         ["query", "db"]).set_index(["query", "db"])
     for ctx in ("intergenic", "antisense", "frameshift"):
-        for _, r in ex[ex.context == ctx].head(4 if ctx == "intergenic" else 2).iterrows():
+        for _, r in ex[ex.context == ctx].head(5 if ctx == "intergenic" else 3).iterrows():
             orf = orfs.loc[r.row]
             g = cds[cds.input_id == orf.input_id].sort_values("g_start")
             left = g[g.g_end <= orf.g_start].tail(1)
