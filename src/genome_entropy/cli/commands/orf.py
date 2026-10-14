@@ -39,6 +39,8 @@ def orf_command(
 
     Finds all Open Reading Frames (ORFs) in input FASTA sequences
     using the get_orfs binary. Outputs ORF records as JSON.
+    Reverse-strand coordinates follow the reverse-complement indexing
+    convention reported by get_orfs.
     """
     try:
         from ...io.fasta import read_fasta

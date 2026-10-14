@@ -11,8 +11,14 @@ class OrfRecord:
     Attributes:
         parent_id: ID of the parent DNA sequence
         orf_id: Unique identifier for this ORF
-        start: One-based inclusive coordinate from ``get_orfs`` output
-        end: One-based inclusive coordinate from ``get_orfs`` output
+        start: One-based inclusive coordinate from ``get_orfs`` output.
+            For ``strand == "-"``, this coordinate indexes the reverse
+            complement axis used by ``get_orfs`` rather than plus-strand
+            genomic coordinates.
+        end: One-based inclusive coordinate from ``get_orfs`` output.
+            For ``strand == "-"``, this coordinate indexes the reverse
+            complement axis used by ``get_orfs`` rather than plus-strand
+            genomic coordinates.
         strand: Strand orientation ('+' or '-')
         frame: Absolute reading-frame number (0, 1, 2, or 3)
         nt_sequence: Nucleotide sequence of the ORF
