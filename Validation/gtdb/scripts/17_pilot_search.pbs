@@ -53,6 +53,9 @@ cd "${PBS_O_WORKDIR}"
 : "${OUT:?Pass OUT=<output directory> via qsub -v}"
 : "${DBS:=pdb100 afdb_swissprot cath50 bfvd}"
 : "${EVALUE:=0.001}"
+# NULL=0 skips the shuffled-3Di candidate null, for query sets with no
+# candidate arm (e.g. a comparator-only search, 40_match_clean_comparator.py).
+: "${NULL:=1}"
 
 FS_ENV="/g/data/ob80/re3494/conda/foldseek"
 PY_ENV="/g/data/ob80/re3494/conda/genome_entropy"
@@ -78,7 +81,7 @@ fi
 
 # The null is the candidate arm only: shuffling the controls' 3Di would
 # answer a question nobody asked.
-if [ ! -e "${OUT}/qnull.dbtype" ]; then
+if [ "${NULL}" = "1" ] && [ ! -e "${OUT}/qnull.dbtype" ]; then
     echo "=== building the shuffled-3Di null database (candidates only) ==="
     for kind in aa 3di; do
         awk '/^>/ {keep = ($0 ~ /\|candidate$/)} keep' \
@@ -155,7 +158,9 @@ for db in ${DBS}; do
     fi
     run_search "${OUT}/qdb"   query "${db}" struct
     run_search "${OUT}/qdb"   query "${db}" seq
-    run_search "${OUT}/qnull" null  "${db}" struct
+    if [ "${NULL}" = "1" ]; then
+        run_search "${OUT}/qnull" null  "${db}" struct
+    fi
 done
 
 echo ""

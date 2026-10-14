@@ -1,0 +1,13 @@
+bac cand SP full by 3Di quintile: Q1:1.8%(104669.0) Q2:3.0%(104669.0) Q3:5.0%(104669.0) Q4:11.8%(104669.0) Q5:29.9%(104670.0) | trunc F/T: 10.1 12.6
+bac old clean SP full by 3Di quintile: Q1:0.4%(94947.0) Q2:0.7%(86315.0) Q3:1.7%(64095.0) Q4:5.7%(33583.0) Q5:28.3%(13587.0) | trunc F/T: 2.5 10.5
+bac new matched SP full by 3Di quintile: Q1:0.5%(105345.0) Q2:0.9%(104456.0) Q3:1.9%(104686.0) Q4:6.9%(104864.0) Q5:27.1%(103995.0) | trunc F/T: 7.3 9.1
+                       mean    size
+match_level                        
+domain             0.229342   70868
+domain 2x caliper  0.142857      77
+domain 4x caliper  0.321101     109
+same chunk         0.068033  259360
+same genome        0.022893  192115
+with replacement   0.489596     817
+old clean non-trunc by Q: 0.4 0.7 1.6 5.5 29.8
+new matched non-trunc by Q: 0.5 0.9 1.8 6.9 29.3

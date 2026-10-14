@@ -1,0 +1,66 @@
+#!/bin/bash
+#PBS -N ge_shpool
+#PBS -q normal
+#PBS -P ob80
+#PBS -l ncpus=48
+#PBS -l mem=190GB
+#PBS -l walltime=01:30:00
+#PBS -l jobfs=2GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -l wd
+#PBS -j oe
+#PBS -o /g/data/ob80/re3494/gtdb_entropy/missed_genes/matched_clean/logs/shadow_pool.log
+#
+# The full shadow_hi pool, with frame classes, for every chunk of a domain
+# (39_shadow_pool.py). Input to 40_match_clean_comparator.py.
+#
+#   qsub -v DOMAIN=bac -o <log> 39_shadow_pool.pbs
+
+set -euo pipefail
+cd "${PBS_O_WORKDIR}"
+
+: "${DOMAIN:?Pass DOMAIN=bac or DOMAIN=arc via qsub -v}"
+: "${WORKERS:=40}"
+
+ENV_PREFIX="${ENV_PREFIX:-/g/data/ob80/re3494/conda/genome_entropy}"
+GDATA_ROOT="${GDATA_ROOT:-/g/data/ob80/re3494/gtdb_entropy}"
+ROWS="${GDATA_ROOT}/entropy_rows/${DOMAIN}"
+OUT="${OUT:-${GDATA_ROOT}/missed_genes/matched_clean/${DOMAIN}/pool}"
+mkdir -p "${OUT}"
+
+# shellcheck disable=SC1091
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "${ENV_PREFIX}"
+
+ls "${ROWS}"/${DOMAIN}_*.tsv.gz > "${PBS_JOBFS}/files.txt"
+echo "chunks: $(wc -l < "${PBS_JOBFS}/files.txt")"
+
+cat > "${PBS_JOBFS}/one.sh" <<EOF
+#!/bin/bash
+f="\$1"
+tag="\$(basename "\${f}" .tsv.gz)"
+[ -s "${OUT}/\${tag}.pool.tsv.gz" ] && exit 0
+python3 ${PBS_O_WORKDIR}/39_shadow_pool.py --chunk-tsv "\${f}" \\
+    --annotation-status "${GDATA_ROOT}/genome_cds_counts_${DOMAIN}.tsv" \\
+    --cds-intervals "${GDATA_ROOT}/cds_intervals/${DOMAIN}" \\
+    --published "${GDATA_ROOT}/missed_genes/${DOMAIN}" \\
+    --out-dir "${OUT}" > "${OUT}/\${tag}.log" 2>&1 \\
+    || echo "FAILED \${tag}"
+EOF
+chmod +x "${PBS_JOBFS}/one.sh"
+
+t0=$SECONDS
+xargs -a "${PBS_JOBFS}/files.txt" -n1 -P "${WORKERS}" "${PBS_JOBFS}/one.sh"
+echo "done in $((SECONDS - t0))s"
+
+missing=0
+while read -r f; do
+    tag="$(basename "${f}" .tsv.gz)"
+    [ -s "${OUT}/${tag}.pool.tsv.gz" ] || { echo "missing: ${tag}" >&2; missing=$((missing+1)); }
+done < "${PBS_JOBFS}/files.txt"
+if [ "${missing}" -ne 0 ]; then
+    echo "ERROR: ${missing} chunks produced no pool; see ${OUT}/<tag>.log" >&2
+    exit 1
+fi
+cat "${OUT}"/*.log | awk -F'[;:] *' '{for (i=3;i<=NF;i++) {split($i,a,"="); n[a[1]]+=a[2]}}
+    END {for (k in n) printf "  %-32s %12d\n", k, n[k]}'

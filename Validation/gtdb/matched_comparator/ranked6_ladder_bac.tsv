@@ -1,0 +1,15 @@
+criterion	candidates	shadows	n_candidate_arm	n_shadow_arm	comparator	excess
+C1 all candidates	523346	522529	523346	522529	ALL shadows -- contaminated by same-frame	0.0
+C2 not contig-truncated	483767	482954	523346	522529	ALL shadows -- contaminated by same-frame	57.877474742999766
+C3 C2 + any full-length structural hit	90658	64506	523346	522529	ALL shadows -- contaminated by same-frame	26051.141670605844
+C4 C2 + full-length in >=2 databases	44325	32475	523346	522529	ALL shadows -- contaminated by same-frame	11799.223727295517
+C5 C2 + full-length SwissProt/PDB/CATH	76662	56845	523346	522529	ALL shadows -- contaminated by same-frame	19728.120023960393
+C6 C2 + structure-only, full-length	81257	59143	523346	522529	ALL shadows -- contaminated by same-frame	22021.5269870189
+C7 strict combined rule	23540	18178	523346	522529	ALL shadows -- contaminated by same-frame	5333.577795682155
+C1 all candidates	523346	522529	523346	522529	CLEAN shadows -- antisense and frameshift only	0.0
+C2 not contig-truncated	483767	482954	523346	522529	CLEAN shadows -- antisense and frameshift only	57.877474742999766
+C3 C2 + any full-length structural hit	90658	64506	523346	522529	CLEAN shadows -- antisense and frameshift only	26051.141670605844
+C4 C2 + full-length in >=2 databases	44325	32475	523346	522529	CLEAN shadows -- antisense and frameshift only	11799.223727295517
+C5 C2 + full-length SwissProt/PDB/CATH	76662	56845	523346	522529	CLEAN shadows -- antisense and frameshift only	19728.120023960393
+C6 C2 + structure-only, full-length	81257	59143	523346	522529	CLEAN shadows -- antisense and frameshift only	22021.5269870189
+C7 strict combined rule	23540	18178	523346	522529	CLEAN shadows -- antisense and frameshift only	5333.577795682155

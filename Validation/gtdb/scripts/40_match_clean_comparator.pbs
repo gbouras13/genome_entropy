@@ -1,0 +1,32 @@
+#!/bin/bash
+#PBS -N ge_mcmatch
+#PBS -q normal
+#PBS -P ob80
+#PBS -l ncpus=4
+#PBS -l mem=64GB
+#PBS -l walltime=02:00:00
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -l wd
+#PBS -j oe
+#PBS -o /g/data/ob80/re3494/gtdb_entropy/missed_genes/matched_clean/logs/match.log
+#
+# Draw the matched clean comparator (40_match_clean_comparator.py).
+#
+#   qsub -v DOMAIN=bac,OLD_WANTED=<...>/full_bac/wanted.tsv -o <log> \
+#        40_match_clean_comparator.pbs
+
+set -euo pipefail
+cd "${PBS_O_WORKDIR}"
+
+: "${DOMAIN:?Pass DOMAIN via qsub -v}"
+: "${OLD_WANTED:?Pass OLD_WANTED=<published wanted.tsv> via qsub -v}"
+GDATA_ROOT="${GDATA_ROOT:-/g/data/ob80/re3494/gtdb_entropy}"
+MC="${GDATA_ROOT}/missed_genes/matched_clean/${DOMAIN}"
+ENV_PREFIX="${ENV_PREFIX:-/g/data/ob80/re3494/conda/genome_entropy}"
+
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "${ENV_PREFIX}"
+
+python3 -u 40_match_clean_comparator.py --domain "${DOMAIN}" \
+    --candidates-dir "${GDATA_ROOT}/missed_genes/${DOMAIN}" \
+    --pool-dir "${MC}/pool" --old-wanted "${OLD_WANTED}" --out-dir "${MC}"
