@@ -30,13 +30,14 @@ re-run the thing.
   those states correspond to structurally is not established here, and 3Di
   letters are learned tertiary-interaction states rather than named
   secondary-structure categories. §5 of the report.
-- **`in_genbank=False` does not mean "annotation declined this ORF".** At least
-  46% of GTDB bacterial representatives carry no CDS annotation at all, so 42.8%
+- **`in_genbank=False` does not mean "annotation declined this ORF".** 48.9%
+  of GTDB bacterial representatives (92,840 of the 189,715 encoded; 46% of
+  archaeal) carry no CDS annotation at all, so 42.8%
   of all ORFs are `False` by construction. Filter on annotation status before
   interpreting the flag. Take that status from `12_genome_cds_counts.pbs`, which
   reads the GenBank records: `in_genbank` alone cannot tell a genome with no
-  annotation from one whose annotations the ORF matcher rejected, so the 46% is
-  an upper bound. §6.
+  annotation from one whose annotations the ORF matcher rejected. The 48.9% is
+  counted from the GenBank records, not inferred from the flag. §6.
 - **Long ORFs crash the encoder.** 39 genomes (0.021%) failed with CUDA OOM in
   `_make_sliding_mask`, which materialises an L×L matrix for a banded mask;
   worst case attempted 4,374 GiB for a 766,188-aa ORF call. §7.
@@ -237,7 +238,7 @@ the TSVs and never unpacks an archive.
 
 ## Cost
 
-~87,500 service units for bacteria end to end, of which ~80,000 was GPU
-encoding. `gpuvolta` charges ~36 SU per GPU-hour. Calibration — the work that
+~85,550 service units for both domains end to end, of which ~84,000 was GPU
+encoding (~80,000 bacterial, ~4,000 archaeal); report §9 itemises it. `gpuvolta` charges ~36 SU per GPU-hour. Calibration — the work that
 established the two parameter choices above and saved ~115,000 SU — cost about
 50 SU.
