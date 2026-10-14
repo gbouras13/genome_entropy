@@ -107,6 +107,15 @@ combined.
 | `37_calibration_scores.pbs` | scores the figure sample's matched ORFs against both length-conditioned references (§4.2 calibration) |
 | `38_bias_vs_biology.py` | §4.2 figures and `bias_decomposition.tsv`: estimator bias vs biology, z calibration |
 
+**Supplementary analyses (Setonix, from the OneDrive mirror).** Write-up:
+[`../supplementary_analyses.md`](../supplementary_analyses.md).
+
+| script | purpose |
+|---|---|
+| `34_supplementary_arms.py` | per-arm re-analysis of the full-population search: hit/full-length/Prodigal by 3Di bin, best-hit quality, structure-only vs sequence, `unannot_hi`, truncation, N50/CheckM2 strata, functional composition of all/C3/C7, Prodigal offset classes, C7 Prodigal agreement, and a length × 3Di re-weighting of the clean comparator |
+| `35_supplementary_figures.py` | the `supp_*.png` figures, from 34's TSVs |
+| `36_candidate_burden_figures.py` | regenerates `candidate_burden_{bac,arc}.png` (per-genome and per-Mb rows, N50 panel, ρ on every panel) |
+
 `29` exists because the report's entropy comparisons came from samples, and the
 manuscript needs exact population counts. It reads `entropy_rows/` only — no
 re-encoding — and stratifies every row by (genome carries a deposited CDS,
