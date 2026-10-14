@@ -80,6 +80,6 @@ statistics afterwards, and make the statistics non-fatal.
 ## What is still open
 
 `scientific_report.md` §11 carries the live list. The two standing items are the
-disagreement between the structural mixture estimate (~128,000–149,000 missed
-ORFs) and the Prodigal-based one (~244,000), and testing what the 3Di state `D`
+disagreement between the structural mixture estimate (~51,000–59,000 missed
+ORFs) and the Prodigal-based one (~200,000), and testing what the 3Di state `D`
 corresponds to. Both are characterisation rather than blockers.
