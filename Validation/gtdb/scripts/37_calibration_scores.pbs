@@ -1,0 +1,76 @@
+#!/bin/bash
+#PBS -N gtdb_calib
+#PBS -q normal
+#PBS -P ob80
+#PBS -l ncpus=4
+#PBS -l mem=16GB
+#PBS -l jobfs=4GB
+#PBS -l walltime=01:00:00
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -l wd
+#PBS -j oe
+#PBS -o /g/data/ob80/re3494/gtdb_entropy/logs/calibration_scores.log
+#
+# Score the figure sample's matched ORFs against both length-conditioned
+# references, for the calibration panel of 38_bias_vs_biology.py (report
+# section 4.2).
+#
+# The sample is figure_samples/, a systematic stride over every chunk -- not
+# the head of a chunk, which is composition-biased and gave a tilted z the
+# first two times calibration was checked. Matched = in_genbank and in an
+# annotated genome, i.e. stratum 3 of stage 33, which is also the empirical
+# reference's default stratum. The sample carries no twelve-state entropy,
+# so calibration is protein and 3Di only.
+#
+# One 32_entropy_percentile.py per (domain, alphabet), four in parallel. Each
+# output row carries both the random-reference z/percentile and the emp_*
+# columns, so a single pass gives both sides of the comparison.
+
+set -euo pipefail
+
+DATA=/g/data/ob80/re3494/gtdb_entropy
+SRC="${SRC:-/g/data/ob80/re3494/Projects/genome_entropy/claude}"
+NULLDIR="${NULLDIR:-$DATA/entropy_null}"
+OUTDIR="${OUTDIR:-$NULLDIR/calibration}"
+PY=/g/data/ob80/re3494/conda/genome_entropy/bin/python
+WORK="${PBS_JOBFS:-$(mktemp -d)}"
+
+mkdir -p "$OUTDIR" "$DATA/logs"
+
+for dom in bac arc; do
+    # protein_entropy, three_di_entropy, aa_length by name, not position: the
+    # sample has had columns added before.
+    gzip -cd "$DATA/figure_samples/sample_${dom}.tsv.gz" | awk -F'\t' -v OFS='\t' '
+        NR == 1 { for (i = 1; i <= NF; i++) c[$i] = i
+                  print "row", "aa_length", "protein_entropy", "three_di_entropy"; next }
+        $c["in_genbank"] == "True" && $c["genome_annotated"] == "True" {
+            print NR - 1, $c["aa_length"], $c["protein_entropy"], $c["three_di_entropy"] }
+    ' > "$WORK/matched_${dom}.tsv"
+    echo "$dom matched rows: $(($(wc -l < "$WORK/matched_${dom}.tsv") - 1))"
+done
+
+pids=()
+for dom in bac arc; do
+    for alphabet in protein three_di; do
+        "$PY" "$SRC/32_entropy_percentile.py" \
+            --null "$NULLDIR/entropy_null.npz" \
+            --empirical "$NULLDIR/empirical/length_entropy_${dom}.npz" \
+            --domain "$dom" \
+            --table "$WORK/matched_${dom}.tsv" \
+            --alphabet "$alphabet" \
+            --entropy-column "${alphabet}_entropy" \
+            --id-column row \
+            --output "$WORK/scores_${dom}_${alphabet}.tsv" &
+        pids+=($!)
+    done
+done
+for pid in "${pids[@]}"; do wait "$pid"; done
+
+for f in "$WORK"/scores_*.tsv; do
+    gzip -c "$f" > "$OUTDIR/$(basename "$f").gz.tmp"
+    mv "$OUTDIR/$(basename "$f").gz.tmp" "$OUTDIR/$(basename "$f").gz"
+done
+
+echo
+echo "calibration scores in $OUTDIR"
+ls -la "$OUTDIR"
