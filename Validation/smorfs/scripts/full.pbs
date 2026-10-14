@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q gpuvolta
+#PBS -l ncpus=12,ngpus=1,mem=48GB,walltime=03:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_ent
+#PBS -r y
+#PBS -J 0-9
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/smorf_ent.^array_index^.log
+set -euo pipefail
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+D=/scratch/ob80/re3494/smORFs
+PY=/g/data/ob80/re3494/conda/genome_entropy/bin/python
+ENCODING_SIZE=${ENCODING_SIZE:-50000}
+mapfile -t ALL < <(ls $D/chunks/*.tsv | sort)
+MINE=()
+for ((k=PBS_ARRAY_INDEX; k<${#ALL[@]}; k+=10)); do MINE+=("${ALL[$k]}"); done
+echo "subjob $PBS_ARRAY_INDEX: ${#MINE[@]} chunks"
+$PY $D/scripts/encode_entropy.py --outdir $D/results --encoding-size $ENCODING_SIZE "${MINE[@]}"

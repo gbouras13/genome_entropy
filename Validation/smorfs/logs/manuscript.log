@@ -1,0 +1,65 @@
+dataset
+positive    33647794
+negative    10079115
+   length_bin               feature  n_positive  n_negative   roc_auc  separation           direction
+0         all             aa_length    33647794    10079115  0.639987    0.639987  higher in positive
+1         all        orf_nt_entropy    33647794    10079115  0.503692    0.503692  higher in positive
+2         all            aa_entropy    33647794    10079115  0.525361    0.525361  higher in positive
+3         all      three_di_entropy    33647794    10079115  0.605271    0.605271  higher in positive
+4         all  twelve_state_entropy    33647794    10079115  0.601542    0.601542  higher in positive
+5       10-29             aa_length       11382       80578  0.503971    0.503971  higher in positive
+6       10-29        orf_nt_entropy       11382       80578  0.600839    0.600839  higher in positive
+7       10-29            aa_entropy       11382       80578  0.490073    0.509927  higher in negative
+8       10-29      three_di_entropy       11382       80578  0.472671    0.527329  higher in negative
+9       10-29  twelve_state_entropy       11382       80578  0.543751    0.543751  higher in positive
+10      30-49             aa_length     1555554     1443038  0.600368    0.600368  higher in positive
+11      30-49        orf_nt_entropy     1555554     1443038  0.542998    0.542998  higher in positive
+12      30-49            aa_entropy     1555554     1443038  0.517205    0.517205  higher in positive
+13      30-49      three_di_entropy     1555554     1443038  0.607774    0.607774  higher in positive
+14      30-49  twelve_state_entropy     1555554     1443038  0.593644    0.593644  higher in positive
+15      50-59             aa_length     2553298     1581003  0.508567    0.508567  higher in positive
+16      50-59        orf_nt_entropy     2553298     1581003  0.489044    0.510956  higher in negative
+17      50-59            aa_entropy     2553298     1581003  0.456389    0.543611  higher in negative
+18      50-59      three_di_entropy     2553298     1581003  0.525997    0.525997  higher in positive
+19      50-59  twelve_state_entropy     2553298     1581003  0.489525    0.510475  higher in negative
+20      60-69             aa_length     5072900     1881309  0.540953    0.540953  higher in positive
+21      60-69        orf_nt_entropy     5072900     1881309  0.480590    0.519410  higher in negative
+22      60-69            aa_entropy     5072900     1881309  0.461740    0.538260  higher in negative
+23      60-69      three_di_entropy     5072900     1881309  0.559061    0.559061  higher in positive
+24      60-69  twelve_state_entropy     5072900     1881309  0.535264    0.535264  higher in positive
+25      70-79             aa_length     6987297     1712398  0.506719    0.506719  higher in positive
+26      70-79        orf_nt_entropy     6987297     1712398  0.479044    0.520956  higher in negative
+27      70-79            aa_entropy     6987297     1712398  0.459820    0.540180  higher in negative
+28      70-79      three_di_entropy     6987297     1712398  0.561824    0.561824  higher in positive
+29      70-79  twelve_state_entropy     6987297     1712398  0.541768    0.541768  higher in positive
+30      80-89             aa_length     8511052     1756736  0.516830    0.516830  higher in positive
+31      80-89        orf_nt_entropy     8511052     1756736  0.476597    0.523403  higher in negative
+32      80-89            aa_entropy     8511052     1756736  0.469708    0.530292  higher in negative
+33      80-89      three_di_entropy     8511052     1756736  0.583399    0.583399  higher in positive
+34      80-89  twelve_state_entropy     8511052     1756736  0.568970    0.568970  higher in positive
+35      90-99             aa_length     8956311     1624053  0.505432    0.505432  higher in positive
+36      90-99        orf_nt_entropy     8956311     1624053  0.485582    0.514418  higher in negative
+37      90-99            aa_entropy     8956311     1624053  0.495427    0.504573  higher in negative
+38      90-99      three_di_entropy     8956311     1624053  0.625733    0.625733  higher in positive
+39      90-99  twelve_state_entropy     8956311     1624053  0.616428    0.616428  higher in positive
+model length: AUC 0.6416
+model nt: AUC 0.5476
+model aa: AUC 0.5443
+model 3Di: AUC 0.6122
+model 12-state: AUC 0.6243
+model length + nt + aa: AUC 0.6692
+model length + 3Di + 12-state: AUC 0.6993
+model length + aa + 3Di: AUC 0.7129
+model all five: AUC 0.7300
+
+======================================================================================
+                  Resource Usage on 2026-10-12 16:36:18:
+   Job Id:             181048769.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      3.03
+   NCPUs Requested:    8                   CPU Time Used: 00:14:19        
+   Memory Requested:   64.0GB                Memory Used: 4.49GB          
+   Walltime Requested: 02:00:00            Walltime Used: 00:05:41        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

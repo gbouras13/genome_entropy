@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q gpuvolta
+#PBS -l ncpus=12,ngpus=1,mem=48GB,walltime=01:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_pilot
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/pilot.log
+set -euo pipefail
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+D=/scratch/ob80/re3494/smORFs
+PY=/g/data/ob80/re3494/conda/genome_entropy/bin/python
+nvidia-smi --query-gpu=name,memory.total --format=csv
+$PY $D/scripts/encode_entropy.py --outdir $D/pilot/e10k --encoding-size 10000 $D/pilot/pos_pilot.tsv $D/pilot/neg_pilot.tsv
+$PY $D/scripts/encode_entropy.py --outdir $D/pilot/e50k --encoding-size 50000 $D/pilot/pos_pilot.tsv $D/pilot/neg_pilot.tsv
+nvidia-smi --query-gpu=memory.used --format=csv

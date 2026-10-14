@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=2,mem=8GB,walltime=03:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_split
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/split.log
+set -euo pipefail
+SRC=/g/data/ob80/re3494/Projects/smORFs
+OUT=/scratch/ob80/re3494/smORFs/chunks
+for lab in positive negative; do
+  pre=${lab:0:3}
+  tar xzOf $SRC/$lab.tar.gz | tail -n +2 | cut -f1,3 | split -l 1000000 -d -a 3 --additional-suffix=.tsv - $OUT/${pre}_ &
+done
+wait
+wc -l $OUT/*.tsv | tail -1
+ls $OUT | sed 's/_.*//' | sort | uniq -c

@@ -1,0 +1,40 @@
+subjob 8: 4 chunks
+neg_008: 1000000 seqs, 20191 with internal stops, 0 empty
+Loading weights:   0%|          | 0/486 [00:00<?, ?it/s]Loading weights:  35%|███▌      | 171/486 [00:00<00:00, 1667.73it/s]Loading weights:  72%|███████▏  | 350/486 [00:00<00:00, 1737.98it/s]Loading weights: 100%|██████████| 486/486 [00:00<00:00, 1866.71it/s]
+neg_008: 200000/1000000 in 134s (1496 seq/s)
+neg_008: 400000/1000000 in 258s (1552 seq/s)
+neg_008: 600000/1000000 in 382s (1570 seq/s)
+neg_008: 800000/1000000 in 507s (1578 seq/s)
+neg_008: 1000000/1000000 in 632s (1583 seq/s)
+pos_007: 1000000 seqs, 7407 with internal stops, 0 empty
+pos_007: 200000/1000000 in 132s (1513 seq/s)
+pos_007: 400000/1000000 in 264s (1515 seq/s)
+pos_007: 600000/1000000 in 396s (1515 seq/s)
+pos_007: 800000/1000000 in 528s (1515 seq/s)
+pos_007: 1000000/1000000 in 660s (1515 seq/s)
+pos_017: 1000000 seqs, 25428 with internal stops, 0 empty
+pos_017: 200000/1000000 in 132s (1512 seq/s)
+pos_017: 400000/1000000 in 265s (1512 seq/s)
+pos_017: 600000/1000000 in 397s (1510 seq/s)
+pos_017: 800000/1000000 in 529s (1512 seq/s)
+pos_017: 1000000/1000000 in 662s (1511 seq/s)
+pos_027: 1000000 seqs, 17332 with internal stops, 0 empty
+pos_027: 200000/1000000 in 133s (1503 seq/s)
+pos_027: 400000/1000000 in 266s (1503 seq/s)
+pos_027: 600000/1000000 in 399s (1504 seq/s)
+pos_027: 800000/1000000 in 532s (1503 seq/s)
+pos_027: 1000000/1000000 in 665s (1504 seq/s)
+
+======================================================================================
+                  Resource Usage on 2026-10-07 16:49:44:
+   Job Id:             180703415[8].gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      33.66
+   NCPUs Requested:    12                  CPU Time Used: 01:08:57        
+   Memory Requested:   48.0GB                Memory Used: 6.96GB          
+   NGPUs Requested:    1                 GPU Utilisation: 62%             
+                                         GPU Memory Used: 1.64GB          
+   Walltime Requested: 03:00:00            Walltime Used: 00:56:06        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

@@ -1,0 +1,40 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=48,mem=190GB,walltime=08:00:00,jobfs=400GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_cluster
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/cluster.log
+# Cluster all smORF proteins with MMseqs2: linclust at 50% identity, then cascaded
+# cluster at 30% identity. Each result is published as soon as it is written.
+set -euo pipefail
+P=/g/data/ob80/re3494/Projects/smORFs/results
+OUT=$P/clusters
+MM=/g/data/ob80/re3494/conda/bioinformatics/bin/mmseqs
+T=$PBS_NCPUS
+W=$PBS_JOBFS
+mkdir -p $OUT
+$MM version
+
+# Internal stops become X so they are scored as unknown residues.
+for f in $P/states/*.states.tsv.gz; do
+  zcat $f | awk -F'\t' 'NR > 1 {gsub(/\*/, "X", $2); print ">" $1 "\n" $2}'
+done > $W/proteins.fa
+grep -c '^>' $W/proteins.fa
+
+$MM createdb $W/proteins.fa $W/db --dbtype 1
+
+publish() {  # name clu_db
+  $MM createtsv $W/db $W/db $W/$2 $W/$1.tsv --threads $T
+  cut -f1 $W/$1.tsv | sort -u -S 50% -T $W | wc -l | sed "s/^/$1 clusters: /"
+  gzip -c $W/$1.tsv > $OUT/$1.tsv.gz.tmp && mv $OUT/$1.tsv.gz.tmp $OUT/$1.tsv.gz
+}
+
+$MM linclust $W/db $W/clu50 $W/tmp50 --min-seq-id 0.5 -c 0.8 --cov-mode 0 \
+  --threads $T --split-memory-limit 150G
+publish linclust_id50_cov80 clu50
+
+$MM cluster $W/db $W/clu30 $W/tmp30 --min-seq-id 0.3 -c 0.8 --cov-mode 0 \
+  --threads $T --split-memory-limit 150G
+publish cluster_id30_cov80 clu30

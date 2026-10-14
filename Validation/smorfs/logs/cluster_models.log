@@ -1,0 +1,63 @@
+clustering                    linclust_id50_cov80
+n_sequences                              43726909
+n_clusters                                4004026
+n_singletons                               492332
+largest_cluster                             36234
+pct_seqs_in_clusters_ge10                71.56606
+n_mixed_clusters                              228
+pct_seqs_in_mixed_clusters                0.01108
+n_clusters_positive                       2319207
+seqs_per_cluster_positive               14.508319
+n_clusters_negative                       1685047
+seqs_per_cluster_negative                5.981504
+clustering                    cluster_id30_cov80
+n_sequences                             43726909
+n_clusters                               2401503
+n_singletons                               69215
+largest_cluster                            96313
+pct_seqs_in_clusters_ge10              81.544538
+n_mixed_clusters                           14246
+pct_seqs_in_mixed_clusters              1.397936
+n_clusters_positive                      1034819
+seqs_per_cluster_positive              32.515632
+n_clusters_negative                      1380930
+seqs_per_cluster_negative               7.298788
+random | length: AUC 0.6416, cluster-weighted 0.6222
+random | nt: AUC 0.5476, cluster-weighted 0.5456
+random | aa: AUC 0.5443, cluster-weighted 0.5453
+random | 3Di: AUC 0.6122, cluster-weighted 0.5710
+random | 12-state: AUC 0.6243, cluster-weighted 0.5857
+random | length + nt + aa: AUC 0.6692, cluster-weighted 0.6553
+random | length + 3Di + 12-state: AUC 0.6993, cluster-weighted 0.6638
+random | length + aa + 3Di: AUC 0.7129, cluster-weighted 0.6822
+random | all five: AUC 0.7300, cluster-weighted 0.7003
+linclust_id50_cov80 | length: AUC 0.6425, cluster-weighted 0.6178
+linclust_id50_cov80 | nt: AUC 0.5475, cluster-weighted 0.5472
+linclust_id50_cov80 | aa: AUC 0.5447, cluster-weighted 0.5460
+linclust_id50_cov80 | 3Di: AUC 0.6111, cluster-weighted 0.5672
+linclust_id50_cov80 | 12-state: AUC 0.6234, cluster-weighted 0.5820
+linclust_id50_cov80 | length + nt + aa: AUC 0.6691, cluster-weighted 0.6523
+linclust_id50_cov80 | length + 3Di + 12-state: AUC 0.6969, cluster-weighted 0.6593
+linclust_id50_cov80 | length + aa + 3Di: AUC 0.7108, cluster-weighted 0.6784
+linclust_id50_cov80 | all five: AUC 0.7275, cluster-weighted 0.6972
+cluster_id30_cov80 | length: AUC 0.6366, cluster-weighted 0.6154
+cluster_id30_cov80 | nt: AUC 0.5467, cluster-weighted 0.5470
+cluster_id30_cov80 | aa: AUC 0.5402, cluster-weighted 0.5447
+cluster_id30_cov80 | 3Di: AUC 0.6061, cluster-weighted 0.5665
+cluster_id30_cov80 | 12-state: AUC 0.6191, cluster-weighted 0.5813
+cluster_id30_cov80 | length + nt + aa: AUC 0.6618, cluster-weighted 0.6492
+cluster_id30_cov80 | length + 3Di + 12-state: AUC 0.6892, cluster-weighted 0.6566
+cluster_id30_cov80 | length + aa + 3Di: AUC 0.7034, cluster-weighted 0.6759
+cluster_id30_cov80 | all five: AUC 0.7206, cluster-weighted 0.6948
+
+======================================================================================
+                  Resource Usage on 2026-10-12 18:39:54:
+   Job Id:             181057871.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      9.49
+   NCPUs Requested:    12                  CPU Time Used: 00:35:54        
+   Memory Requested:   128.0GB               Memory Used: 17.25GB         
+   Walltime Requested: 03:00:00            Walltime Used: 00:08:54        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

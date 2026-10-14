@@ -1,0 +1,40 @@
+subjob 7: 4 chunks
+neg_007: 1000000 seqs, 22238 with internal stops, 0 empty
+Loading weights:   0%|          | 0/486 [00:00<?, ?it/s]Loading weights:  15%|█▌        | 74/486 [00:00<00:00, 736.56it/s]Loading weights:  30%|███       | 148/486 [00:00<00:00, 640.48it/s]Loading weights:  51%|█████▏    | 250/486 [00:00<00:00, 792.01it/s]Loading weights: 100%|██████████| 486/486 [00:00<00:00, 1235.83it/s]
+neg_007: 200000/1000000 in 132s (1510 seq/s)
+neg_007: 400000/1000000 in 256s (1560 seq/s)
+neg_007: 600000/1000000 in 380s (1579 seq/s)
+neg_007: 800000/1000000 in 504s (1586 seq/s)
+neg_007: 1000000/1000000 in 628s (1591 seq/s)
+pos_006: 1000000 seqs, 2605 with internal stops, 0 empty
+pos_006: 200000/1000000 in 132s (1519 seq/s)
+pos_006: 400000/1000000 in 263s (1518 seq/s)
+pos_006: 600000/1000000 in 395s (1519 seq/s)
+pos_006: 800000/1000000 in 527s (1519 seq/s)
+pos_006: 1000000/1000000 in 658s (1519 seq/s)
+pos_016: 1000000 seqs, 24774 with internal stops, 0 empty
+pos_016: 200000/1000000 in 132s (1511 seq/s)
+pos_016: 400000/1000000 in 264s (1513 seq/s)
+pos_016: 600000/1000000 in 397s (1511 seq/s)
+pos_016: 800000/1000000 in 529s (1512 seq/s)
+pos_016: 1000000/1000000 in 661s (1513 seq/s)
+pos_026: 1000000 seqs, 22430 with internal stops, 0 empty
+pos_026: 200000/1000000 in 133s (1507 seq/s)
+pos_026: 400000/1000000 in 266s (1507 seq/s)
+pos_026: 600000/1000000 in 399s (1504 seq/s)
+pos_026: 800000/1000000 in 532s (1503 seq/s)
+pos_026: 1000000/1000000 in 665s (1505 seq/s)
+
+======================================================================================
+                  Resource Usage on 2026-10-07 16:50:22:
+   Job Id:             180703415[7].gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      34.02
+   NCPUs Requested:    12                  CPU Time Used: 01:09:09        
+   Memory Requested:   48.0GB                Memory Used: 6.03GB          
+   NGPUs Requested:    1                 GPU Utilisation: 39%             
+                                         GPU Memory Used: 1.64GB          
+   Walltime Requested: 03:00:00            Walltime Used: 00:56:42        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

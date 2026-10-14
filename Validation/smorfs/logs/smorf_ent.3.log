@@ -1,0 +1,46 @@
+subjob 3: 5 chunks
+neg_003: 1000000 seqs, 10980 with internal stops, 0 empty
+Loading weights:   0%|          | 0/486 [00:00<?, ?it/s]Loading weights:   7%|▋         | 34/486 [00:00<00:01, 316.06it/s]Loading weights:  18%|█▊        | 87/486 [00:00<00:00, 408.88it/s]Loading weights:  26%|██▋       | 128/486 [00:00<00:01, 351.74it/s]Loading weights:  37%|███▋      | 181/486 [00:00<00:00, 375.50it/s]Loading weights:  49%|████▊     | 236/486 [00:00<00:00, 428.62it/s]Loading weights:  58%|█████▊    | 280/486 [00:00<00:00, 368.05it/s]Loading weights:  72%|███████▏  | 349/486 [00:00<00:00, 436.07it/s]Loading weights:  81%|████████▏ | 395/486 [00:00<00:00, 419.64it/s]Loading weights: 100%|██████████| 486/486 [00:01<00:00, 482.53it/s]
+neg_003: 200000/1000000 in 145s (1381 seq/s)
+neg_003: 400000/1000000 in 271s (1478 seq/s)
+neg_003: 600000/1000000 in 394s (1523 seq/s)
+neg_003: 800000/1000000 in 517s (1549 seq/s)
+neg_003: 1000000/1000000 in 639s (1565 seq/s)
+pos_002: 1000000 seqs, 6582 with internal stops, 0 empty
+pos_002: 200000/1000000 in 130s (1536 seq/s)
+pos_002: 400000/1000000 in 260s (1536 seq/s)
+pos_002: 600000/1000000 in 391s (1536 seq/s)
+pos_002: 800000/1000000 in 521s (1536 seq/s)
+pos_002: 1000000/1000000 in 651s (1537 seq/s)
+pos_012: 1000000 seqs, 12259 with internal stops, 0 empty
+pos_012: 200000/1000000 in 131s (1525 seq/s)
+pos_012: 400000/1000000 in 262s (1527 seq/s)
+pos_012: 600000/1000000 in 393s (1526 seq/s)
+pos_012: 800000/1000000 in 524s (1527 seq/s)
+pos_012: 1000000/1000000 in 655s (1527 seq/s)
+pos_022: 1000000 seqs, 25636 with internal stops, 0 empty
+pos_022: 200000/1000000 in 131s (1525 seq/s)
+pos_022: 400000/1000000 in 263s (1524 seq/s)
+pos_022: 600000/1000000 in 394s (1522 seq/s)
+pos_022: 800000/1000000 in 526s (1521 seq/s)
+pos_022: 1000000/1000000 in 657s (1522 seq/s)
+pos_032: 1000000 seqs, 5820 with internal stops, 0 empty
+pos_032: 200000/1000000 in 78s (2562 seq/s)
+pos_032: 400000/1000000 in 156s (2559 seq/s)
+pos_032: 600000/1000000 in 234s (2564 seq/s)
+pos_032: 800000/1000000 in 312s (2568 seq/s)
+pos_032: 1000000/1000000 in 389s (2568 seq/s)
+
+======================================================================================
+                  Resource Usage on 2026-10-07 16:58:47:
+   Job Id:             180703415[3].gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      39.70
+   NCPUs Requested:    12                  CPU Time Used: 01:21:31        
+   Memory Requested:   48.0GB                Memory Used: 7.32GB          
+   NGPUs Requested:    1                 GPU Utilisation: 64%             
+                                         GPU Memory Used: 1.64GB          
+   Walltime Requested: 03:00:00            Walltime Used: 01:06:10        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

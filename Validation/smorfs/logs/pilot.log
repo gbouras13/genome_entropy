@@ -1,0 +1,28 @@
+name, memory.total [MiB]
+Tesla V100-SXM2-32GB, 32768 MiB
+pos_pilot: 50000 seqs, 1191 with internal stops, 0 empty
+Loading weights:   0%|          | 0/486 [00:00<?, ?it/s]Loading weights:   6%|▋         | 31/486 [00:00<00:01, 303.20it/s]Loading weights:  13%|█▎        | 62/486 [00:00<00:02, 156.59it/s]Loading weights:  19%|█▉        | 92/486 [00:00<00:02, 194.47it/s]Loading weights:  24%|██▍       | 117/486 [00:00<00:01, 207.98it/s]Loading weights:  29%|██▉       | 142/486 [00:00<00:01, 208.97it/s]Loading weights:  34%|███▍      | 165/486 [00:00<00:01, 185.28it/s]Loading weights:  39%|███▊      | 188/486 [00:00<00:01, 184.58it/s]Loading weights:  44%|████▎     | 212/486 [00:01<00:01, 191.52it/s]Loading weights:  49%|████▉     | 239/486 [00:01<00:01, 203.70it/s]Loading weights:  53%|█████▎    | 260/486 [00:01<00:01, 201.34it/s]Loading weights:  58%|█████▊    | 281/486 [00:01<00:01, 203.11it/s]Loading weights:  64%|██████▍   | 311/486 [00:01<00:00, 188.19it/s]Loading weights:  70%|██████▉   | 338/486 [00:01<00:00, 208.20it/s]Loading weights:  74%|███████▍  | 360/486 [00:01<00:00, 185.95it/s]Loading weights:  81%|████████  | 394/486 [00:01<00:00, 215.90it/s]Loading weights:  87%|████████▋ | 422/486 [00:02<00:00, 225.28it/s]Loading weights:  92%|█████████▏| 446/486 [00:02<00:00, 220.15it/s]Loading weights:  97%|█████████▋| 469/486 [00:02<00:00, 212.77it/s]Loading weights: 100%|██████████| 486/486 [00:02<00:00, 209.49it/s]
+pos_pilot: 50000/50000 in 68s (733 seq/s)
+neg_pilot: 50000 seqs, 443 with internal stops, 0 empty
+neg_pilot: 50000/50000 in 21s (2398 seq/s)
+pos_pilot: 50000 seqs, 1191 with internal stops, 0 empty
+Loading weights:   0%|          | 0/486 [00:00<?, ?it/s]Loading weights:  83%|████████▎ | 401/486 [00:00<00:00, 3999.78it/s]Loading weights: 100%|██████████| 486/486 [00:00<00:00, 3953.47it/s]
+pos_pilot: 50000/50000 in 37s (1345 seq/s)
+neg_pilot: 50000 seqs, 443 with internal stops, 0 empty
+neg_pilot: 50000/50000 in 19s (2700 seq/s)
+memory.used [MiB]
+0 MiB
+
+======================================================================================
+                  Resource Usage on 2026-10-07 14:51:17:
+   Job Id:             180700319.gadi-pbs
+   Project:            ob80
+   Exit Status:        0
+   Service Units:      2.70
+   NCPUs Requested:    12                  CPU Time Used: 00:03:39        
+   Memory Requested:   48.0GB                Memory Used: 3.43GB          
+   NGPUs Requested:    1                 GPU Utilisation: 45%             
+                                         GPU Memory Used: 1.64GB          
+   Walltime Requested: 01:00:00            Walltime Used: 00:04:30        
+   JobFS Requested:    1.0GB                  JobFS Used: 0B              
+======================================================================================

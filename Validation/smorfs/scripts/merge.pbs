@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -P ob80
+#PBS -q normal
+#PBS -l ncpus=4,mem=96GB,walltime=04:00:00,jobfs=1GB
+#PBS -l storage=gdata/ob80+scratch/ob80
+#PBS -N smorf_merge
+#PBS -j oe
+#PBS -o /scratch/ob80/re3494/smORFs/logs/merge.log
+set -euo pipefail
+D=/scratch/ob80/re3494/smORFs
+/g/data/ob80/re3494/conda/genome_entropy/bin/python $D/scripts/merge_plot.py $D/results /g/data/ob80/re3494/Projects/smORFs/results 50000
