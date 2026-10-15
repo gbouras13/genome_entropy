@@ -1,0 +1,31 @@
+# genome_entropy manuscript
+
+This directory contains the **draft manuscript** describing [`genome_entropy`](../README.md):
+
+> *Joint sequence and structural entropy distinguish protein-coding genes from spurious open reading frames in bacterial genomes and metagenomes.*
+
+The manuscript is a work in progress. Expect the text, figures, and author list to change.
+
+## Contents
+
+| File / directory | Description |
+|---|---|
+| [`genome_entropy.md`](genome_entropy.md) | The manuscript text (Markdown) |
+| [`images/`](images/) | Figures referenced by the manuscript |
+| [`Author_Information.xlsx`](Author_Information.xlsx) | Author details used to build the author list, affiliations, contributions, and funding statements |
+
+## Being included as an author
+
+If you have contributed to `genome_entropy` or to this manuscript and want to be included on the paper, **add your details to [`Author_Information.xlsx`](Author_Information.xlsx)**. Add one row per person and fill in:
+
+- ORCID
+- Initials (the `acronym` column, e.g. `RAE`), used in the author contributions statement
+- Last name, first name, and middle initial
+- Email address
+- Department, institution, and full postal address (street, city, state/region, ZIP/postcode, country)
+- Your contribution to the work
+- Any funding that supported your contribution (agency and grant number)
+
+Please leave the **"Added"** column and the **"Order in the author list"** column blank. These are filled in when your details are added to the manuscript.
+
+To add your details, open a pull request against the `manuscript` branch with the updated spreadsheet. If you can't do that, send your details to [Rob Edwards](mailto:robert.edwards@flinders.edu.au).
