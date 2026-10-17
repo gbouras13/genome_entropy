@@ -74,7 +74,7 @@ When an input record carries CDS annotations, each ORF is also labelled by wheth
 
 ORFs are maximal stop-to-stop open reading frames reported by `get_orfs` [@get_orfs], so an ORF extends upstream of any start codon to the preceding in-frame stop. Each ORF records whether it is complete or runs off a contig end.
 
-The minimum-length argument behaves differently by release. Before genome_entropy 0.4.0 it was passed to `get_orfs` in amino acids, although it was documented as nucleotides (genome_entropy #103, #104). The GTDB, phage and mutual-information datasets therefore have an effective floor of **90 amino acids**. The LOGAN analysis set the floor explicitly to 30 amino acids. The GMSC small ORFs are a curated 10–99 amino-acid set and were not ORF-called. <!-- src: methods_provenance.md §1; Validation/gtdb/scientific_report.md l.135–141; #103 -->
+The minimum-length argument behaves differently by release. The GTDB, phage and mutual-information datasets have an effective floor of 90 amino acids. The LOGAN analysis set the floor explicitly to 30 amino acids. The GMSC small ORFs are a curated 10–99 amino-acid set and were not ORF-called. <!-- src: methods_provenance.md §1; Validation/gtdb/scientific_report.md l.135–141; #103 -->
 
 ## Annotation labels
 
