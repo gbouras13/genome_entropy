@@ -86,9 +86,9 @@ For datasets with deposited annotations (GTDB, phage), an ORF was labelled as ma
 
 The rule has no stop-codon requirement. A short CDS that lies wholly inside a longer stop-to-stop ORF can therefore match it. <!-- src: src/genome_entropy/io/genbank.py evaluate_orf_genbank_cds_match; MIN_CDS_OVERLAP_FRACTION=0.90, MIN_SHARED_AA_IDENTITY=0.98 -->
 
-Earlier releases contained a matcher that compared reverse-complement ORF coordinates with genomic CDS coordinates. Under it, almost no minus-strand ORF could match. It was fixed in genome_entropy 0.2.0 (commit 2cc0e1a), and every label used here comes from the corrected matcher (Fig. S15). LOGAN has no deposited annotation, so its ORFs were labelled against Prodigal gene calls instead (*LOGAN metagenomes*).
+LOGAN has no deposited annotation, so its ORFs were labelled against *de novo* Prodigal gene calls instead.
 
-A label records agreement with an annotation, not proof that an ORF is expressed or functional, nor that an unmatched ORF is not.
+
 
 ## Structural encoding
 
@@ -96,7 +96,7 @@ Translated ORFs were encoded with ModernProst (`gbouras13/modernprost-50M`) [@mo
 - the 20-state Foldseek 3Di alphabet [@vanKempen2024];
 - a 12-state alphabet.
 
-The model revision is `2d68d506d4ce8d59025c985fd00243a8860363c6` for every dataset where it was recorded (Table 1). Sequences were encoded in batches of up to a fixed number of residues, the *encoding size*. Because ModernProst predicts structural states from sequence alone, it assigns confident 3Di states to any protein-like sequence. A 3Di string is therefore a prediction, not an observation of structure.
+We used model revision `2d68d506d4ce8d59025c985fd00243a8860363c6` (Table 1). Sequences were encoded in batches of up to a fixed number of residues, the *encoding size*. Because ModernProst predicts structural states from sequence alone, it assigns confident 3Di states to any protein-like sequence. A 3Di string is therefore a prediction, not an observation of structure.
 
 ## Entropy features
 
