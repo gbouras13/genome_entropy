@@ -1,7 +1,6 @@
 # Title
 
-Joint sequence and structural entropy distinguish protein-coding genes
-from spurious open reading frames in bacterial genomes and metagenomes.
+Structural entropy distinguishes protein-encoding genes from spurious open reading frames.
 
 # Authors
 
