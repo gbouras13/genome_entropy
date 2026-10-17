@@ -35,13 +35,13 @@ We can use information theory to compare predicted ORFs and protein-encoding ORF
 
 Protein language models now make structure cheap to approximate. Foldseek's 3Di alphabet describes each residue's local tertiary interactions in 20 states [@vanKempen2024]. Models such as ProstT5 [@Heinzinger2024] and ModernProst [@modernprost] predict 3Di strings directly from amino-acid sequences, fast enough to encode every ORF of a genome, or of a metagenome.
 
-Here we test whether the entropy of predicted structure separates protein-coding genes from spurious ORFs, and whether it finds genes that annotations missed. We use genome_entropy [@genome_entropy] at four scales:
+Here we test whether the entropy of predicted structure separates protein-coding genes from spurious ORFs, and whether it finds genes that annotations missed. We compare structural evidence with matched controls using genome_entropy [@genome_entropy] at four scales:
 1. **GTDB r232:** the species representatives [@Parks2022], to describe the entropy landscape of annotated and unannotated ORFs across bacteria and archaea, and to estimate how many genes GenBank annotation misses.
 2. **LOGAN:** 50,009 assembled metagenomes [@Chikhi2024logan], comprising 90 billion six-frame ORFs, to test the signal beyond ORF length, across reading frames and biomes, and against Prodigal's own calls.
 3. **Inphared:** 36,025 phage genomes [@Cook2021], a gene-dense case in which we rank candidate missing genes and examine an annotation error.
 4. **GMSC small ORFs** [@Duan2024], to find where the method stops working.
 
-Throughout, we compare structural evidence with matched controls rather than with raw rates. We treat annotations as labels to agree with, not as ground truth.
+
 
 # Methods
 
@@ -51,7 +51,7 @@ All entropy features were computed with genome_entropy (https://github.com/linsa
 1. calls every open reading frame (ORF) in all six frames;
 2. translates each ORF with the bacterial genetic code (NCBI table 11);
 3. predicts a structural-alphabet representation of each translated ORF;
-4. reports per-ORF entropy features.
+4. calculates per-ORF entropy features.
 
 When an input record carries CDS annotations, each ORF is also labelled by whether it matches one of them. Different datasets were processed with different package releases, encoding settings and hardware. The configuration for each is given in Table 1, and its effect on the values is quantified under *Reproducibility of the structural encoding*.
 
@@ -68,7 +68,7 @@ When an input record carries CDS annotations, each ORF is also labelled by wheth
 | Inphared phage, comparison with bacteria | 36,025 genomes | 6,754,361 | 90 aa | as above | 0.3.0 (commit 45dd283) | 10,000 | NVIDIA V100, Gadi |
 | GMSC small ORFs | — | 43,726,909 (10–99 aa) | — | GMSC curated positive/negative | 0.3.0 | 50,000 | NVIDIA V100, Gadi |
 
-ModernProst revision `2d68d506…` is recorded for GTDB (recovered from the offline model cache), LOGAN (every chunk manifest) and the small ORFs. It is not recorded for the Setonix phage runs. <!-- src: methods_provenance.md §2; agent-handoffs#24 (LOGAN agent, Gadi provenance comments); Validation/mutual_information/README.md §2; Validation/Inphared/README.md -->
+
 
 ## ORF calling
 
