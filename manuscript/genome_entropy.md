@@ -10,7 +10,7 @@ Structural entropy distinguishes protein-encoding genes from spurious open readi
 
 Most open reading frames (ORFs) in a microbial genome do not encode proteins. Gene callers choose among them from nucleotide statistics, without asking whether the translated sequence resembles a protein.
 
-We asked whether the information content of predicted protein structure separates real genes from spurious ORFs. With genome_entropy we computed, for every ORF, the Shannon entropy of the amino-acid sequence and of the Foldseek 3Di structural alphabet. The 3Di string is predicted from sequence alone by a protein language model. The datasets are:
+We asked whether the information content of predicted protein structure separates real genes from spurious ORFs. With genome_entropy we computed, for every ORF, the Shannon entropy of the amino-acid sequence, the Foldseek 3Di structural alphabet, and the 12-state structure. The 3Di string is predicted from sequence alone by a protein language model. The datasets are:
 - 2.62 billion ORFs from 199,837 GTDB species representatives;
 - 90 billion six-frame ORFs from 50,009 assembled metagenomes;
 - 6.75 million ORFs from 36,025 phage genomes;
