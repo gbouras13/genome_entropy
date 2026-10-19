@@ -148,7 +148,7 @@ ORFs were encoded with `genome_entropy` 0.2.0 (commit `90c8c15`, output schema 2
 Entropies and MI are as defined under *Entropy features*, except that protein entropy counted `X` as a 21st symbol. <!-- src: figG01 caption "Definitions"; GR §4.2 ("The protein alphabet is 21 symbols") --> Population statistics were streamed over every ORF row. Counts and means are exact. Medians and quartiles come from histograms with 10⁻⁴-bit bins. <!-- src: GR §4.1 --> Fig. 1a–c and Fig. S2 use a systematic sample of every 300th bacterial and every 30th archaeal row (4,893,192 and 1,138,714 ORFs after exclusion). <!-- src: GR §4 "Figures" -->
 
 **Length references.** To separate estimator bias from biology, we built two references: <!-- src: GR §4.2 -->
-- **i.i.d.:** the plug-in entropy of 400,000 multinomial draws at each of 671 lengths, using each domain's pooled residue composition (351 genomes);
+- **independent, and identically distributed (i.i.d.):** the entropy of 400,000 multinomial draws at each of 671 lengths, using each domain's pooled residue composition (351 genomes);
 - **empirical:** the length × entropy distribution of every ORF, in 1-aa length bins up to 999 aa and coarser bins above. <!-- src: GR §4.2 -->
 
 Percentiles and z-scores are read against ORFs of the same length. We assessed calibration on the matched ORFs of the figure sample. The estimator bias is the rise of the i.i.d. mean curve from 100 aa. We compared it with the observed rise in all matched ORFs shorter than 1,000 aa. <!-- src: GR §4.2; figG02 and figGS02 captions -->
