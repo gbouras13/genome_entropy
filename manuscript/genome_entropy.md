@@ -438,7 +438,7 @@ Even so, among the 5,722,417 genes with all five alternatives, 3Di entropy ranke
 
 ![**Figure 4.** Six-frame ORF calls that GenBank misses carry real genes in excess over a matched non-coding comparator (GTDB r232).](images/figG04_missed_genes.png){#fig:4 width=100%}
 
-**Structural homology against a matched comparator.** High 3Di entropy alone is not evidence of a gene. In the top candidate 3Di quintile, 88–99% of all the protein-like sequences have a match to a structural database, antisense and frameshift shadows included, probably because a sequence-only encoder emits confident 3Di for any protein-like sequence. <!-- src: SA §2 (l.97–130); SA §12 item 5 --> We therefore compared candidates with antisense and frameshift shadows matched on length, 3Di entropy and truncation, counting only full-length hits (Methods).
+**Structural homology against a matched comparator.** High 3Di entropy alone is not evidence of a gene. In the top candidate 3Di quintile, 88–99% of all the protein-like sequences have a match to a structural database, antisense and frameshift shadows included, probably because a sequence-only encoder emits confident 3Di for any protein-like sequence. <!-- src: SA §2 (l.97–130); SA §12 item 5 --> We therefore compared candidates with antisense and frameshift shadows matched on length, 3Di entropy and truncation, counting only full-length hits ([Methods](#structural-search-and-estimation)).
 
 For the technical null, we shuffled the 3Di strings of the bacterial candidates; in the shuffled sequences, at most 0.04% had full-length database hits. <!-- src: GR §6.1 --> In every database, candidates fall between the comparator and annotated CDS. Against Swiss-Prot, the full-length hit rates are 10.3% for bacterial candidates, 7.4% for the comparator and 35.3% for annotated CDS (Fig. 4b). <!-- src: GR §6.1 table; v7 -->
 
@@ -454,11 +454,11 @@ Together these imply we have identified between 51,000 and 59,000 protein-coding
 - **any full-length structural hit (C3):** at least 27,400 missed proteins (25,620 bacterial + 1,731 archaeal);
 - **the strict rule (C7):** at least 5,400 missed high-quality proteins (4,974 + 407). <!-- src: GR §6.1; v7 ladder_C3/C7_excess -->
 
-Both are conservative. 18,566 scaled comparator ORFs also meet C7. C7 also cannot see the 13,996 bacterial C3 candidates whose only full-length hit is viral (BFVD). <!-- src: GR §6.1 -->
+Both are conservative estimates. At least 18,566 scaled comparator ORFs also meet the strict rule (C7), and that rule was not used on the 13,996 bacterial full-length structural hit (C3) candidates whose only full-length hit is viral (i.e. matching the BFVD database). <!-- src: GR §6.1 -->
 
-**Table 3. Direct evidence for GTDB candidates against the matched comparator.** For each criterion the table gives the number of candidates, the comparator count and the excess. The comparator count is weighted by draw multiplicity and scaled to the candidate arm. The excess is a floor on the number of real genes. C3–C6 are each C2 plus one requirement and are not nested (in archaea C6 exceeds C4); C7 is the strict combined rule (Methods). C2 has no excess by construction, because the comparator is matched on truncation.
+**Table 3. Direct evidence for GTDB candidates against the matched comparator.** For each criterion the table gives the number of candidates, the comparator count and the excess. The comparator count is weighted by draw multiplicity and scaled to the candidate arm. The excess is a lower limit on the number of real missed genes. C3–C6 are each C2 plus one requirement and are not nested (in Archaea C6 exceeds C4); C7 is the strict combined rule (Methods). C2 has no excess by construction, because the comparator is matched on truncation.
 
-| criterion | bacteria: candidates | bacteria: comparator | bacteria: excess | archaea: candidates | archaea: comparator | archaea: excess |
+| criterion | Bacteria: candidates | Bacteria: comparator | Bacteria: excess | Archaea: candidates | Archaea: comparator | Archaea: excess |
 |---|---:|---:|---:|---:|---:|---:|
 | C1 all candidates | 523,346 | 523,346 | 0 | 22,447 | 22,447 | 0 |
 | C2 not contig-truncated | 483,767 | 483,767 | 0 | 19,835 | 19,835 | 0 |
