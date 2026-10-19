@@ -377,19 +377,19 @@ In genomes that carry any annotation, matched and unmatched ORFs separate on 3Di
 
 Matched ORFs are also about twice as long (376 against 178 aa), so part of the 3Di gap is length (next section). <!-- src: GR §4.1 item 2 -->
 
-Unmatched ORFs pile up against a sharp edge at 1.585 bits (Fig. 1b). This is log₂3, the maximum entropy of a string that uses only three distinct states. It is an arithmetic ceiling, not a biological threshold, and it falls at the same place in both domains. <!-- src: GR §5; figG01 caption --> Over the full population, ORFs below log₂3 are:
+Unmatched ORFs pile up against a sharp edge at 1.585 bits (Fig. 1b). This is $\log_2 (3)$, the maximum entropy of a string that uses only three distinct states. It is an arithmetic ceiling, not a biological threshold, and it falls at the same place in both domains. <!-- src: GR §5; figG01 caption --> Over the full population, ORFs below $\log_2 (3)$ are:
 - **bacteria:** 87.6% of unmatched against 3.3% of matched ORFs;
 - **archaea:** 84.1% against 3.7% (Fig. 1d). <!-- src: GR §4; figG01_population_bands.tsv.gz -->
 
-In three genomes, states D, V and P make up 99.4% of residues below the line. <!-- src: GR §5; RI G-5 --> We report this as an observation only. Whether state D marks disorder has not been tested; DSSP or a disorder predictor could test it. <!-- decision D11 -->
+In three genomes, states D, V and P make up 99.4% of residues below the line. <!-- src: GR §5; RI G-5 -->
 
 **Never-annotated genomes.** 48.9% of bacterial and 45.7% of archaeal representatives carry no deposited CDS. <!-- src: GR §2, §6 --> Their ORFs are not low-3Di noise: 19.1% (bacteria) and 28.3% (archaea) reach 3Di ≥ 2.5 bits. Unmatched ORFs in annotated genomes reach that level only 0.83% and 1.25% of the time, a 23-fold difference in both domains. <!-- src: GR §4; GR §6 "The entropy-matched intergenic arm" --> These genomes therefore appear to hold many gene-like, unlabelled ORFs, and we exclude them from every comparison (Methods).
 
 ## Entropy rises with length mostly as estimator bias for protein, little for 3Di
 
-Between 100 and 300 aa, mean protein entropy of matched ORFs rises by 0.08 bits (bacteria) and 0.09 bits (archaea). That is less than the 0.105 bits that plug-in estimator bias alone produces in each domain (Fig. S1). <!-- src: figG02 caption; figG02_mean_curves.tsv.gz --> The apparent length trend in protein entropy is therefore an artefact.
+Between 100 and 300 aa, mean protein entropy of matched ORFs rises by 0.08 bits (bacteria) and 0.09 bits (archaea). That is less than the 0.105 bits that estimator bias alone produces in each domain (Fig. S1). <!-- src: figG02 caption; figG02_mean_curves.tsv.gz --> The apparent length trend in protein entropy is therefore an artefact.
 
-3Di entropy rises by 0.88 and 0.76 bits over the same range. Only about 0.105 bits of that (12% and 14%) is bias, so longer proteins genuinely use more predicted structural states. <!-- src: figG02 caption; figG02_mean_curves.tsv.gz -->
+3Di entropy rises by 0.88 and 0.76 bits over the same range. Only about 0.105 bits of that (12% and 14%) is bias, so longer proteins genuinely use more predicted structural states than shorter proteins. <!-- src: figG02 caption; figG02_mean_curves.tsv.gz -->
 
 Only a reference built from real ORFs of the same length is calibrated: its z-scores have mean ≈ 0 and SD 1.00. Against i.i.d. draws, the SD of z is 3.9–6.6 (Fig. S2). <!-- src: figGS02 caption; figGS02_summary.tsv.gz -->
 
