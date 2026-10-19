@@ -155,22 +155,22 @@ Percentiles and z-scores are read against ORFs of the same length. We assessed c
 
 ### Candidates and the matched comparator
 
-Within annotated genomes, unmatched ORFs with 3Di entropy of at least 2.5 bits were split by overlap with deposited CDS coordinates on either strand, both placed on the forward genomic axis:
+Within annotated genomes, unmatched ORFs with 3Di entropy of at least 2.5 bits were split by overlap with deposited CDS coordinates on either strand:
 - a **shadow** overlaps a CDS;
 - a **candidate** overlaps none. <!-- src: GR §6; scripts/10_missed_genes.py overlaps_annotated() -->
 
-The 2.5-bit threshold was set by eye, well above the 1.585-bit ceiling (Results), and the candidate count depends on it. <!-- src: GR §10 --> ORFs running off a contig end, which have no stop codon, were flagged as contig-truncated. <!-- src: GR §6 -->
+The 2.5-bit threshold was set by eye, well above the 1.585-bit ceiling (Results). <!-- src: GR §10 --> ORFs running off a contig end, which have no stop codon, were flagged as contig-truncated. <!-- src: GR §6 -->
 
 We classed shadows by frame relative to the overlapped CDS: same frame, same-strand frameshift, antisense, or frame undefined. Frame was read from the start on the plus strand and from the end on the minus strand. Frame is undefined when the CDS is partial. <!-- src: GR §6.1 "The comparator had to be fixed first" --> Same-frame shadows are largely the annotated protein, so the comparator was drawn only from antisense and frameshift shadows. That pool held 3,925,368 bacterial and 133,748 archaeal ORFs. <!-- src: MC item 1 -->
 
-Each candidate received one partner without replacement (genome_entropy #109; seed 0). The partner had the same truncation status, 3Di entropy within ±0.025 bits and length within ±10%. <!-- src: MC item 2 --> Partners were sought first in the same genome, then the same 250-genome chunk, then the whole domain. Candidates left without a partner were retried with wider calipers and finally matched with replacement. In bacteria, 36.7% of partners came from the same genome and 0.16% of draws were with replacement; in archaea the figures were 26.5% and 4.3%. <!-- src: MC item 2 --> The total variation distance from the candidates on a 5 × 5 length × 3Di grid was 0.003 (bacteria) and 0.010 (archaea). <!-- src: MC "Why" table --> Comparator rates are weighted by draw multiplicity.
+Each candidate received one partner without replacement. The partner had the same truncation status, 3Di entropy within ±0.025 bits and length within ±10%. <!-- src: MC item 2 --> Partners were sought first in the same genome, then the same 250-genome chunk, then the whole domain. Candidates left without a partner were retried with wider calipers and finally matched with replacement. In bacteria, 36.7% of partners came from the same genome and 0.16% of draws were with replacement; in archaea the figures were 26.5% and 4.3%. <!-- src: MC item 2 --> The total variation distance from the candidates on a 5 × 5 length × 3Di grid was 0.003 (bacteria) and 0.010 (archaea). <!-- src: MC "Why" table --> Comparator rates are weighted by draw multiplicity.
 
 There were three further arms:
 - annotated CDS, length-matched, as the positive control;
 - `intergenic_lo`, low-3Di non-shadow ORFs, length-matched;
 - the candidates' 3Di strings shuffled, as a technical null.
 
-The bacterial control arms were capped at 200 per chunk, giving 151,927 ORFs each. <!-- src: GR §6.1 "Design"; figG04 caption -->
+
 
 ### Structural search and estimation
 
