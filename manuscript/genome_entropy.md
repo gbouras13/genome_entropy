@@ -550,13 +550,13 @@ Phage genomes are densely coding: 39.8% of the 6,754,361 ORFs of at least 90 aa 
 
 Unlike with Bacteria, phage ORF predictions are less susceptible to the length effect. Every ORF here is at least 90 aa, and length alone is a weak predictor (0.130 bits; AUC 0.733). <!-- src: Validation/mutual_information/README.md §4.2 table, §4.6 --> Within length bins, 3Di entropy gives AUC 0.874 at 90–99 aa, rising to 0.991 at 300 aa and above, against 0.53–0.63 for length. <!-- src: Validation/mutual_information/README.md §4.3 AUC table --> This maybe because phage genes are inherently shorter than their bacterial counterparts [@Akhter2012-an].
 
-Amino-acid composition therefore adds little once predicted structure is known. The labels are Pyrodigal-gv gene calls, not ground truth, so these values measure agreement with that gene caller.
+
 
 ### Ranking missing genes with corrected labels
 
-Fig. S15b shows what the label error cost. The original ranking model included strand among its features. Trained on the old labels, it learned that a plus-strand ORF is a gene: the strand feature carried 0.89 of its gain. <!-- src: Validation/Inphared/README.md:10, §4.2 table; figPS01 caption --> Scored against corrected labels, that model reaches AUC 0.740 only. <!-- src: Validation/Inphared/README.md Table 1 (0.7404) -->
 
-We therefore retrained on corrected labels using intrinsic features only: entropies and lengths, with no strand, frame or position. On the 31,200-genome ranking set this model gives AUC 0.976 and average precision (AP) 0.970, against 0.733 and 0.660 for length alone (Fig. 6b). <!-- src: Validation/Inphared/README.md Table 1 (intrinsic 0.9764 / 0.9696; length only 0.7328 / 0.6598); data/figP01_ranking_models.tsv.gz --> Length plus 3Di entropy already reaches 0.953 and 0.945. <!-- src: Validation/Inphared/README.md Table 1 --> 3Di entropy takes 0.745 of the model's gain. <!-- src: Validation/Inphared/README.md §4.2 intrinsic table --> The ranking set's positives make up 40% of ORFs, so AP here is not comparable with AP on metagenomes. <!-- src: Validation/Inphared/README.md:139, :192 -->
+
+We trained a random forest classifier [@Breiman2001-yx] <!-- AGENT: confirm was this random forest or XG-Boosted Random Forest or ...? Update the citation as appropriate --> on labels using intrinsic features only: entropies and lengths, with no strand, frame or position. On the 31,200-genome ranking set this model gives AUC 0.976 and average precision (AP) 0.970, against 0.733 and 0.660 for length alone (Fig. 6b). <!-- src: Validation/Inphared/README.md Table 1 (intrinsic 0.9764 / 0.9696; length only 0.7328 / 0.6598); data/figP01_ranking_models.tsv.gz --> Length plus 3Di entropy already reaches 0.953 and 0.945. <!-- src: Validation/Inphared/README.md Table 1 --> The ranking set's positives make up 40% of ORFs, so AP here is not comparable with AP on metagenomes. <!-- src: Validation/Inphared/README.md:139, :192 -->
 
 The model flags 46,132 unannotated ORFs at p ≥ 0.8, in 19,560 genomes (median 136 aa). <!-- src: Validation/Inphared/README.md:210 --> Most overlap an annotated gene:
 
@@ -568,7 +568,7 @@ The model flags 46,132 unannotated ORFs at p ≥ 0.8, in 19,560 genomes (median 
 
 The remaining 4,045 are pieces of annotated genes, mostly partial CDS at genome ends, and were not searched. <!-- src: Validation/Inphared/README.md:224 -->
 
-Structural searches support the candidates (Fig. 6c). Full-length Foldseek hits in any database were found for:
+Structural searches support these predicted candidate ORFs (Fig. 6c). Full-length Foldseek hits in any database were found for:
 
 - 33.8% of candidates (95% CI 33.1–34.5%);
 - 64.6% of annotated genes;
