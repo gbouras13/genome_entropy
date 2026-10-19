@@ -434,7 +434,7 @@ Even so, among the 5,722,417 genes with all five alternatives, 3Di entropy ranke
 
 ## Missed genes in GTDB
 
-We hypothesised that the GTDB annotated genomes contain real protein-encoding genes that were not identified correctly. Therefore, in annotated genomes we kept unmatched ORFs with 3Di ≥ 2.5 bits: 9,598,500 bacterial ORFs. Of these, 94.5% overlap a deposited CDS (shadows). That leaves 523,346 bacterial and 22,447 archaeal candidates (Fig. 4a). <!-- src: GR §6 table; figG04_funnel.tsv.gz --> Candidate burden per genome rises with genome size (Spearman ρ = 0.55 in bacteria) and is almost flat against contig N50 (ρ = 0.10) (Fig. S8). <!-- src: figGS03 caption; figGS03_burden_rho.tsv.gz -->
+**Identifying missing genes.** We hypothesised that the GTDB annotated genomes contain real protein-encoding genes that were not identified correctly. Therefore, from the annotated genomes we kept 9,598,500 bacterial unmatched ORFs with 3Di ≥ 2.5 bits. Of these, 94.5% overlap a recognised CDS (i.e. they are a shadow). That leaves 523,346 bacterial and 22,447 archaeal candidate ORFs that might be real (Fig. 4a). <!-- src: GR §6 table; figG04_funnel.tsv.gz --> As expected, the number of candidates we identify is dependent on the genome size (Spearman ρ = 0.55 in bacteria) but is almost flat against contig N50 (ρ = 0.10) (Fig. S8). <!-- src: figGS03 caption; figGS03_burden_rho.tsv.gz -->
 
 ![**Figure 4.** Six-frame ORF calls that GenBank misses carry real genes in excess over a matched non-coding comparator (GTDB r232).](images/figG04_missed_genes.png){#fig:4 width=100%}
 
