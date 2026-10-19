@@ -548,7 +548,7 @@ Phage genomes are densely coding: 39.8% of the 6,754,361 ORFs of at least 90 aa 
 
 ![**Figure 6.** Phage: structural entropy predicts annotation, ranks missing genes, and corrects an annotation.](images/figP01_phage.png){#fig:6 width=100%}
 
-The signal is not a length effect. Every ORF here is at least 90 aa, and length alone is weak (0.130 bits; AUC 0.733). <!-- src: Validation/mutual_information/README.md §4.2 table, §4.6 --> Conditioning on length keeps 82% of the information in 3Di entropy (0.472 of 0.572 bits, full population). <!-- src: Validation/mutual_information/README.md §4.3 conditional-MI table --> Within length bins, 3Di entropy gives AUC 0.874 at 90–99 aa, rising to 0.991 at 300 aa and above, against 0.53–0.63 for length. <!-- src: Validation/mutual_information/README.md §4.3 AUC table -->
+Unlike with Bacteria, phage ORF predictions are less susceptible to the length effect. Every ORF here is at least 90 aa, and length alone is a weak predictor (0.130 bits; AUC 0.733). <!-- src: Validation/mutual_information/README.md §4.2 table, §4.6 --> Within length bins, 3Di entropy gives AUC 0.874 at 90–99 aa, rising to 0.991 at 300 aa and above, against 0.53–0.63 for length. <!-- src: Validation/mutual_information/README.md §4.3 AUC table --> This maybe because phage genes are inherently shorter than their bacterial counterparts [@Akhter2012-an].
 
 Amino-acid composition therefore adds little once predicted structure is known. The labels are Pyrodigal-gv gene calls, not ground truth, so these values measure agreement with that gene caller.
 
