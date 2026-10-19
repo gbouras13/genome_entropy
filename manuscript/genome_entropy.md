@@ -218,7 +218,7 @@ Features were length (aa), the Shannon entropy (bits) of the amino-acid, 3Di and
 
 ### Statistics and models
 
-Single-feature separation was computed exactly from histograms over all ORFs, stratified by class, truncation, length bin, biome and tranche (0.01-bit entropy bins). <!-- src: LMS:257-260 --> We report exact ROC AUC (ties counted ½) and average precision (AP), overall and within nine length bins, and a length-stratified AUC: the probability that a positive and a negative from the same length bin are ordered correctly. <!-- src: LMS:260-262 -->
+Single-feature separation was computed exactly from histograms over all ORFs, stratified by class, truncation, length bin, biome and tranche (0.01-bit entropy bins). <!-- src: LMS:257-260 --> We report exact ROC AUC (ties counted ½) and average precision (AP), overall and within nine length bins, and a length-stratified AUC. <!-- src: LMS:260-262 -->
 
 Multivariable models used a class-stratified sample of 11.7 million ORFs (9.5 million complete) from all 90 shards, weighted by the inverse of each class's sampling rate. <!-- src: LMS:264-265; AH/manuscript/tables/S4_models_overall.tsv (1,760,915 + 7,751,712 complete) --> `HistGradientBoostingClassifier` (scikit-learn [@Pedregosa2011-tz]; 300 iterations, learning rate 0.1, 63 leaves, early stopping) was fitted on feature sets nested on length, with five-fold cross-validation grouped by accession, trained unweighted and evaluated population-weighted on out-of-fold scores. <!-- src: Validation/logan/scripts/13_models.py:78-85; LMS:266-268 --> The complete-ORF model was also applied unchanged to contig-end fragments.
 
@@ -238,19 +238,19 @@ The 79,774 contigs carrying the 80,000 queries of the candidate, low-score, anti
 
 ### Compute
 
-Encoding 5.28 trillion amino acids gave a 5.95 TB compressed cache at 215–220 thousand amino acids s⁻¹ per GCD. <!-- src: LMS:783-786 --> The run was billed 1.06 million GPU SU (8,260 GCD-hours) and 264,000 CPU SU. Encoding the retained chunks took 6,724 GCD-hours (861,000 SU), or 176,000 SU per Tbp of assembled sequence. Time other than encoding made up 6.8% of billed GPU time in the first tranche and 26.8% in the second (7.2% and 36.6% more than the encoding time). The second tranche's share includes repeat encoding after an inode-quota failure, about 134,000 SU after allowing for the first tranche's overhead rate. The first tranche's billed rate, 191,000 SU per Tbp, is the best estimate for a further run. <!-- src: AH/manuscript/tables/S10_phaseb1_measured.json, S11_phaseb2_measured.json (gcd_hours_billed, gcd_hours_encoding_only, su_gpu_encoding, contig_Tbp); LOGAN agent review on #137; agent-handoffs@9886e67 --> Code is in `Validation/logan/scripts/` (genome_entropy #115).
+Encoding 5.28 trillion amino acids gave a 5.95 TB compressed cache at 215–220 thousand amino acids s⁻¹ per GCD. <!-- src: LMS:783-786 --> The run was billed 1.06 million GPU SU (8,260 GCD-hours) and 264,000 CPU SU. Encoding the retained chunks took 6,724 GCD-hours (861,000 SU), or 176,000 SU per Tbp of assembled sequence. Time other than encoding made up 6.8% of billed GPU time in the first tranche and 26.8% in the second (7.2% and 36.6% more than the encoding time). The second tranche's share includes repeat encoding after an inode-quota failure, about 134,000 SU after allowing for the first tranche's overhead rate. The first tranche's billed rate, 191,000 SU per Tbp, is the best estimate for a further run. <!-- src: AH/manuscript/tables/S10_phaseb1_measured.json, S11_phaseb2_measured.json (gcd_hours_billed, gcd_hours_encoding_only, su_gpu_encoding, contig_Tbp); LOGAN agent review on #137; agent-handoffs@9886e67 -->.
 
 ## Phage genomes
 
 ### Genomes, annotation and ORFs
 
-We used 36,025 complete phage genomes from Inphared [@Cook2021-ay] (2.316 Gb in total; 1,761–735,411 bp). <!-- src: AH inphared_gadi/README.md §1 table; Validation/mutual_information/README.md §2 table --> The release is most likely that of 7 April 2026, which we inferred from file dates; record-level identity with that release was not checked. <!-- src: Validation/mutual_information/README.md §2 table ("Phage release", UNCONFIRMED) --> Each genome had been annotated with Pharokka [@Bouras2023-wx] and then phold [@Bouras2026-yi], whose versions were not recorded. Gene calls in these annotations came from Pyrodigal-gv 0.3.2 [@Larralde2022-xa; @Camargo2024-ox], which gave 3,336,744 CDS. <!-- src: Validation/mutual_information/README.md §2 table ("Gene calls in the reference"); methods_provenance.md §4 item 1 --> The re-annotated CDS were the labels for every phage analysis. The submitters' own annotations were used only for the OM869708 example.
+We used 36,025 complete phage genomes from Inphared [@Cook2021-ay] (2.316 Gb in total; 1,761–735,411 bp), <!-- src: AH inphared_gadi/README.md §1 table; Validation/mutual_information/README.md §2 table --> realeased on 7 April 2026. <!-- src: Validation/mutual_information/README.md §2 table ("Phage release", UNCONFIRMED) --> Each genome had been annotated with Pharokka [@Bouras2023-wx] and then phold [@Bouras2026-yi]. Gene calls in these annotations came from Pyrodigal-gv 0.3.2 [@Larralde2022-xa; @Camargo2024-ox], which gave 3,336,744 CDS. <!-- src: Validation/mutual_information/README.md §2 table ("Gene calls in the reference"); methods_provenance.md §4 item 1 --> The re-annotated CDS were the labels for every phage analysis. The submitters' own annotations were used only for the OM869708 example.
 
-genome_entropy found six-frame stop-to-stop ORFs. The minimum length was passed to `get_orfs` in amino acids, not nucleotides, so the effective floor was 90 aa rather than the intended 30 aa (issue #103). <!-- src: Validation/mutual_information/README.md §2 table ("ORF calling"); results_inventory.md §5 --> That gave 6,754,361 ORFs, of which 18,322 run off a contig end. <!-- src: Validation/mutual_information/README.md §2 table ("ORFs") --> 957,269 of the 3,336,744 annotated CDS (28.7%) are shorter than 90 aa and cannot appear as an ORF of their own. <!-- src: Validation/mutual_information/README.md §2.1 ("Unrepresentable CDS"); IR:75 gives 28.8% for the 31,200-genome ranking subset -->
+genome_entropy found six-frame stop-to-stop ORFs longer than 90 aa. <!-- src: Validation/mutual_information/README.md §2 table ("ORF calling"); results_inventory.md §5 --> That gave 6,754,361 ORFs, of which 18,322 run off a contig end. <!-- src: Validation/mutual_information/README.md §2 table ("ORFs") --> 957,269 of the 3,336,744 annotated CDS (28.7%) are shorter than 90 aa and cannot appear as an ORF of their own. <!-- src: Validation/mutual_information/README.md §2.1 ("Unrepresentable CDS"); IR:75 gives 28.8% for the 31,200-genome ranking subset -->
 
 ### Gene labels
 
-An ORF was labelled a gene when it matched an annotated CDS under all of the following conditions:
+An ORF was labelled a gene when it matched an annotated CDS under all of the following criteria:
 
 - the CDS is on the same record and strand;
 - the codon phase is compatible;
@@ -261,7 +261,7 @@ An ORF was labelled a gene when it matched an annotated CDS under all of the fol
 
 There is no stop-codon check, so a short CDS inside a longer stop-to-stop ORF labels that ORF. In 77,799 positives the CDS covers less than half of the ORF. <!-- src: Validation/mutual_information/README.md §2.1 ("Short CDS inside long ORFs") -->
 
-The matcher used before genome_entropy commit 2cc0e1a compared reverse-complement ORF coordinates with genomic CDS coordinates. It therefore labelled almost no minus-strand ORF as a gene. We relabelled every ORF with the corrected matcher (Fig. S15a). All phage results use these corrected labels.
+
 
 ### Two ORF sets
 
