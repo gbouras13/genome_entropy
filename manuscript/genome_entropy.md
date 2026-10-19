@@ -373,6 +373,8 @@ In genomes that carry any annotation, matched and unmatched ORFs separate on 3Di
 
 ![**Figure 1.** Unannotated six-frame ORFs separate from annotated genes in 3Di entropy, not protein entropy, and most of them sit under the log₂3 ceiling (GTDB r232).](images/figG01_entropy_landscape.png){#fig:1 width=100%}
 
+<!--AGENT: Add a figure legend for every figure -->
+
 Matched ORFs are also about twice as long (376 against 178 aa), so part of the 3Di gap is length (next section). <!-- src: GR §4.1 item 2 -->
 
 Unmatched ORFs pile up against a sharp edge at 1.585 bits (Fig. 1b). This is log₂3, the maximum entropy of a string that uses only three distinct states. It is an arithmetic ceiling, not a biological threshold, and it falls at the same place in both domains. <!-- src: GR §5; figG01 caption --> Over the full population, ORFs below log₂3 are:
